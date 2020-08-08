@@ -1,7 +1,7 @@
 import cedula from "cedula-web";
 
-const modules = [
+const plugins = [
     cedula 
 ]
 
-export default modules 
+export default plugins 

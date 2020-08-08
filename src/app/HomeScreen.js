@@ -1,33 +1,33 @@
 import React from "react";
-import modules from "../modules";
+import plugins from "../plugins";
 import { Page } from "rsi-react-web-components";
 
 import KioskMasterTemplate from "../templates/KioskMasterTemplate";
 import lguLogo from "../assets/images/zamboanga.png";
 
-const Module = ({ module, onSelect }) => {
+const Plugin = ({ plugin, onSelect }) => {
   return (
-    <div style={styles.module}>
-      <img style={{width: 100}} src={module.logo} onClick={() => onSelect(module)} />
-      <label>{module.title}</label>
+    <div style={styles.plugin}>
+      <img style={{width: 100}} src={plugin.logo} onClick={() => onSelect(plugin)} />
+      <label>{plugin.title}</label>
     </div>
   );
 };
 
 const HomeScreen = (props) => {
-  const onSelectModule = (module) => {
-    props.history.push("/module", {moduleName: module.name});
+  const onSelectPlugin = (plugin) => {
+    props.history.push("/plugin", {pluginName: plugin.name});
   };
 
   return (
     <KioskMasterTemplate logo={lguLogo} partner={{ name: "Zamboanga City" }}>
       <Page>
-        {modules.map((module) => (
-          <Module
-            key={module.name}
+        {plugins.map((plugin) => (
+          <Plugin
+            key={plugin.name}
             {...props}
-            module={module}
-            onSelect={onSelectModule}
+            plugin={plugin}
+            onSelect={onSelectPlugin}
           />
         ))}
       </Page>
@@ -36,7 +36,7 @@ const HomeScreen = (props) => {
 };
 
 const styles = {
-  module: {
+  plugin: {
     display: "flex",
     flexDirection: "column",
     width: 150,

@@ -1,21 +1,20 @@
 import React from "react";
-import modules from "../modules";
+import plugins from "../plugins";
 import { Page } from "rsi-react-web-components";
 
 import KioskMasterTemplate from "../templates/KioskMasterTemplate";
 import lguLogo from "../assets/images/zamboanga.png";
 
-const ModuleScreen = (props) => {
-  const moduleName = props.location.state.moduleName;
-  const module = modules.find((mod) => mod.name === moduleName);
-  const Component = module.Component;
+const PluginScreen = (props) => {
+  const pluginName = props.location.state.pluginName;
+  const plugin = plugins.find((plugin) => plugin.name === pluginName);
+  const Component = plugin.Component;
+  
   return (
     <KioskMasterTemplate logo={lguLogo} partner={{ name: "Zamboanga City" }}>
-      <Page>
         <Component {...props} />
-      </Page>
     </KioskMasterTemplate>
   );
 };
 
-export default ModuleScreen;
+export default PluginScreen;
