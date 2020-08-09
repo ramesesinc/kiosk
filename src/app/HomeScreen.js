@@ -1,6 +1,6 @@
 import React from "react";
 import plugins from "../plugins";
-import { Page } from "rsi-react-web-components";
+import { Page, Panel } from "rsi-react-web-components";
 
 import KioskMasterTemplate from "../templates/KioskMasterTemplate";
 import lguLogo from "../assets/images/zamboanga.png";
@@ -21,7 +21,7 @@ const HomeScreen = (props) => {
 
   return (
     <KioskMasterTemplate logo={lguLogo} partner={{ name: "Zamboanga City" }}>
-      <Page>
+      <Panel>
         {plugins.map((plugin) => (
           <Plugin
             key={plugin.name}
@@ -30,7 +30,7 @@ const HomeScreen = (props) => {
             onSelect={onSelectPlugin}
           />
         ))}
-      </Page>
+      </Panel>
     </KioskMasterTemplate>
   );
 };

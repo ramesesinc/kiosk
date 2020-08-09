@@ -3103,7 +3103,7 @@ caseless@^0.12.0, caseless@~0.12.0:
   version "0.1.2"
   dependencies:
     react-router-dom "^5.2.0"
-    rsi-react-web-components "^0.1.6"
+    rsi-react-web-components "^0.1.8"
 
 chalk@2.4.2, chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
@@ -10042,10 +10042,27 @@ rsi-react-web-components@^0.1.1:
     socket.io-client "^2.3.0"
     sync-request "^6.1.0"
 
-rsi-react-web-components@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/rsi-react-web-components/-/rsi-react-web-components-0.1.6.tgz#fb00d8aebd6f087f154165d5d7e1cf032bf39ffa"
-  integrity sha512-xVyel8N9OBrq2kM6nhcKdpAseGMdY9dDj1qEYtWVqqeFlKDg2VmtqH+8k8BV8coOuG/QD5u0D7f3JaerLtVhLA==
+rsi-react-web-components@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/rsi-react-web-components/-/rsi-react-web-components-0.1.7.tgz#66311dc3ae77afde04987a4b4224c48ead6f7022"
+  integrity sha512-y8786Bbab34ztwfc87xycM8pX2SXfbkZpXYbSVYwowqf5dLxkuenrkRmkHUmNRNwlxQ25Zo4z/Tr8py6yVGUCw==
+  dependencies:
+    "@date-io/date-fns" "^1.3.13"
+    "@material-ui/core" "^4.11.0"
+    "@material-ui/icons" "^4.9.1"
+    "@material-ui/pickers" "^3.2.10"
+    "@material-ui/styles" "^4.10.0"
+    date-fns "^2.15.0"
+    immer "^7.0.7"
+    lodash "^4.17.15"
+    shortid "^2.2.15"
+    socket.io-client "^2.3.0"
+    sync-request "^6.1.0"
+
+rsi-react-web-components@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/rsi-react-web-components/-/rsi-react-web-components-0.1.8.tgz#7bd28bb79400875a999e557e4af49d57452c3fd1"
+  integrity sha512-VtGyY4g0zxWYUBgE5nPmDLtWBNMjb704rIR+kHWt2fsUqojX1O6/u3Y/q7KMLCvIbY9HSN2NvMCqjVX7yBz5ag==
   dependencies:
     "@date-io/date-fns" "^1.3.13"
     "@material-ui/core" "^4.11.0"

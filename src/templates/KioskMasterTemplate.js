@@ -1,6 +1,6 @@
 import React from "react";
 import MasterTemplate from "../templates/MasterTemplate";
-import { Content, Panel } from "rsi-react-web-components";
+import { Panel, Page } from "rsi-react-web-components";
 import etracsLogo from "../assets/images/etracs.png";
 
 const Header = (props) => {
@@ -29,7 +29,9 @@ const KioskMasterTemplate = ({ children, ...rest }) => {
   return (
     <MasterTemplate>
       <Header {...rest} />
-      {children}
+      <Page>
+        {children}
+      </Page>
       <Footer />
     </MasterTemplate>
   );
