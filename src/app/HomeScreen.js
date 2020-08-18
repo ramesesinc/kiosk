@@ -8,7 +8,7 @@ import lguLogo from "../assets/images/zamboanga.png";
 const Plugin = ({ plugin, onSelect }) => {
   return (
     <div style={styles.plugin}>
-      <img style={{width: 100}} src={plugin.logo} onClick={() => onSelect(plugin)} />
+      <img className="module-logo" src={plugin.logo} onClick={() => onSelect(plugin)} />
       <label>{plugin.title}</label>
     </div>
   );
@@ -21,7 +21,8 @@ const HomeScreen = (props) => {
 
   return (
     <KioskMasterTemplate logo={lguLogo} partner={{ name: "Zamboanga City" }}>
-      <Panel>
+     
+        <h1 className="header-menu">Main Menu</h1>
         {plugins.map((plugin) => (
           <Plugin
             key={plugin.name}
@@ -30,7 +31,7 @@ const HomeScreen = (props) => {
             onSelect={onSelectPlugin}
           />
         ))}
-      </Panel>
+      
     </KioskMasterTemplate>
   );
 };

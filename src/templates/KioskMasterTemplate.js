@@ -40,31 +40,33 @@ const KioskMasterTemplate = ({ children, ...rest }) => {
 const styles = {
   header: {
     height: "50",
-    backgroundColor: "#ecf0f1",
+    backgroundColor: "#e2f7fd",
     padding: "8px 8px",
     paddingLeft: "50px",
+    borderBottom: "3px solid #2c3e50"
   },
   headerContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    paddingTop:"120px"
   },
   logo: {
-    width: 50,
-    height: 50,
+    width: 90,
+    height: 80,
     marginLeft: 10,
     marginRight: 10,
   },
   etracsLogo: {
-    width: 120,
+    width: 150,
   },
   title: {
-    fontSize: 16,
+    fontSize: 28,
     color: "#0276aa",
   },
   footer: {
-    padding: "8px",
+    padding: "15px",
     backgroundColor: "#ecf0f1",
     borderTop: "3px solid #2c3e50",
     textAlign: "center",
