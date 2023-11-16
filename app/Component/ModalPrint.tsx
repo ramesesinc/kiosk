@@ -6,7 +6,7 @@ import { TiArrowDownThick } from "react-icons/ti";
 import Link from "next/link";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { useReactToPrint } from "react-to-print";
-import PrintableContent from "./PrintableContent";
+import PrintableContent from "./QueueContentPrint";
 
 interface ModalProps {
   isOpen: boolean;
@@ -34,9 +34,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, heading, text }) => {
         </button>
 
         <form className="flex flex-col justify-center items-center gap-2 bg-white rounded-2xl p-5 ">
-        <div className="invisible">
-        <PrintableContent ref={componentRef} heading={heading} number={1} />
-        </div>
+          <div className="invisible">
+            <PrintableContent ref={componentRef} heading={heading} number={1} />
+          </div>
           <h1 className="text-[35px] uppercase font-semibold">{heading}</h1>
           <p className="text-[70px] font-bold pb-[70px]">{text}</p>
 

@@ -7,7 +7,7 @@ import ReactDOMServer from "react-dom/server";
 import Link from "next/link";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { useReactToPrint } from "react-to-print";
-import PrintableContent1 from "./PrintableContent1";
+import PrintableContent1 from "./CashierContentPrint";
 
 interface ModalProps {
   isOpen: boolean;
@@ -44,8 +44,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             quality={100}
             className=""
           />
-          <h1 className="text-[35px] uppercase font-semibold">Queue No.</h1>
-          <p className="text-[70px] font-bold ">001</p>
+          <h1 className="text-[35px] uppercase font-semibold">Queue No</h1>
+          <p className="text-[70px] font-bold ">Q-11</p>
 
           <Image
             src={"/print.png"}

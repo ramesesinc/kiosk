@@ -1,7 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { forwardRef, ForwardRefRenderFunction, Ref } from "react";
 
-const PrintableContent1: ForwardRefRenderFunction<HTMLDivElement, {}> = (
-  props,
+const PrintableContent1: ForwardRefRenderFunction<HTMLDivElement> = (
+  {},
   ref: Ref<HTMLDivElement>
 ) => (
   <div ref={ref} className="flex flex-col justify-center items-center">
