@@ -1,0 +1,9 @@
+{
+  "otherPaymentsConfigs":[
+    { "link": "/other-payments/cedula", "text": "Cedula" },
+    { "link": "/other-payments/water", "text": "Water" },
+    { "link": "", "text": "Building Construction Permit" },
+    { "link": "", "text": "Market Rental" },
+    { "link": "", "text": "Vehicle Registration" }
+  ]
+}
