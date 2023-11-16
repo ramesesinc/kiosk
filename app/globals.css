@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  * {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
+  }
+  
+  body {
+    touch-action: none;
+  }  
+
+  /* custom css for background image */
+
+  .bglandingpage-image {
+    background-image: url("../public/bg-image.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+  }
+
+  .bgqueue-image {
+    background-image: url("../public/bg-logo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+  }
+
+  .bgmenu-image {
+    background-image: url("../public/bg-logo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+  }
+
+  .bgpaybusiness-image {
+    background-image: url("../public/bg-logo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+  }
+
+  .bgtax-image {
+    background-image: url("../public/bg-logo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+  }
+
+  .bgothers-image {
+    background-image: url("../public/bg-logo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+  }
+
+  /* custom css for custom dropdown */
+
+  .container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0;
+    border-radius: 0.25em;
+    outline: none;
+  }
+
+  .container:focus {
+    border-color: hsl(200, 100%, 50%);
+  }
+
+  .value {
+    flex-grow: 1;
+    color: #fff;
+  }
+
+  .clear-btn {
+    background: none;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1.25em;
+  }
+
+  .clear-btn:focus,
+  .clear-btn:hover {
+    color: #333;
+  }
+
+  .divider {
+    background-color: #fff;
+    align-self: stretch;
+    width: 0.05em;
+  }
+
+  .caret {
+    translate: 0 25%;
+    border: 0.25em solid transparent;
+    border-top-color: #fff;
+  }
+
+  .options {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+    max-height: 15em;
+    overflow-y: auto;
+    border: 0.05em solid #777;
+    border-radius: 0.25em;
+    width: 100%;
+    left: 0;
+    top: calc(100% + 0.25em);
+    background-color: white;
+    z-index: 100;
+  }
+
+  .options.show {
+    display: block;
+  }
+
+  .option {
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+  }
+
+  .option-highlighted {
+    background-color: hsl(200, 100%, 70%);
+  }
+
+  .option-selected {
+    background-color: hsl(200, 100%, 70%);
+  }
+}
+.keyboard-container {
+  position: fixed;
+  bottom: -100%; /* Initially, hide the keyboard below the screen */
+  left: 0;
+  right: 0;
+  transition: bottom 0.3s ease; /* Add a smooth transition effect */
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.keyboard-container.visible {
+  bottom: 0; /* When visible, slide the keyboard up to the screen */
+}
