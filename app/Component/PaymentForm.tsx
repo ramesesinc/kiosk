@@ -1,5 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // PaymentForm.tsx
+
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import InputText from "./InputText";
 import KeyboardAlpha from "./KeyboardAlpha";
@@ -26,7 +29,7 @@ const PaymentForm = () => {
     }
   }, [inputRefs]);
 
-  const inputComponents = inputConfig.map((config, index) => (
+  const inputComponents = inputConfig.paymentJson.map((config, index) => (
     <InputText
       key={index}
       label={config.label}

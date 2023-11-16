@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import NextCancelBtn from "@/app/Component/NextCancelBtn";
@@ -8,7 +7,7 @@ import PaymentForm from "@/app/Component/PaymentForm";
 import React from "react";
 import useTimer from "@/app/functions/Timer";
 
-const page = () => {
+const Page = () => {
   const timeLimit = 120000;
   useTimer(timeLimit);
 
@@ -36,4 +35,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -20,7 +20,6 @@ const InputText: React.FC<BusinessFormProps> = ({
   onclick,
   disabled,
 }) => {
-  
   return (
     <div className="flex justify-center gap-5 text-[30px] p-2">
       <div className="flex flex-col">

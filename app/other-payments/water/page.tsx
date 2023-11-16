@@ -1,54 +1,62 @@
-import Link from "next/link";
-import React from "react";
-import { MdKeyboardBackspace } from "react-icons/md";
+"use client";
 
-export default function page() {
-  return (
-    <div>
-      <header className="text-[20px]">
-        <div className="flex justify-between px-10 pt-10 gap-5">
-          <div className="text-center flex flex-col items-center basis-1/4">
-            <div className="w-[80px] h-[80px] bg-white rounded-[50%] border border-[#335F96] flex items-center justify-center flex-col text-[40px]">
-              1
-            </div>
-            <span>Enter Account No.</span>
-          </div>
-          <div className="text-center flex flex-col items-center basis-1/4">
-            <div className="w-[80px] h-[80px] bg-white rounded-[50%] border border-[#335F96] flex items-center justify-center flex-col text-[40px]">
-              2
-            </div>
-            <span>Confirm Payment</span>
-          </div>
-          <div className="text-center flex flex-col items-center basis-1/4">
-            <div className="w-[80px] h-[80px] bg-white rounded-[50%] border border-[#335F96] flex items-center justify-center flex-col text-[40px]">
-              3
-            </div>
-            <span>Payment Type</span>
-          </div>
-        </div>
-      </header>
-      <main className="bgtax-image flex flex-col justify-center w-full ">
-        <Link
-          className="text-[30px] flex items-center gap-2 p-5 m-[20px] w-[200px]"
-          href={"/other-payments"}
-        >
-          <MdKeyboardBackspace size={40} className="text-[#335F96]" />
-          <p>Back</p>
-        </Link>
-        <div className="flex flex-col justify-center items-center gap-20 text-[50px] my-[300px]">
-          <input
-            name="firstName"
-            placeholder="Account No."
-            className="h-[100px] w-[700px] text-center rounded-2xl bg-gray-200"
-          />
+import React, { useState } from "react";
 
-          <Link href={"/other-payments/water/payment-info"}>
-            <button className="w-[500px] h-[100px] bg-[#335F96] rounded-2xl text-white shadow-[-23px_23px_15px_-10px_rgba(0,0,0,0.3)]">
-              Confirm
-            </button>
-          </Link>
-        </div>
-      </main>
-    </div>
-  );
+// Define the form data interface
+interface FormData {
+  username: string;
+  password: string;
 }
+
+const YourFormComponent: React.FC = () => {
+  // State to manage form data
+  const [formData, setFormData] = useState<FormData>({
+    username: "",
+    password: "",
+  });
+
+  // Handle form input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Your form submission logic here
+    console.log("Form submitted with data:", formData);
+    // Add additional logic such as making an API call, etc.
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        Password:
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default YourFormComponent;

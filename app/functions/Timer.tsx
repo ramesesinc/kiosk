@@ -1,5 +1,3 @@
-'use client'
-// useTimer.js
 "use client";
 
 import { useEffect } from "react";
