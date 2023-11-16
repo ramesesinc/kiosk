@@ -6,11 +6,14 @@ interface PrintableContentProps {
   number: number;
 }
 
-const PrintableContent: ForwardRefRenderFunction<HTMLDivElement, PrintableContentProps> = ({ heading, number }, ref: Ref<HTMLDivElement>) => (
+const PrintableContent: ForwardRefRenderFunction<
+  HTMLDivElement,
+  PrintableContentProps
+> = ({ heading, number }, ref: Ref<HTMLDivElement>) => (
   <div ref={ref} className="flex flex-col justify-center items-center">
-    <div className="">
+    <div className="text-4xl text-center font-extrabold">
       <h2>{heading}</h2>
-      <p className="">{`Q-${number}`}</p>
+      <p className=" ">{`Q-${number}`}</p>
     </div>
   </div>
 );
