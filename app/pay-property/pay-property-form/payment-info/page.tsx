@@ -1,18 +1,17 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-'use client'
+"use client";
 
+import React from "react";
+import useTimer from "@/app/functions/Timer";
 import NextCancelBtn from "@/app/Component/NextCancelBtn";
 import LabelStepper from "@/app/Component/LabelStepper";
 import PaymentForm from "@/app/Component/PaymentForm";
 
-import React from "react";
-import useTimer from "@/app/functions/Timer";
-
-export default function page() {
+export default function Page() {
   const timeLimit = 120000;
   useTimer(timeLimit);
+
   return (
-    <div className=" text-[25px]">
+    <div className="text-[25px]">
       <LabelStepper stepNum={2} title={"Enter Tax"} />
       <PaymentForm />
       <div className="absolute bottom-0 w-full">

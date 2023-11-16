@@ -1,6 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import InputText from "@/app/Component/InputText";
@@ -10,7 +7,7 @@ import React, { useRef, useState } from "react";
 import BillingInformation from "@/app/Component/BillingInformation";
 import useTimer from "@/app/functions/Timer";
 
-export default function page() {
+export default function Page() {
   const timeLimit = 120000;
   useTimer(timeLimit);
 

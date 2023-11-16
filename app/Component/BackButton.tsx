@@ -15,7 +15,7 @@ const BackButton: React.FC<BackButtonProps> = ({ text, link }) => {
         href={link}
       >
         <MdKeyboardBackspace size={40} className="text-[#335F96]" />
-        <p>{text}</p>
+        <p>{text}example push to githubs</p>
       </Link>
     </>
   );
