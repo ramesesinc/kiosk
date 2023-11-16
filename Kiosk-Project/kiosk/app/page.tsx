@@ -4,7 +4,7 @@ import LandingPage from "./Component/LandingPage";
 export default function PrintComponent() {
   return (
     <>
-      <LandingPage />
+      <LandingPage heading={""} text={""} paragraph={""} link={""} />
     </>
   );
 }
