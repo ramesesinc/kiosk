@@ -16,7 +16,10 @@ const Header: React.FC<HeaderProps> = ({ logo }) => {
         <div className="flex items-center">
           <div className="grid-cols-2 m-4">
             <Title text={"Welcome to the City of Cebu"} />
-            <Subtitle text={"Transaction Kiosk"} />
+            <Subtitle
+              text={"Transaction Kiosk"}
+              className="text-[#335F96] font-semibold"
+            />
           </div>
         </div>
       </div>

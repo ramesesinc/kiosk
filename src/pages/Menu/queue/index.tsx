@@ -13,14 +13,15 @@ const Index = () => {
   ));
 
   return (
-    <div className="text-[45px] px-28 pt-20 grid grid-cols-1 grid-flow-row gap-8">
-      {QueueComponents}
-      <div>
-        <Button
-          text={"Back"}
-          href="/Menu"
-          className="shadow-[-23px_23px_15px_-10px_rgba(0,0,0,0.3)] absolute bottom-[210px]"
-        />
+    <div>
+      <div className=" text-[45px] px-28 pt-20 grid grid-cols-1 grid-flow-row gap-8">
+        {QueueComponents}
+      </div>
+      <div className="text-[30px] gap-20 flex justify-center items-center absolute bottom-48 w-full">
+        <Button text={"Back"} href="/menu" />
+        <div className=" invisible">
+          <Button text={"Next"} href="/" />
+        </div>
       </div>
     </div>
   );
