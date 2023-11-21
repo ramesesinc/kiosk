@@ -1,7 +1,7 @@
-import Button from "@/component/ui/Button";
-import Subtitle from "@/component/ui/Subtitle";
-import Title from "@/component/ui/Title";
-import BackImage from "@/component/ui/backImage";
+import BackImage from "@/components/ui/BackImage";
+import Button from "@/components/ui/Button";
+import Subtitle from "@/components/ui/Subtitle";
+import Title from "@/components/ui/Title";
 import React from "react";
 
 const Home = () => {
@@ -23,8 +23,8 @@ const Home = () => {
         />
         <Button
           text={"Tap to Start"}
-          className="border-none text-[50px] absolute bottom-[320px] font-bold uppercase"
-          href="/Menu"
+          className="border-none text-[50px] absolute bottom-[300px] font-bold uppercase"
+          href="/menu"
         />
       </BackImage>
     </div>

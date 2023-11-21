@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Paragraph from "../ui/paragraph";
+import Paragraph from "../ui/Paragraph";
 import Images from "../ui/Image";
 
 interface IconButtonProps {
@@ -7,6 +7,8 @@ interface IconButtonProps {
   altText: string;
   onClick?: () => void;
   title: string;
+  height: number;
+  width: number
   className?: string;
 }
 
@@ -15,6 +17,8 @@ const MenuIcon: React.FC<IconButtonProps> = ({
   altText,
   onClick,
   title,
+  height,
+  width,
   className,
 }) => {
   return (
@@ -24,7 +28,7 @@ const MenuIcon: React.FC<IconButtonProps> = ({
           className={`flex flex-col justify-center items-center w-40 h-40 rounded-full bg-light-blue ${className}`}
           onClick={onClick}
         >
-          <Images src={imageUrl} alt={altText} height={100} width={100} />
+          <Images src={imageUrl} alt={altText} height={height} width={width} />
         </div>
       </div>
       <Paragraph text={title} className="m-2" />

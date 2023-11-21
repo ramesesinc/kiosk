@@ -1,8 +1,8 @@
 import React from "react";
-import QueueItems from "../../../stores/QueueItems";
-import QueueList from "@/component/queue/QueueList";
-import Button from "@/component/ui/Button";
-import useTimer from "@/functions/Timer";
+import QueueItems from "../../../stores/queueitems";
+import QueueList from "@/components/queue/QueueList";
+import Button from "@/components/ui/Button";
+import useTimer from "@/hooks/useTimer";
 
 const Index = () => {
   const timeLimit = 120000;

@@ -1,8 +1,8 @@
-import MenuIcon from "@/component/layouts/Icon";
-import Grid from "@/component/ui/Grid";
+import MenuIcon from "@/components/layouts/Icon";
+import Grid from "@/components/ui/Grid";
 import React from "react";
-import { modules } from "@/stores/MenuItems";
-import useTimer from "@/functions/Timer";
+import useTimer from "@/hooks/useTimer";
+import { modules } from "@/stores/menuitems";
 
 const QueueMenu = () => {
   const timeLimit = 10000;
@@ -18,6 +18,8 @@ const QueueMenu = () => {
             altText={module.alt}
             title={module.title}
             onClick={() => (window.location.href = module.target)}
+            height={module.height}
+            width={module.width}
           />
         ))}
       </Grid>
