@@ -4,7 +4,7 @@ interface SubtitleProps {
   }
   
   const subtitle: React.FC<SubtitleProps> = ({ text, className }) => {
-    return <p className={`text-3xl ${className}`}>{text}</p>;
+    return <p className={`text-4xl ${className}`}>{text}</p>;
   };
   
   export default subtitle;

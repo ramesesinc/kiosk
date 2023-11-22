@@ -6,11 +6,13 @@ function Button({
   onClick,
   href,
   className,
+  children,
 }: {
   text: string;
   onClick?: () => void;
   href?: string;
   className?: string;
+  children?: React.ReactNode;
 }) {
   if (href) {
     return (
@@ -29,6 +31,7 @@ function Button({
       onClick={onClick}
     >
       {text}
+      {children}
     </button>
   );
 }

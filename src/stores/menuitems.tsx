@@ -11,7 +11,7 @@ export const modules = [
     title: "Real Property",
     image: "/images/icons/home.png",
     alt: "Real Property icon",
-    target: "",
+    target: "/menu/property",
     height: 80,
     width: 80,
   },

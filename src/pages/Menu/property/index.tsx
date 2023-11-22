@@ -13,15 +13,15 @@ const index = () => {
         image={"/images/guide.png"}
         icon={<FaArrowDown />}
       />
-
       <div className="text-[30px] gap-20 flex justify-center items-center absolute bottom-48 w-full">
         <Button text={"Back"} href="/menu" />
-
-        <Button
-          text={"Next"}
-          href="/menu/business/billingInfo"
-          className="bg-light-blue text-white"
-        />
+        <div className="">
+          <Button
+            text={"Next"}
+            href="/menu/business/billing"
+            className="bg-light-blue text-white"
+          />
+        </div>
       </div>
     </div>
   );

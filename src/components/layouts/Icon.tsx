@@ -25,7 +25,7 @@ const MenuIcon: React.FC<IconButtonProps> = ({
     <div className="">
       <div className=" w-full flex justify-center">
         <div
-          className={`flex flex-col justify-center items-center w-40 h-40 rounded-full bg-light-blue ${className}`}
+          className={`flex flex-col justify-center items-center w-32 h-32 rounded-full bg-light-blue ${className}`}
           onClick={onClick}
         >
           <Images src={imageUrl} alt={altText} height={height} width={width} />
