@@ -48,7 +48,7 @@ const PaymentType = () => {
       <Modal
         isOpen={isModalOpenGcash}
         onClose={closeModalGcash}
-        image={"/images/Qr.png"}
+        image={"/images/qr.png"}
         imageHeight={100}
         imageWidth={300}
         title={"Step on how to pay using Gcash:"}
@@ -61,7 +61,7 @@ const PaymentType = () => {
       <Modal
         isOpen={isModalOpenCashier}
         onClose={closeModalCashier}
-        image={"/images/Qr.png"}
+        image={"/images/qr.png"}
         imageHeight={100}
         imageWidth={300}
         title="Queue no."
