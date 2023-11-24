@@ -13,7 +13,7 @@ const Index = () => {
   ));
 
   return (
-    <div>
+    <div className="">
       <div className=" text-[45px] px-28 pt-20 grid grid-cols-1 grid-flow-row gap-8">
         {QueueComponents}
       </div>

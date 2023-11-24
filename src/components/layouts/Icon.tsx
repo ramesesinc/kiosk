@@ -31,7 +31,9 @@ const MenuIcon: React.FC<IconButtonProps> = ({
           <Images src={imageUrl} alt={altText} height={height} width={width} />
         </div>
       </div>
-      <Paragraph text={title} className="m-2" />
+      <div className="">
+      <Paragraph text={title} className="m-2 text-center" />
+      </div>
     </div>
   );
 };

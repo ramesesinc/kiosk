@@ -19,13 +19,12 @@ const HomePage: React.FC<HomeProps> = ({
 }) => {
   return (
     <div>
-      {" "}
       <BackImage
         imageUrl={backgroundImage}
         className="flex flex-col justify-start pt-[22rem] items-center text-center gap-5 relative"
       >
-        <Title text={title} className="text-7xl" />
-        <Subtitle text={subtitle} className="text-4xl" />
+        <Title text={title} className="text-[62px]" />
+        <Subtitle text={subtitle} className="text-[34px]" />
         <Button
           text={buttonText}
           className="border-none text-[50px] absolute bottom-[300px] font-bold uppercase"

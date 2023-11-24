@@ -1,7 +1,7 @@
 import Button from "@/components/ui/Button";
 import { FaArrowDown } from "react-icons/fa6";
 import React from "react";
-import BillingNumber from "@/components/transactions/BillingNumber";
+import BillingNumber from "@/components/transactions/billing/BillingNumber";
 
 const index = () => {
   return (

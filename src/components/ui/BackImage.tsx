@@ -15,7 +15,7 @@ const BackImage: React.FC<BackImageProps> = ({
     backgroundImage: `url(${imageUrl})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    height: "90vh",
+    height: "70vh",
   };
 
   return (

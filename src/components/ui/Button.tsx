@@ -7,18 +7,20 @@ function Button({
   href,
   className,
   children,
+  display,
 }: {
   text: string;
   onClick?: () => void;
   href?: string;
   className?: string;
   children?: React.ReactNode;
+  display?: string;
 }) {
   if (href) {
     return (
       <Link
         href={href}
-        className={`px-20 py-4 rounded-2xl border border-gray-400  ${className}`}
+        className={`px-20 py-4 rounded-2xl border border-gray-400 ${display}  ${className}`}
       >
         {text}
       </Link>
@@ -27,7 +29,7 @@ function Button({
 
   return (
     <button
-      className={` rounded-2xl border border-gray-400 ${className}`}
+      className={`px-20 py-4 rounded-2xl border border-gray-400 ${className} ${display}`}
       onClick={onClick}
     >
       {text}

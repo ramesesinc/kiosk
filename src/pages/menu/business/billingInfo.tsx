@@ -1,15 +1,11 @@
+import BillingInfo from "@/components/transactions/billing/BillingInfo";
 import Button from "@/components/ui/Button";
-import Link from "next/link";
-import { useRouter } from "next/router";
 
 const BillingInformation = () => {
-  const router = useRouter();
-  const { BillingInformation } = router.query;
-
   return (
-    <div>
-      <h1>Billing Information: {BillingInformation}</h1>
-      <div className="text-[30px] gap-20 flex justify-center items-center absolute bottom-48 w-full">
+    <div className="w-full flex flex-col justify-between items-center">
+        <BillingInfo />
+      <div className="text-[30px] gap-20 flex justify-center items-center w-full">
         <Button text={"Back"} href="/menu/business" />
         <Button
           text={"Next"}

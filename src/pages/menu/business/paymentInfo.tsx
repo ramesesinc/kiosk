@@ -1,11 +1,11 @@
-import PaymentInformation from "@/components/transactions/PaymentInformation";
+import PaymentInformation from "@/components/transactions/payment/PaymentInformation";
 import Button from "@/components/ui/Button";
 
 const PaymentInfo = () => {
   return (
-    <div className="text-[45px] mt-8">
+    <div className="w-full flex flex-col justify-between items-center">
       <PaymentInformation />
-      <div className="text-[30px] gap-20 flex justify-center items-center absolute bottom-48 w-full">
+      <div className="text-[30px] gap-20 flex justify-center items-center w-full">
         <Button text={"Back"} href="/menu/business/billingInfo" />
         <Button
           text={"Next"}

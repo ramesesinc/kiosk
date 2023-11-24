@@ -4,7 +4,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div>
+    <div className="flex items-center">
       <HomePage
         backgroundImage={"/images/bg-image.png"}
         title={"Experience ease of doing business with the government"}

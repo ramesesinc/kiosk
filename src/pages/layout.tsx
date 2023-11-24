@@ -8,19 +8,19 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       {/* Header */}
-      <Header logo={"/images/cebu-logo.png"} />
-
       <div className="">
-        <main>{children}</main>
+        <Header logo={"/images/cebu-logo.png"} />
       </div>
+
+      <main className="flex-1 flex p-14">{children}</main>
 
       {/* Footer */}
-      <div className="absolute bottom-0 w-full">
+      <div className="flex-shrink-0">
         <Footer logo={"/images/etracs-logo.png"} />
       </div>
-    </>
+    </div>
   );
 };
 

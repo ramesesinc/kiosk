@@ -5,8 +5,8 @@ import useTimer from "@/hooks/useTimer";
 import { modules } from "@/stores/menuitems";
 
 const QueueMenu = () => {
-  const timeLimit = 10000;
-  useTimer(timeLimit);
+  // const timeLimit = 10000;
+  // useTimer(timeLimit);
 
   return (
     <div className="flex justify-center m-20">

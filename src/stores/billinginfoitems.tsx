@@ -1,0 +1,32 @@
+export const billinginfo = [
+  {
+    id: 1,
+    applicationNo: "815420180800043-3D",
+    applicationType: "NEW",
+    datedFiled: "2018-08-17",
+    bin: "815420180800043",
+    tradeName: "rameses systems inc.",
+    ownerName: "RAMESES SYSTEMS INC.",
+    businessAddress: "TAGBILARAN CITY CEBU",
+  },
+  {
+    id: 2,
+    applicationNo: "Rojan",
+    applicationType: "Rojan",
+    datedFiled: "Rojan",
+    bin: "Rojan",
+    tradeName: "Rojan",
+    ownerName: "Rojan",
+    businessAddress: "Rojan",
+  },
+  {
+    id: 3,
+    applicationNo: "Dwight",
+    applicationType: "Dwight",
+    datedFiled: "Dwight",
+    bin: "Dwight",
+    tradeName: "Dwight",
+    ownerName: "Dwight",
+    businessAddress: "Dwight",
+  },
+];
