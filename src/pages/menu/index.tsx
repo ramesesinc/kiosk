@@ -1,18 +1,18 @@
-import MenuIcon from "@/components/layouts/Icon";
 import Grid from "@/components/ui/Grid";
 import React from "react";
 import useTimer from "@/hooks/useTimer";
 import { modules } from "@/stores/menuitems";
+import Icon from "@/components/layouts/Icon";
 
 const QueueMenu = () => {
-  // const timeLimit = 10000;
-  // useTimer(timeLimit);
+  const timeLimit = 15000;
+  useTimer(timeLimit);
 
   return (
     <div className="flex justify-center m-20">
       <Grid columns="grid-cols-3 gap-8">
         {modules.map((module, index) => (
-          <MenuIcon
+          <Icon
             key={index}
             imageUrl={module.image}
             altText={module.alt}

@@ -8,14 +8,12 @@ const Index = () => {
   const timeLimit = 120000;
   useTimer(timeLimit);
 
-  const QueueComponents = QueueItems.map((config, index) => (
-    <QueueList key={index} text={config.text} />
-  ));
-
   return (
-    <div className="">
-      <div className=" text-[45px] px-28 pt-20 grid grid-cols-1 grid-flow-row gap-8">
-        {QueueComponents}
+    <div className="w-full flex flex-col justify-between items-center">
+      <div className="text-[45px] px-28 pt-20 grid grid-cols-1 grid-flow-row gap-12">
+        {QueueItems.map((config, index) => (
+          <QueueList key={index} text={config.text} />
+        ))}
       </div>
       <div className="text-[30px] gap-20 flex justify-center items-center absolute bottom-48 w-full">
         <Button text={"Back"} href="/menu" />

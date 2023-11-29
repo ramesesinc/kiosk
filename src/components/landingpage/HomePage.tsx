@@ -21,13 +21,13 @@ const HomePage: React.FC<HomeProps> = ({
     <div>
       <BackImage
         imageUrl={backgroundImage}
-        className="flex flex-col justify-start pt-[22rem] items-center text-center gap-5 relative"
+        className="flex flex-col justify-start pt-[18rem] items-center text-center gap-5 relative"
       >
         <Title text={title} className="text-[62px]" />
-        <Subtitle text={subtitle} className="text-[34px]" />
+        <Subtitle text={subtitle} className="text-[30px]" />
         <Button
           text={buttonText}
-          className="border-none text-[50px] absolute bottom-[300px] font-bold uppercase"
+          className="border-none text-[50px] absolute bottom-[200px] font-bold uppercase"
           href="/menu"
         />
       </BackImage>

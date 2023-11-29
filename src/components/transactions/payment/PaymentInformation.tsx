@@ -4,48 +4,34 @@ import Subtitle from "../../ui/Subtitle";
 import Input from "../../ui/Input";
 import Numbers from "../../ui/Numbers";
 
-interface PaymentInformationProps {
-  onInputChange: (value: string) => void;
-}
-
-const PaymentInformation: React.FC<PaymentInformationProps> = ({
-  onInputChange,
-}) => {
-  const [inputValue, setInputValue] = useState<string>("");
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-    onInputChange(event.target.value); // Notify the parent component about the change
-  };
+const PaymentInformation = () => {
 
   return (
     <div className="">
-      <div className="flex flex-col justify-center text-center items-center gap-10 mx-12">
-        <Title text={"Confirm Transaction"} />
+      <div className="flex flex-col justify-center text-center items-center mx-12">
+        <Title text={"Confirm Transaction"} className="text-[28px]"/>
         <Subtitle
           text={
             "Please Confirm and Fill up name and address of the payer for your electronic official receipt and click Continue to proceed for payment"
           }
-          className="text-[35px] leading-normal p-5"
+          className="text-[20px] leading-normal p-5"
         />
       </div>
-      <div className="flex flex-col gap-8 text-[40px]">
+      <div className="flex flex-col gap-8 text-[28px]">
         <Input
           label="Paid by Name"
           placeholder={"Your Name"}
           className="w-full text-start border-b-2 border-black rounded-none"
-          value={inputValue}
-          onChange={handleInputChange}
+          type="text"
         />
         <Input
           label="Paid by Address"
           placeholder={"Your Address"}
           className="w-full text-start border-b-2 border-black rounded-none"
-          value={inputValue}
-          onChange={handleInputChange}
+          type="text"
         />
       </div>
-      <div className="m-8 text-center flex justify-center items-center flex-col gap-10 pt-10">
+      <div className="m-2 text-center flex justify-center items-center flex-col gap-4 pt-10">
         <Subtitle text={"Payment Details"} />
         <div className="border border-black font-bold w-[70%] p-8">
           <Numbers text="Php:" number={921.09} />

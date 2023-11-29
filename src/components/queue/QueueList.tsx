@@ -14,7 +14,7 @@ const QueueList: React.FC<QueueListProps> = ({ text, className }) => {
       >
         <Button
           text={text}
-          className="border-none text-2xl font-bold uppercase"
+          className="border-none text-2xl font-bold uppercase w-full h-full"
         />
       </div>
     </div>

@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="flex items-center">
       <HomePage
-        backgroundImage={"/images/bg-image.png"}
+        backgroundImage={"/images/image-bg.png"}
         title={"Experience ease of doing business with the government"}
         subtitle={
           "Over 50 local government units participating all over the Philippines"

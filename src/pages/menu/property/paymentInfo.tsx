@@ -26,11 +26,11 @@ const PaymentInfo = () => {
       <div className="text-[30px] w-full flex flex-col justify-between gap-8">
         <Keyboard />
         <div className="gap-20 flex justify-center items-center w-full">
-          <Button text={"Back"} href="/menu/business/billingInfo" />
+          <Button text={"Back"} href="/menu/property/billingInfo" />
           <Button
             text={"Next"}
             className="bg-light-blue text-white"
-            href="/menu/business/paymentType"
+            href="/menu/property/paymentType"
           />
         </div>
       </div>

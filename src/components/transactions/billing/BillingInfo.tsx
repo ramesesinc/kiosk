@@ -5,10 +5,8 @@ import Grid from "@/components/ui/Grid";
 import Modal from "@/components/ui/Modal";
 import Paragraph from "@/components/ui/Paragraph";
 import Title from "@/components/ui/Title";
-import { billinginfo } from "@/stores/billinginfoitems";
 
 const BillingInfo = () => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -16,10 +14,10 @@ const BillingInfo = () => {
   const options = ["1", "2", "3", "4"];
 
   return (
-    <div className="text-2xl m-20">
-      <Title text={"Billing Information"} className="text-green-500 pb-16" />
+    <div className="text-2xl flex flex-col gap-20">
+      <Title text={"Billing Information"} className="text-green-500" />
       <div className="flex flex-col gap-10">
-        <div className="flex justify-start gap-48">
+        <div className="flex justify-start w-full">
           <Grid columns="grid-rows-7 gap-8 font-bold indent-12 w-full">
             {[
               "Application No.",
@@ -34,25 +32,25 @@ const BillingInfo = () => {
             ))}
           </Grid>
           <Grid columns="grid-rows-7 gap-8 font-bold w-full">
-            {[
-              
-            ].map((text, index) => (
+            {[].map((text, index) => (
               <Paragraph key={index} text={text} />
             ))}
           </Grid>
         </div>
         <div>
-          <Button
-            text={"Pay Option"}
-            className="p-5"
-            onClick={openModal}
-          />
+          <Button text={"Pay Option"} className="p-5" onClick={openModal} />
         </div>
         <div className="w-full text-4xl font-semibold">
-          <Grid columns="grid-cols-5 gap-28 w-full text-right">
-            {["Particulars", "Amount", "Surcharge", "Interest", "Total"].map((label, index) => (
-              <Paragraph key={index} text={label} className="w-48 text-left" />
-            ))}
+          <Grid columns="grid-cols-5">
+            {["Particulars", "Amount", "Surcharge", "Interest", "Total"].map(
+              (label, index) => (
+                <Paragraph
+                  key={index}
+                  text={label}
+                  className="w-48 text-left"
+                />
+              )
+            )}
           </Grid>
           <div className="mt-8">
             <div className="bg-black h-[2px] w-full "></div>
@@ -63,11 +61,7 @@ const BillingInfo = () => {
           </div>
         </div>
       </div>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        textButton={"confirm"}
-      >
+      <Modal isOpen={isModalOpen} onClose={closeModal} textButton={"confirm"}>
         <Title text={"Pay Options"} className="text-[22px] " />
         <Dropdown options={options} />
       </Modal>

@@ -55,7 +55,7 @@ const PaymentType = () => {
         paragraph1={"1. Open your Gcash and scan the Code."}
         paragraph2={"2. Pay the exact amount"}
         paragraph3={"3. Wait for the confirmation"}
-        textButton={"Print"}
+        textButton={"Confirm"}
       />
 
       <Modal

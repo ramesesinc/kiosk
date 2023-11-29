@@ -17,7 +17,7 @@ const PaymentTypePage = () => {
         </div>
       </div>
       <div className="text-[30px] gap-20 flex justify-center items-center w-full">
-        <Button text={"Back"} href="/menu/business/paymentInfo" />
+        <Button text={"Back"} href="/menu/property/paymentInfo" />
 
         <Button
           text={"Next"}

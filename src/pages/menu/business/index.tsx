@@ -3,9 +3,13 @@ import { FaArrowDown } from "react-icons/fa6";
 import React, { useState } from "react";
 import BillingNumber from "@/components/transactions/billing/BillingNumber";
 import Modal from "@/components/ui/Modal";
+import useTimer from "@/hooks/useTimer";
+import Keyboard from "@/components/keyboard/Keyboard";
 
 const Index = () => {
-  const [inputValue, setInputValue] = useState<string>("");
+  // const timeLimit = 120000;
+  // useTimer(timeLimit);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
     textButton: "Confirm",
@@ -17,41 +21,24 @@ const Index = () => {
     paragraph1: "",
   });
 
-  const handleInputValueChange = (value: string) => {
-    setInputValue(value);
-  };
-
-  const handleInputChecker = () => {
-    if (inputValue.trim() === "") {
-      setModalContent({
-        ...modalContent,
-        paragraph1: "Please enter BIN number",
-      });
-      setIsModalOpen(true);
-    } else {
-      window.location.href = `/menu/business/billingInfo`
-    }
-  };
-
   return (
     <div className="w-full flex flex-col justify-between items-center">
       <BillingNumber
-        placeholder={"type here."}
         paragraph={"OR"}
         title={"Scan QR here..."}
         image={"/images/guide.png"}
-        icon={<FaArrowDown />}
-        onInputChange={handleInputValueChange}
-      />
-      
+        icon={<FaArrowDown />} placeholder={"Enter BIN"}      />
 
-      <div className="text-[30px] gap-20 flex justify-center items-center w-full">
-        <Button text={"Back"} href="/menu" />
-        <Button
-          text={"Next"}
-          className="bg-light-blue text-white"
-          onClick={handleInputChecker}
-        />
+      <div className="text-[30px] w-full flex flex-col justify-between gap-8">
+        <Keyboard />
+        <div className="gap-20 flex justify-center items-center w-full">
+          <Button text={"Back"} href="/menu" />
+          <Button
+            text={"Next"}
+            className="bg-light-blue text-white"
+            href="/menu/business/billingInfo"
+          />
+        </div>
       </div>
 
       <Modal isOpen={isModalOpen} {...modalContent} />

@@ -8,11 +8,11 @@ interface IconButtonProps {
   onClick?: () => void;
   title: string;
   height: number;
-  width: number
+  width: number;
   className?: string;
 }
 
-const MenuIcon: React.FC<IconButtonProps> = ({
+const Icon: React.FC<IconButtonProps> = ({
   imageUrl,
   altText,
   onClick,
@@ -32,10 +32,10 @@ const MenuIcon: React.FC<IconButtonProps> = ({
         </div>
       </div>
       <div className="">
-      <Paragraph text={title} className="m-2 text-center" />
+        <Paragraph text={title} className="m-2 text-center" />
       </div>
     </div>
   );
 };
 
-export default MenuIcon;
+export default Icon;
