@@ -9,6 +9,8 @@ interface HomeProps {
   title: string;
   subtitle: string;
   buttonText: string;
+  onClick?: () => void;
+  href?: string;
 }
 
 const HomePage: React.FC<HomeProps> = ({
@@ -16,6 +18,8 @@ const HomePage: React.FC<HomeProps> = ({
   title,
   subtitle,
   buttonText,
+  onClick,
+  href,
 }) => {
   return (
     <div>
@@ -28,7 +32,8 @@ const HomePage: React.FC<HomeProps> = ({
         <Button
           text={buttonText}
           className="border-none text-[50px] absolute bottom-[200px] font-bold uppercase"
-          href="/menu"
+          onClick={onClick}
+          href={href}
         />
       </BackImage>
     </div>

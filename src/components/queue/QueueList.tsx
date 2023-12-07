@@ -2,19 +2,21 @@ import React from "react";
 import Button from "../ui/Button";
 
 interface QueueListProps {
-  text: string;
+  title: string;
   className?: string;
+  onClick?: () => void;
 }
 
-const QueueList: React.FC<QueueListProps> = ({ text, className }) => {
+const QueueList: React.FC<QueueListProps> = ({ title, className, onClick }) => {
   return (
     <div className="flex justify-center items-center ">
       <div
-        className={`w-full h-24 flex items-center justify-center  border border-[#335F96] rounded-2xl shadow-[-20px_22px_15px_-10px_rgba(0,0,0,0.3)] ${className}`}
+        className={`w-full h-24 flex items-center justify-center  border border-[#335F96] rounded-xl ${className}`}
       >
         <Button
-          text={text}
+          text={title}
           className="border-none text-2xl font-bold uppercase w-full h-full"
+          onClick={onClick}
         />
       </div>
     </div>

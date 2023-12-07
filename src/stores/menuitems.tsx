@@ -1,98 +1,99 @@
 export const modules = [
-  {
-    title: "Cedula",
-    image: "/images/icons/user.png",
-    alt: "Cedula icon",
-    target: "",
-    height: 80,
-    width: 80,
-  },
-  {
-    title: "Real Property",
-    image: "/images/icons/home.png",
-    alt: "Real Property icon",
-    target: "/menu/property",
-    height: 80,
-    width: 80,
-  },
-  {
-    title: "Business Permit",
-    image: "/images/icons/briefcase.png",
-    alt: "Business Permit icon",
-    target: "/menu/business/",
-    height: 100,
-    width: 100,
-  },
-  {
-    title: "Building Construction Permit",
-    image: "/images/icons/helmet.png",
-    alt: "Building Construction Permit icon",
-    target: "",
-    height: 100,
-    width: 100,
-  },
-  {
-    title: "Vehicle Registration",
-    image: "/images/icons/taxi.png",
-    alt: "Vehicle Registration icon",
-    target: "",
-    height: 80,
-    width: 80,
-  },
-  {
-    title: "Market Rental",
-    image: "/images/icons/bag.png",
-    alt: "Market Rental icon",
-    target: "",
-    height: 80,
-    width: 80,
-  },
-  {
-    title: "Water",
-    image: "/images/icons/water.png",
-    alt: "Water icon",
-    target: "",
-    height: 80,
-    width: 80,
-  },
-  {
-    title: "Queue",
-    image: "/images/icons/ticket.png",
-    alt: "Queue icon",
-    target: "/menu/queue",
-    height: 100,
-    width: 100,
-  },
-  {
-    title: "Police Clearance",
-    image: "/images/icons/badge.png",
-    alt: "Police Clearance icon",
-    target: "",
-    height: 80,
-    width: 80,
-  },
-  {
-    title: "Health Permit",
-    image: "/images/icons/health.png",
-    alt: "Health Permit",
-    target: "",
-    height: 80,
-    width: 80,
-  },
-  {
-    title: "Ordinance Violations",
-    image: "/images/icons/violation.png",
-    alt: "Ordinance Violations icon",
-    target: "",
-    height: 90,
-    width: 90,
-  },
-  {
-    title: "Work Permit",
-    image: "/images/icons/permit.png",
-    alt: "Work Permit icon",
-    target: "",
-    height: 80,
-    width: 80,
-  },
-];
+    {
+        title: "Cedula",
+        image: "/icons/user.png",
+        alt: "",
+        target: "",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Real Property",
+        image: "/icons/home.png",
+        alt: "",
+        target: "/menu/property",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Business Permit",
+        image: "/icons/briefcase.png",
+        alt: "",
+        target: "/menu/business",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Building Construction Permit",
+        image: "/icons/helmet.png",
+        alt: "",
+        target: "",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Vehicle Registration",
+        image: "/icons/taxi.png",
+        alt: "",
+        target: "",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Market Rental",
+        image: "/icons/bag.png",
+        alt: "",
+        target: "",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Water",
+        image: "/icons/water.png",
+        alt: "",
+        target: "",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Queue",
+        image: "/icons/ticket.png",
+        alt: "",
+        target: "/menu/queue",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Police Clearance",
+        image: "/icons/badge.png",
+        alt: "",
+        target: "",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Health Permit",
+        image: "/icons/health.png",
+        alt: "",
+        target: "",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Ordinance Violations",
+        image: "/icons/violation.png",
+        alt: "",
+        target: "",
+        height: 70,
+        width: 70
+    },
+    {
+        title: "Work Permit",
+        image: "/icons/permit.png",
+        alt: "",
+        target: "",
+        height: 70,
+        width: 70
+    }
+]
+

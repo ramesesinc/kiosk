@@ -1,73 +1,62 @@
 import React from "react";
 import Modal from "../../ui/Modal";
 import Card from "../../ui/Card";
+import paymentTypeData from "@/stores/paymenttypeitems";
+import Image from "@/components/ui/Image";
+import Title from "@/components/ui/Title";
+import Card2 from "@/components/ui/Card2";
 
 const useModal = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [modalContent, setModalContent] = React.useState<any>(null);
 
-  const openModal = () => {
+  const openModal = (content: any) => {
+    setModalContent(content);
     setIsOpen(true);
   };
 
   const closeModal = () => {
+    setModalContent(null);
     setIsOpen(false);
   };
 
-  return { isOpen, openModal, closeModal };
+  return { isOpen, openModal, closeModal, modalContent };
 };
 
 const PaymentType = () => {
-  const {
-    isOpen: isModalOpenGcash,
-    openModal: openModalGcash,
-    closeModal: closeModalGcash,
-  } = useModal();
-
-  const {
-    isOpen: isModalOpenCashier,
-    openModal: openModalCashier,
-    closeModal: closeModalCashier,
-  } = useModal();
+  const { isOpen, openModal, closeModal, modalContent } = useModal();
 
   return (
-    <div className="flex gap-10">
-      <Card
-        title={"Gcash"}
-        subtitle={"Pay here"}
-        image={"/images/gcash.png"}
-        onClick={openModalGcash}
-      />
+    <div className="grid grid-cols-2 grid-flow-row gap-10">
+      {paymentTypeData.map((info, index) => (
+        <Card2
+          key={index}
+          title={info.title}
+          subtitle={info.subtitle}
+          image={info.image}
+          onClick={() => openModal(info.modalcontent)}
+        />
+      ))}
 
-      <Card
-        title={"Cashier"}
-        subtitle={"Pay cashier"}
-        image={"/images/cashier.png"}
-        onClick={openModalCashier}
-      />
-
-      <Modal
-        isOpen={isModalOpenGcash}
-        onClose={closeModalGcash}
-        image={"/images/qr.png"}
-        imageHeight={100}
-        imageWidth={300}
-        title={"Step on how to pay using Gcash:"}
-        paragraph1={"1. Open your Gcash and scan the Code."}
-        paragraph2={"2. Pay the exact amount"}
-        paragraph3={"3. Wait for the confirmation"}
-        textButton={"Confirm"}
-      />
-
-      <Modal
-        isOpen={isModalOpenCashier}
-        onClose={closeModalCashier}
-        image={"/images/qr.png"}
-        imageHeight={100}
-        imageWidth={300}
-        title="Queue no."
-        paragraph1="001"
-        textButton={"Print"}
-      />
+      {modalContent && (
+        <Modal
+          isOpen={isOpen}
+          onClose={closeModal}
+          image={modalContent.image}
+          imageHeight={modalContent.imageHeight}
+          imageWidth={modalContent.imageWidth}
+          subtitle={modalContent.subtitle}
+          title={modalContent.title}
+          paragraph1={modalContent.paragraph1}
+          paragraph2={modalContent.paragraph2}
+          paragraph3={modalContent.paragraph3}
+          number={modalContent.number}
+          numberLayout={modalContent.numberLayout}
+          textButton={modalContent.textButton}
+          timeLayout={modalContent.timelayout}
+          dateLayout={modalContent.datelayout}
+        />
+      )}
     </div>
   );
 };

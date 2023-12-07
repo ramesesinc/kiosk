@@ -8,22 +8,22 @@ function Button({
   className,
   children,
   display,
+  value
 }: {
-  text: string;
+  text?: string;
   onClick?: () => void;
   href?: string;
   className?: string;
   children?: React.ReactNode;
   display?: string;
+  value? :string;
 }) {
   if (href) {
     return (
       <Link
         href={href}
-        className={`px-20 py-4 rounded-2xl border border-gray-400 ${display}  ${className}`}
-      >
-        {text}
-      </Link>
+        className={`px-20 py-4 rounded-2xl border border-gray-400 ${display} ${className}`}
+      ></Link>
     );
   }
 

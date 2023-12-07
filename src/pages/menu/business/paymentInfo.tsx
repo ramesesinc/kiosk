@@ -4,6 +4,7 @@ import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
 import useTimer from "@/hooks/useTimer";
 import Keyboard from "@/components/keyboard/Keyboard";
+import router from "next/router";
 
 const PaymentInfo = () => {
   // const timeLimit = 120000;
@@ -26,11 +27,14 @@ const PaymentInfo = () => {
       <div className="text-[30px] w-full flex flex-col justify-between gap-8">
         <Keyboard />
         <div className="gap-20 flex justify-center items-center w-full">
-          <Button text={"Back"} href="/menu/business/billingInfo" />
+          <Button 
+            text={"Back"}
+            onClick={() => router.push("/menu/business/billingInfo")}  
+          />
           <Button
             text={"Next"}
             className="bg-light-blue text-white"
-            href="/menu/business/paymentType"
+            onClick={() => router.push("/menu/business/paymentType")}
           />
         </div>
       </div>

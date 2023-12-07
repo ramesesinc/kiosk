@@ -1,33 +1,35 @@
 import React from "react";
-import Image from "next/image";
 
 interface ImageProps {
   src: string;
-  height: number;
-  width: number;
   alt: string;
+  height?: number;
+  width?: number;
   className?: string;
 }
 
-const Images: React.FC<ImageProps> = ({
+const Image: React.FC<ImageProps> = ({
   src,
+  alt,
   height,
   width,
-  alt,
   className,
 }) => {
+  const containerStyle: React.CSSProperties = {
+    width: "100%", // Adjust based on your layout needs
+    height: "auto",
+  };
+
+  const imageStyle: React.CSSProperties = {
+    width: width ? `${width}px` : "100%", // Set width if provided, otherwise full width
+    height: height ? `${height}px` : "auto", // Set height if provided, otherwise auto
+  };
+
   return (
-    <div>
-      <Image
-        src={src}
-        alt={alt}
-        height={height}
-        width={width}
-        quality={100}
-        className={` ${className}`}
-      />
+    <div style={containerStyle} className={className}>
+      <img src={src} alt={alt} style={imageStyle} className="w-full h-auto" />
     </div>
   );
 };
 
-export default Images;
+export default Image;

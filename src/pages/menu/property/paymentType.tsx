@@ -3,6 +3,7 @@ import Title from "@/components/ui/Title";
 import React from "react";
 import Button from "@/components/ui/Button";
 import useTimer from "@/hooks/useTimer";
+import router from "next/router";
 
 const PaymentTypePage = () => {
   const timeLimit = 120000;
@@ -10,18 +11,22 @@ const PaymentTypePage = () => {
 
   return (
     <div className="w-full flex flex-col justify-between items-center">
-      <div className="mt-[200px] gap-10 flex flex-col">
+      <div className=" text-center mt-[200px] gap-10 flex flex-col">
         <Title text={"choose preferred payment type"} />
         <div className="flex gap-10">
           <PaymentType />
         </div>
       </div>
-      <div className="text-[30px] gap-20 flex justify-center items-center w-full">
-        <Button text={"Back"} href="/menu/property/paymentInfo" />
+      <div className="text-[30px] gap-20 flex justify-center items-center pt-10 w-full">
+        <Button
+          text={"Back"}
+          onClick={() => router.push("/menu/property/paymentInfo")}
+          href=""
+        />
 
         <Button
           text={"Next"}
-          href="/"
+          onClick={() => router.push("")}
           className="bg-light-blue text-white"
           display="invisible"
         />

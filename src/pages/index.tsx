@@ -1,5 +1,5 @@
 import HomePage from "@/components/landingpage/HomePage";
-
+import router from "next/router";
 import React from "react";
 
 const Home = () => {
@@ -12,6 +12,9 @@ const Home = () => {
           "Over 50 local government units participating all over the Philippines"
         }
         buttonText={"Tap to Start"}
+        onClick={() => {
+          router.push("/menu");
+        }}
       />
     </div>
   );

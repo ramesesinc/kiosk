@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import Paragraph from "../ui/Paragraph";
 import Images from "../ui/Image";
 
@@ -28,7 +28,14 @@ const Icon: React.FC<IconButtonProps> = ({
           className={`flex flex-col justify-center items-center w-32 h-32 rounded-full bg-light-blue ${className}`}
           onClick={onClick}
         >
-          <Images src={imageUrl} alt={altText} height={height} width={width} />
+          <div className="flex">
+            <Images
+              src={imageUrl}
+              alt={altText}
+              height={height}
+              width={width}
+            />
+          </div>
         </div>
       </div>
       <div className="">
