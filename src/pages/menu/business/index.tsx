@@ -20,8 +20,8 @@ interface BinItem {
 }
 
 const Index = () => {
-  // const timeLimit = 120000;
-  // useTimer(timeLimit);
+  const timeLimit = 120000;
+  useTimer(timeLimit);
   const [inputValue, setInputValue] = useState<string>("");
   const [binData, setBinData] = useState<BinItem[] | null>(null);
   const [, setFoundBin] = useState<BinItem | null>(null);

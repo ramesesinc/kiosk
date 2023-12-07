@@ -99,7 +99,7 @@ const Modal: React.FC<ModalProps> = ({
           <Paragraph text={paragraph2 || ""} />
           <Paragraph text={paragraph3 || ""} />
         </div>
-        <div className="flex justify-between gap-20 items-center text-center">
+        <div className="grid grid-cols-3 grid-flow-row items-center">
           <div>
             <p>
               <DateTime

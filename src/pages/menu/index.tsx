@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 import useTimer from "@/hooks/useTimer";
 import Icon from "@/components/layouts/Icon";
 import router from "next/router";
-import { modules } from "@/stores/menuitems"
+import { modules } from "@/stores/menuitems";
 
 const QueueMenu = () => {
-
-  // const timeLimit = 15000;
-  // useTimer(timeLimit);
+  const timeLimit = 15000;
+  useTimer(timeLimit);
 
   return (
     <div className="flex justify-center m-20">
