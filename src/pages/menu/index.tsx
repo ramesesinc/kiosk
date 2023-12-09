@@ -1,11 +1,11 @@
 import Grid from "@/components/ui/Grid";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useTimer from "@/hooks/useTimer";
 import Icon from "@/components/layouts/Icon";
 import router from "next/router";
 import { modules } from "@/stores/menuitems";
 
-const QueueMenu = () => {
+const QueueMenuPage = () => {
   const timeLimit = 15000;
   useTimer(timeLimit);
 
@@ -30,4 +30,4 @@ const QueueMenu = () => {
   );
 };
 
-export default QueueMenu;
+export default QueueMenuPage;
