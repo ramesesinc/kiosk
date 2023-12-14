@@ -23,22 +23,19 @@ const Index = () => {
   });
 
   return (
-    <div className="w-full flex flex-col justify-between items-center">
+    <div className="w-full text-[30px] flex flex-col justify-between items-center">
       <BillingNumber
         paragraph={"OR"}
         title={"Scan QR here..."}
-        image={"/images/guide.png"}
+        image={"/images/kiosk.png"}
         icon={<FaArrowDown />}
         placeholder={"Enter Tax"}
       />
 
-      <div className="text-[30px] w-full flex flex-col justify-between gap-8">
+      <div className=" w-full flex flex-col justify-between gap-8">
         <Keyboard />
         <div className="gap-20 flex justify-center items-center w-full">
-          <Button 
-            text={"Back"} 
-            onClick={() => router.push("/menu")}
-          />
+          <Button text={"Back"} onClick={() => router.push("/menu")} />
           <Button
             text={"Next"}
             className="bg-light-blue text-white"

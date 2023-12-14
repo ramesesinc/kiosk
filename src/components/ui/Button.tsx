@@ -8,7 +8,7 @@ function Button({
   className,
   children,
   display,
-  value
+  value,
 }: {
   text?: string;
   onClick?: () => void;
@@ -16,7 +16,7 @@ function Button({
   className?: string;
   children?: React.ReactNode;
   display?: string;
-  value? :string;
+  value?: string;
 }) {
   if (href) {
     return (

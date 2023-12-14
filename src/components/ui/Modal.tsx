@@ -1,14 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { ReactNode, useEffect, useState } from "react";
-import styles from "../../styles/Modal.module.css";
-import { IoCloseCircleOutline } from "react-icons/io5";
 import Button from "./Button";
 import Images from "./Image";
 import Title from "./Title";
 import Paragraph from "./Paragraph";
 import Numbers from "./Numbers";
 import Subtitle from "./Subtitle";
-import DateTime from "./DateTime";
+import { MdOutlineClose } from "react-icons/md";
 
 interface ModalProps {
   isOpen: boolean;
@@ -20,6 +18,7 @@ interface ModalProps {
   queuetitle?: string | undefined;
   title?: string;
   number?: number | undefined;
+  cityname?: string | undefined;
   paragraph1?: string;
   paragraph2?: string;
   paragraph3?: string;
@@ -30,9 +29,9 @@ interface ModalProps {
   onClick?: () => void;
   showClose?: string;
   alt?: string;
-  dateLayout?: string;
-  timeLayout?: string;
   buttonLayout?: string;
+  seriesno?: string;
+  date?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -55,18 +54,21 @@ const Modal: React.FC<ModalProps> = ({
   onClick,
   showClose,
   alt,
-  dateLayout,
-  timeLayout,
   buttonLayout,
+  cityname,
+  seriesno,
+  date,
 }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={`${styles.modalOverlay} z-[1]`}>
-      <form className="w-[60%] flex flex-col items-center gap-10 bg-white p-8 rounded-2xl z-10">
-        <div className={`flex justify-end w-full ml-32 ${showClose}`}>
-          <Button onClick={onClose} className="text-red-500 border-none">
-            <IoCloseCircleOutline size={60} />
+    <div
+      className={`fixed top-0 left-0 w-full h-full bg-[#00000080] flex justify-center items-center z-[1]`}
+    >
+      <form className="w-[60%] flex flex-col items-center gap-10 bg-white p-6 rounded-2xl z-10">
+        <div className={`flex justify-end w-full ml-36 ${showClose}`}>
+          <Button onClick={onClose} className="text-[#333] border-none">
+            <MdOutlineClose size={50} />
           </Button>
         </div>
 
@@ -78,6 +80,9 @@ const Modal: React.FC<ModalProps> = ({
             height={imageHeight || 0}
             width={imageWidth || 0}
           />
+          <Title text={cityname || ""} />
+          <Title text={seriesno || ""} />
+          <Title text={date || ""} />
         </div>
         {children}
         <div className=" w-full">
@@ -99,31 +104,13 @@ const Modal: React.FC<ModalProps> = ({
           <Paragraph text={paragraph2 || ""} />
           <Paragraph text={paragraph3 || ""} />
         </div>
-        <div className="grid grid-cols-3 grid-flow-row items-center">
-          <div>
-            <p>
-              <DateTime
-                timeLayout={`hidden ${dateLayout}`}
-                dateLayout={` ${timeLayout}`}
-              />
-            </p>
-          </div>
-          <div>
-            <Button
-              text={textButton}
-              href={href}
-              className={`bg-light-blue text-white ${buttonLayout}`}
-              onClick={onClick}
-            />
-          </div>
-          <div>
-            <p>
-              <DateTime
-                dateLayout={`hidden ${timeLayout}`}
-                timeLayout={` ${dateLayout}`}
-              />
-            </p>
-          </div>
+        <div>
+          <Button
+            text={textButton}
+            href={href}
+            className={`bg-light-blue text-white ${buttonLayout}`}
+            onClick={onClick}
+          />
         </div>
       </form>
     </div>

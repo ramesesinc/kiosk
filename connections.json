@@ -11,9 +11,9 @@
       "readTimeout": 60000
     },
     "queue": {
-      "app.host": "${NEXT_PUBLIC_QUEUE_SERVER_IP}:9999",
+      "app.host": "${NEXT_PUBLIC_ETRACS_SERVER_IP}:8070",
       "app.cluster": "osiris3",
-      "app.context": "enterprise",
+      "app.context": "etracs25",
       "handler": "script",
       "readTimeout": 60000
     },

@@ -1,12 +1,14 @@
 import React, { useContext, useEffect } from "react";
-import Button from "@/components/ui/Button";
-import router from "next/router";
-import QueueList from "@/components/queue/QueueList";
-import Paragraph from "@/components/ui/Paragraph";
 import KioskContext from "@/stores/kiosk-context";
-
 import Service from "@/libs/remote-service";
 import type { QueueGroup, QueueSection } from "@/stores/kiosk-context";
+import QueueLayout from "@/components/queue/QueueLayout";
+import QueueGroupList from "@/components/queue/QueueGroupList";
+import ActionBar from "@/components/layouts/ActionBar";
+import Button from "@/components/ui/Button";
+import router from "next/router";
+import Title from "@/components/ui/Title";
+import Subtitle from "@/components/ui/Subtitle";
 
 function QueueGroupPage({ groups }: { groups: QueueGroup[] }) {
   const ctx = useContext(KioskContext);
@@ -16,32 +18,25 @@ function QueueGroupPage({ groups }: { groups: QueueGroup[] }) {
   }, []);
 
   return (
-    <div className="w-full flex flex-col justify-between items-center">
-      <div className="text-[45px] px-28 pt-20 grid grid-cols-1 grid-flow-row gap-12">
-        {groups?.map((group: QueueGroup) => (
-          <div key={group.objid}>
-            <QueueList
-              title={group.title}
-              onClick={() => {
-                router.push(`/menu/queue/${group.objid.toLowerCase()}`);
-              }}
-            />
-          </div>
-        ))}
-        <Paragraph text={""} />
-      </div>
-      <div className="text-[30px] gap-20 flex justify-center items-center w-full pt-10">
+    <QueueLayout>
+      <Subtitle text={"Select a Category below to proceed with your Choice."} />
+      <QueueGroupList groups={groups} />
+      <ActionBar>
         <Button
           text={"Back"}
           onClick={() => {
             router.push("/menu");
           }}
         />
-        <div className=" invisible">
-          <Button text={"Next"} href="/" />
-        </div>
-      </div>
-    </div>
+        <Button
+          text={"Next"}
+          onClick={() => {
+            router.push("/menu/queue");
+          }}
+          className="invisible"
+        />
+      </ActionBar>
+    </QueueLayout>
   );
 }
 
@@ -63,7 +58,6 @@ export const getServerSideProps = async () => {
     };
     return group;
   });
-
   return {
     props: {
       groups,

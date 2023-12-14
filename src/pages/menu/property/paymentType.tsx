@@ -6,8 +6,8 @@ import useTimer from "@/hooks/useTimer";
 import router from "next/router";
 
 const PaymentTypePage = () => {
-  const timeLimit = 120000;
-  useTimer(timeLimit);
+  // const timeLimit = 120000;
+  // useTimer(timeLimit);
 
   return (
     <div className="w-full flex flex-col justify-between items-center">

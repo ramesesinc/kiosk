@@ -38,8 +38,8 @@ const DateTime: React.FC<DataTimePorps> = ({ dateLayout, timeLayout }) => {
 
   return (
     <div>
-      <div className={`${dateLayout}`}>{currentDate}</div>
-      <div className={`${timeLayout}`}>{currentTime}</div>
+      <div className={`hidden ${dateLayout}`}>{currentDate}</div>
+      <div className={`hidden ${timeLayout}`}>{currentTime}</div>
     </div>
   );
 };

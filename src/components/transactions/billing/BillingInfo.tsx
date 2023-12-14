@@ -6,6 +6,8 @@ import Modal from "@/components/ui/Modal";
 import Paragraph from "@/components/ui/Paragraph";
 import Title from "@/components/ui/Title";
 import { useRouter } from "next/router";
+import AutoModal from "@/components/ui/AutoModal";
+import Subtitle from "@/components/ui/Subtitle";
 
 interface Item {
   particulars: string;
@@ -86,9 +88,7 @@ const BillingInfo = () => {
                     />
                     <Paragraph
                       text={
-                        item.amount !== undefined
-                          ? item.amount.toString()
-                          : ""
+                        item.amount !== undefined ? item.amount.toString() : ""
                       }
                       className="w-48 text-left"
                     />
@@ -110,7 +110,9 @@ const BillingInfo = () => {
                     />
                     <Paragraph
                       text={
-                        item.linetotal !== undefined ? item.linetotal.toString() : ""
+                        item.linetotal !== undefined
+                          ? item.linetotal.toString()
+                          : ""
                       }
                       className="w-48 text-left"
                     />
@@ -127,13 +129,7 @@ const BillingInfo = () => {
           </div>
         </div>
       </div>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        textButton={"confirm"}
-        timeLayout=" hidden"
-        dateLayout=" hidden"
-      >
+      <Modal isOpen={isModalOpen} onClose={closeModal} textButton={"confirm"}>
         <Title text={"Pay Options"} className="text-[22px] " />
         <Dropdown options={options} />
       </Modal>

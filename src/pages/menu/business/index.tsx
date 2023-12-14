@@ -81,7 +81,7 @@ const Index = () => {
       <BillingNumber
         paragraph={"OR"}
         title={"Scan QR here..."}
-        image={"/images/guide.png"}
+        image={"/images/kiosk.png"}
         icon={<FaArrowDown />}
         placeholder={"Enter BIN"}
         onInputChange={handleInputChange}
@@ -104,14 +104,12 @@ const Index = () => {
         onClose={closeModal}
         showClose=" hidden"
         image="/icons/alert.jpg"
-        timeLayout=" hidden"
-        dateLayout="hidden"
         textButton="OK"
         buttonLayout=" bg-red-500"
       >
         <Title
           text={errorType === "emptyBin" ? "Empty Bin!" : "Not Found!"}
-          className="capitalize text-red-500"
+          className="uppercase text-red-500"
         />
         <Subtitle
           text={

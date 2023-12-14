@@ -45,11 +45,11 @@ const BillingNumber: React.FC<BillingNumberProps> = ({
       </div>
 
       <Title text={title} className="capitalize" />
-      <div className="text-green-500 absolute top-[815px] left-[450px] animate-bounce ">
+      <div className="text-green-500 absolute top-[880px] left-[425px] animate-bounce ">
         {icon}
       </div>
       <div className="">
-        <Images src={image} height={300} width={250} alt={""} />
+        <Images src={image} height={400} width={300} alt={""} />
       </div>
     </div>
   );

@@ -5,14 +5,13 @@ import Input from "../../ui/Input";
 import Numbers from "../../ui/Numbers";
 
 const PaymentInformation = () => {
-
   return (
     <div className="">
       <div className="flex flex-col justify-center text-center items-center mx-12">
-        <Title text={"Confirm Transaction"} className="text-[28px]"/>
+        <Title text={"Confirm Transaction"} className="text-[28px]" />
         <Subtitle
           text={
-            "Please Confirm and Fill up name and address of the payer for your electronic official receipt and click Continue to proceed for payment"
+            "Please Confirm and Fill up name and address of the payer for your electronic official receipt and click Next to proceed for payment"
           }
           className="text-[20px] leading-normal p-5"
         />

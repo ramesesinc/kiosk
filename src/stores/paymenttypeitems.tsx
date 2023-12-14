@@ -11,6 +11,8 @@ const paymentTypeData = [
       title: "Queue no.",
       number: 101,
       textButton: "Print",
+      timelayout: "!block",
+      datelayout: "!block",
     },
   },
   {
@@ -26,8 +28,6 @@ const paymentTypeData = [
       paragraph2: "2. Pay the exact amount",
       paragraph3: "3. Wait for the confirmation",
       textButton: "Confirm",
-      timelayout: "hidden",
-      datelayout: "hidden",
     },
   },
 ];

@@ -1,20 +1,31 @@
-import KioskContext from "@/stores/kiosk-context";
+import Button from "@/components/ui/Button";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import QueueLayout from "@/components/queue/QueueLayout";
+import ActionBar from "@/components/layouts/ActionBar";
+import QueueSectionList from "@/components/queue/QueueSectionList";
 
 function QueueSectionPage() {
-  const ctx = useContext(KioskContext);
   const router = useRouter();
-  const groupId = router.query.groupId as string;
-  const sections = ctx.getSections(groupId);
 
   return (
-    <div>
-      <p>SECTIONS:</p>
-      {sections.map((section) => (
-        <p key={section.objid}>{section.title}</p>
-      ))}
-    </div>
+    <QueueLayout>
+      <QueueSectionList />
+      <ActionBar>
+        <Button
+          text={"Back"}
+          onClick={() => {
+            router.push("/menu/queue");
+          }}
+        />
+        <Button
+          text={"Back"}
+          onClick={() => {
+            router.push("/menu/queue");
+          }}
+          className="invisible"
+        />
+      </ActionBar>
+    </QueueLayout>
   );
 }
 

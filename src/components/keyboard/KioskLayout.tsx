@@ -11,7 +11,7 @@ function KioskLayout(props: KioskLayoutProps) {
 
   function clickHandler() {
     if (context.activeInput && context.activeInput.current) {
-      context.activeInput.current.value = '';
+      context.activeInput.current.value = "";
       context.setActiveInput(null);
     }
   }

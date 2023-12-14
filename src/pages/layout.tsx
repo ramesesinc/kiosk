@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <Header logo={"/images/cebu-logo.png"} />
         </div>
 
-        <main className="flex-1 flex p-14">{children}</main>
+        <main className="flex-1 flex justify-center p-14">{children}</main>
 
         {/* Footer */}
         <div className="flex-shrink-0">

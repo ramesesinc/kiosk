@@ -2,8 +2,6 @@ import React from "react";
 import Modal from "../../ui/Modal";
 import Card from "../../ui/Card";
 import paymentTypeData from "@/stores/paymenttypeitems";
-import Image from "@/components/ui/Image";
-import Title from "@/components/ui/Title";
 import Card2 from "@/components/ui/Card2";
 
 const useModal = () => {

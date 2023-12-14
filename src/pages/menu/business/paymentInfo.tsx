@@ -27,9 +27,9 @@ const PaymentInfo = () => {
       <div className="text-[30px] w-full flex flex-col justify-between gap-8">
         <Keyboard />
         <div className="gap-20 flex justify-center items-center w-full">
-          <Button 
+          <Button
             text={"Back"}
-            onClick={() => router.push("/menu/business/billingInfo")}  
+            onClick={() => router.push("/menu/business/billingInfo")}
           />
           <Button
             text={"Next"}
