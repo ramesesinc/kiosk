@@ -2,16 +2,7 @@
 import React from "react";
 import Carousel from "@/components/ui/CardCarousel";
 
-const items = [
-  "Item 1",
-  "Item 2",
-  "Item 3",
-  "Item 4",
-  "Item 5",
-  "Item 6",
-  "Item 7",
-  "Item 8",
-];
+const items = ["Item 1", "Item 2", "Item 3", "Item 4"];
 
 const Home: React.FC = () => {
   return (

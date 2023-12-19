@@ -19,7 +19,7 @@ export const modules = [
     title: "Business Permit",
     image: "/icons/briefcase.png",
     alt: "",
-    target: "/menu/business",
+    target: "/menu/bpls",
     height: 70,
     width: 70,
   },
