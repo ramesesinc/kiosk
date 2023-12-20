@@ -51,8 +51,6 @@ const PaymentType = () => {
           number={modalContent.number}
           numberLayout={modalContent.numberLayout}
           textButton={modalContent.textButton}
-          timeLayout={modalContent.timelayout}
-          dateLayout={modalContent.datelayout}
         />
       )}
     </div>

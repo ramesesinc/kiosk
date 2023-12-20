@@ -42,10 +42,8 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
         >
           {items.map((item, index) => (
             <div key={index} className="flex-shrink-0 w-full h-full">
-              {/* Your card component */} <div>sdasd</div>
-              <div>sdasd</div>
-              <div>sdasd</div>
-              <div>sdasd</div>
+              {/* Your card component */}
+              <div className="p-4 bg-white border shadow-md">{item}</div>
               <div className="p-4 bg-white border shadow-md">{item}</div>
             </div>
           ))}

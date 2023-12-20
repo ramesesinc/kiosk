@@ -10,4 +10,3 @@ export const fetchNextSeries = (section = {}) => {
     data: section,
   });
 };
-

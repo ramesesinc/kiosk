@@ -4,14 +4,14 @@ import Subtitle from "../ui/Subtitle";
 import Numbers from "../ui/Numbers";
 
 interface QueuePrintTicketProps {
-  seriesno?: number;
+  ticketno?: string | undefined;
   txndatestr: string | undefined;
 }
 
 const QueuePrintTicket: ForwardRefRenderFunction<
   HTMLDivElement,
   QueuePrintTicketProps
-> = ({ seriesno, txndatestr }, ref: Ref<HTMLDivElement>) => (
+> = ({ ticketno, txndatestr }, ref: Ref<HTMLDivElement>) => (
   <div ref={ref} className={`!text-center`}>
     <div className="flex flex-col !text-center">
       <Title
@@ -25,7 +25,7 @@ const QueuePrintTicket: ForwardRefRenderFunction<
     </div>
     <div>
       <Numbers
-        number={seriesno}
+        text={ticketno}
         className="font-bold text-[50px] !text-center py-6"
       />
     </div>

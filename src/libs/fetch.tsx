@@ -264,7 +264,6 @@ const CreateAsyncInternal = (
 
     return func(...params)
       .then((res: any) => {
-        console.log("RES", res);
         if (isResponseError(res)) {
           setError(res.error);
           setValue(undefined);

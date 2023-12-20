@@ -12,16 +12,16 @@ interface QueueTicketProps {
   isOpen: boolean;
   onClose?: () => void;
   showClose?: string;
-  seriesno?: number;
   txndatestr?: string | undefined;
+  ticketno?: string | undefined;
 }
 
 const QueueTicket: React.FC<QueueTicketProps> = ({
   isOpen,
   onClose,
   showClose,
-  seriesno,
   txndatestr,
+  ticketno,
 }) => {
   if (!isOpen) return null;
   const componentRef = useRef<any>();
@@ -34,7 +34,7 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
       <div className=" hidden">
         <QueuePrintTicket
           ref={componentRef}
-          seriesno={seriesno}
+          ticketno={ticketno}
           txndatestr={txndatestr}
         />
       </div>
@@ -43,7 +43,7 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
       >
         <div className="w-[60%] flex flex-col items-center gap-2 bg-white p-6 rounded-2xl z-10 ">
           <div className={`flex justify-end w-full ${showClose}`}>
-            <Button onClick={onClose} className="text-[#333] border-none px-0">
+            <Button onClick={onClose} className="text-[#333] border-none !px-0">
               <MdOutlineClose size={50} />
             </Button>
           </div>
@@ -53,7 +53,7 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
               <Subtitle text={"CEBU CITY"} className="font-semibold" />
             </div>
             <div>
-              <Numbers number={seriesno} className="font-bold text-9xl" />
+              <Numbers text={ticketno} className="font-bold text-9xl" />
             </div>
             <div className="flex flex-col gap-2">
               <Subtitle text={"This number is Valid only on"} />

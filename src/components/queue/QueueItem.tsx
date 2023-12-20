@@ -11,11 +11,11 @@ const QueueItem: React.FC<QueueItemProps> = ({ title, className, onClick }) => {
   return (
     <div className="flex justify-center items-center ">
       <div
-        className={`w-full h-24 flex items-center justify-center  border border-[#335F96] rounded-2xl ${className}`}
+        className={`w-full h-24 flex items-center justify-center  border border-[#335F96] rounded-full shadow-[5px_5px_10px_1px_rgba(0,0,0,0.2)] ${className}`}
       >
         <Button
           text={title}
-          className="border-none text-2xl font-bold uppercase w-full h-full !px-5"
+          className="border-none text-2xl font-bold uppercase w-full h-full !px-5 "
           onClick={onClick}
         />
       </div>

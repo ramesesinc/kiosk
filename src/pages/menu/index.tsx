@@ -6,8 +6,8 @@ import router from "next/router";
 import { modules } from "@/stores/menuitems";
 
 const QueueMenuPage = () => {
-  // const timeLimit = 15000;
-  // useTimer(timeLimit);
+  const timeLimit = 15000;
+  useTimer(timeLimit);
 
   return (
     <div className="flex justify-center m-20">
