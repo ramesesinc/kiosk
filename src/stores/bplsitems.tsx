@@ -1,12 +1,12 @@
-export type Bpls = { id: string; title: string;}
+export type Bpls = { id: string; title: string };
 
 export const bplsitem: Bpls[] = [
-  { id: "billing", title: "Business Online Billing and Payment"},
-  { id: "newbusiness", title: "New Business Registration"},
-  { id: "renewbusiness", title: "Renew Business Application"},
+  { id: "billing", title: "Business Online Billing and Payment" },
+  { id: "newbusiness", title: "Business Registration" },
+  { id: "renewbusiness", title: "Business Application" },
 ];
 
-export function getBpls(){
+export function getBpls() {
   return bplsitem;
 }
 

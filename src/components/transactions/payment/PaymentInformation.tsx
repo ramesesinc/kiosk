@@ -6,7 +6,7 @@ import Numbers from "../../ui/Numbers";
 
 const PaymentInformation = () => {
   return (
-    <div className="">
+    <div>
       <div className="flex flex-col justify-center text-center items-center mx-12">
         <Title text={"Confirm Transaction"} className="text-[28px]" />
         <Subtitle
@@ -32,7 +32,7 @@ const PaymentInformation = () => {
       </div>
       <div className="m-2 text-center flex justify-center items-center flex-col gap-4 pt-10">
         <Subtitle text={"Payment Details"} />
-        <div className="border border-black font-bold w-[70%] p-8">
+        <div className="border border-black font-bold w-[70%] p-8 rounded-xl">
           <Numbers text="Php:" number={921.09} />
         </div>
       </div>

@@ -28,17 +28,17 @@ const QueueGroupList: React.FC<QueueGroupListProps> = ({ groups }) => {
   const { value: showticket, execute } = createFetch(fetchNextSeries);
 
   function nextTicket(sectionid: string) {
-    execute({sectionid});
+    execute({ sectionid });
     openQueueTicket();
   }
-  
+
   return (
     <div className="text-[45px] grid grid-cols-1 grid-flow-row gap-12 w-full">
       {groups.map((group: QueueGroup) => (
         <div key={group.objid} className="flex flex-col gap-10 py-10">
           <div className="pl-5 ">
             <Title text={group.title} className="!text-2xl mb-2" />
-            <div className="h-[7px] w-[55%]  bg-gradient-to-r from-[#53bffa]"></div>
+            <div className="h-[7px] w-[55%]  bg-gradient-to-r from-[#335F96]"></div>
           </div>
 
           <QueueSectionList

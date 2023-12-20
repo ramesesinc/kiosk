@@ -23,15 +23,26 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
   txndatestr,
   ticketno,
 }) => {
-  if (!isOpen) return null;
+  const [isPrinting, setIsPrinting] = React.useState(false);
   const componentRef = useRef<any>();
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
+    onBeforeGetContent: () => {
+      setIsPrinting(true);
+    },
+    onAfterPrint: () => {
+      setIsPrinting(false);
+
+      onClose && onClose();
+    },
   });
+
+  if (!isOpen) return null;
+
   return (
     <div>
-      <div className=" hidden">
+      <div className="hidden">
         <QueuePrintTicket
           ref={componentRef}
           ticketno={ticketno}
@@ -47,22 +58,49 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
               <MdOutlineClose size={50} />
             </Button>
           </div>
-          <div className="text-center flex flex-col gap-20">
-            <div className="flex flex-col gap-2">
-              <Title text={"Queue Ticket Number"} />
-              <Subtitle text={"CEBU CITY"} className="font-semibold" />
+          {isPrinting ? (
+            // Loading Screen
+            <div className="flex flex-col items-center justify-center pb-20 gap-10">
+              <div className="w-12 h-12 relative animate-spin ">
+                {[0, 90, 180, 260].map((rotation) => (
+                  <div
+                    key={rotation}
+                    className={`w-4 h-4 bg-blue-500 rounded-full absolute ${
+                      rotation < 180 ? "top-0" : "bottom-0"
+                    } ${
+                      rotation % 180 === 0 ? "left-0" : "right-0"
+                    } animate-pulse`}
+                  ></div>
+                ))}
+              </div>
+              <Title
+                text={"Printing Queue Ticket"}
+                className="!text-[25px] !leading-[0px]"
+              />
+              <Subtitle
+                text={" Please wait while your ticket is being printed."}
+                className="text-[20px] !leading-[0px]"
+              />
             </div>
-            <div>
-              <Numbers text={ticketno} className="font-bold text-9xl" />
+          ) : (
+            // Content when not printing
+            <div className="text-center flex flex-col gap-20">
+              <div className="flex flex-col gap-2">
+                <Title text={"Queue Ticket Number"} />
+                <Subtitle text={"CEBU CITY"} className="font-semibold" />
+              </div>
+              <div>
+                <Numbers text={ticketno} className="font-bold text-9xl" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Subtitle text={"This number is Valid only on"} />
+                <Subtitle text={txndatestr || ""} />
+              </div>
+              <div>
+                <Button text={"Print"} onClick={handlePrint} />
+              </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <Subtitle text={"This number is Valid only on"} />
-              <Subtitle text={txndatestr || ""} />
-            </div>
-            <div>
-              <Button text={"Print"} onClick={handlePrint} />
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

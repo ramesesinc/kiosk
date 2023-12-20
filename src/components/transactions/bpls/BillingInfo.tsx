@@ -128,7 +128,7 @@ const BillingInfo = () => {
         </div>
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal} textButton={"confirm"}>
-        <Title text={"Pay Options"} className="text-[22px] " />
+        <Title text={"Pay Options"} className="text-[22px]" />
         <Dropdown options={options} />
       </Modal>
     </div>

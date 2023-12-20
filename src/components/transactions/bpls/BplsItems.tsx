@@ -9,11 +9,11 @@ function BplsItems({ bpls }: { bpls: Bpls }) {
   }
 
   return (
-    <div className="flex justify-center items-center w-full border border-[#335F96] rounded-2xl py-3">
+    <div className="flex justify-center items-center w-full h-[150px] border-8 border-[#335F96] rounded-xl py-3">
       <Button
-        text={bpls.id}
+        text={bpls.title}
         onClick={viewBplsHandler}
-        className="w-full border-none font-bold"
+        className="w-full h-full border-none font-bold"
       />
     </div>
   );

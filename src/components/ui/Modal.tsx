@@ -65,7 +65,7 @@ const Modal: React.FC<ModalProps> = ({
     <div
       className={`fixed top-0 left-0 w-full h-full bg-[#00000080] flex justify-center items-center z-[1]`}
     >
-      <form className="w-[60%] flex flex-col items-center gap-10 bg-white p-6 rounded-2xl z-10">
+      <form className="w-[60%] flex flex-col items-center gap-10 bg-white p-8 rounded-2xl z-10">
         <div className={`flex justify-end w-full ml-36 ${showClose}`}>
           <Button onClick={onClose} className="text-[#333] border-none">
             <MdOutlineClose size={50} />
