@@ -11,7 +11,10 @@ interface QueueSection {
   title: string;
 }
 
-const QueueSectionList: React.FC<QueueSectionListProps> = ({ sections, onClick }) => {
+const QueueSectionList: React.FC<QueueSectionListProps> = ({
+  sections,
+  onClick,
+}) => {
   return (
     <div className="grid grid-cols-3 grid-flow-row gap-16">
       {sections.map((section: QueueSection) => (

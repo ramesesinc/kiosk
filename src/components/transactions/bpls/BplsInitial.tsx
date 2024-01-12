@@ -22,7 +22,7 @@ const BillingNumber: React.FC<BillingNumberProps> = ({
   };
 
   return (
-    <div className="text-[50px] flex flex-col items-center justify-center gap-10 w-full">
+    <div className="text-[50px] flex flex-col justify-center items-center w-full gap-10">
       <div className="m-5">
         <Input
           placeholder={placeholder}
@@ -37,11 +37,11 @@ const BillingNumber: React.FC<BillingNumberProps> = ({
       </div>
 
       <Title text={"Scan QR here..."} className="capitalize" />
-      <div className="text-green-500 absolute top-[880px] left-[425px] animate-bounce ">
-      <FaArrowDown />
+      <div className="text-green-500 absolute top-[810px] left-[430px] animate-bounce ">
+        <FaArrowDown />
       </div>
       <div className="">
-        <Images src={"/images/kiosk.png"} height={400} width={300} alt={""} />
+        <Images src={"/images/kiosk.png"} height={300} width={200} alt={""} />
       </div>
       <Keyboard />
     </div>

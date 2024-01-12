@@ -22,7 +22,7 @@ const PaymentInfoPage = () => {
   });
 
   return (
-    <div className="w-full flex flex-col justify-between items-center">
+    <div className="w-full flex flex-col justify-between items-center gap-10">
       <PaymentInformation />
       <Keyboard />
       <Modal isOpen={isModalOpen} {...modalContent} />

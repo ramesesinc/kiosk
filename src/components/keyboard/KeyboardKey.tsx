@@ -38,7 +38,7 @@ function KeyboardKey(props: KeyboardKeyProps) {
   return (
     <div
       tabIndex={-1}
-      className="flex items-center justify-center w-full h-20 m-1 rounded-md border-gray-300 border-2 shadow-[5px_5px_10px_1px_rgba(0,0,0,0.2)] "
+      className="flex items-center justify-center w-full h-20 m-1 rounded-md border-gray-300 border-2 shadow-[5px_5px_10px_1px_rgba(0,0,0,0.2)]"
       onClick={clickHandler}
       style={props.customStyles}
     >

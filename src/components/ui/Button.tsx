@@ -22,14 +22,14 @@ function Button({
     return (
       <Link
         href={href}
-        className={`text-2xl px-20 py-4 rounded-2xl border border-gray-400 uppercase ${display} ${className}`}
+        className={`text-2xl px-20 py-4 rounded-xl border border-gray-400 uppercase ${display} ${className}`}
       ></Link>
     );
   }
 
   return (
     <button
-      className={`text-2xl px-20 py-4 rounded-2xl border border-gray-400 uppercase ${className} ${display}`}
+      className={`text-2xl px-20 py-4 rounded-xl border border-gray-400 uppercase ${className} ${display}`}
       onClick={onClick}
     >
       {text}
