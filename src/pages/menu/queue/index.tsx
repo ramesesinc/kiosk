@@ -1,25 +1,23 @@
-import React from "react";
-import Service from "@/libs/remote-service";
-import type { QueueGroup, QueueSection } from "@/stores/kiosk-context";
-import QueueLayout from "@/components/queue/QueueLayout";
-import QueueGroupList from "@/components/queue/QueueGroupList";
-import ActionBar from "@/components/layouts/ActionBar";
+import ActionBar from "@/components/layout/ActionBar";
+import QueueGroupList from "@/components/queue/GroupList";
+import Button from "@/components/ui/Button";
 import Title from "@/components/ui/Title";
+import Service from "@/libs/remote-service";
+import { QueueGroup, QueueSection } from "@/services/context/queue-context";
+import Layout from "./layout";
 
 function QueueGroupPage({ groups }: { groups: QueueGroup[] }) {
   return (
-    <QueueLayout>
+    <Layout>
       <Title
-        text={"Select a Category below to proceed with your Choice."}
-        className="!text-[30px]"
+        text={`Select a Category below to proceed with your choice.`}
+        textSize="text-4xl"
       />
       <QueueGroupList groups={groups} />
-      <ActionBar
-        backRoute="/menu"
-        nextRoute="/menu/queue"
-        className="invisible"
-      />
-    </QueueLayout>
+      <ActionBar>
+        <Button href="/menu" buttonText="Back" animation="shrink" />
+      </ActionBar>
+    </Layout>
   );
 }
 

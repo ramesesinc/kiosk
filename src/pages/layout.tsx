@@ -1,27 +1,27 @@
-import Footer from "@/components/layouts/Footer";
-import Header from "@/components/layouts/Header";
+// Layout.tsx
 import React, { ReactNode } from "react";
 
 interface LayoutProps {
-  children: ReactNode;
+  children?: ReactNode;
+  classname?: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, classname }) => {
+  const containerStyle: React.CSSProperties = {
+    backgroundImage: `url("/images/bg-image.png")`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+  } as const;
+
   return (
-    <div className="touch-none">
-      <div className="flex flex-col min-h-screen">
-        {/* Header */}
-        <div className="">
-          <Header logo={"/images/cebu-logo.png"} />
-        </div>
-
-        <main className="flex-1 flex justify-center p-14">{children}</main>
-
-        {/* Footer */}
-        <div className="flex-shrink-0">
-          <Footer logo={"/images/etracs-logo.png"} />
-        </div>
-      </div>
+    <div style={containerStyle} className="touch-none">
+      <div className={`text-center m-8 ${classname}`}>{children}</div>
     </div>
   );
 };

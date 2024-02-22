@@ -1,5 +1,5 @@
 {
-  "name": "sample",
+  "name": "kioskv3",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,15 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "date-fns": "^2.30.0",
-    "next": "14.0.3",
+    "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.12.0",
-    "react-router-dom": "^6.0.0",
+    "react-icons": "^5.0.1",
+    "react-qr-code": "^2.0.12",
     "react-to-print": "^2.14.15",
-    "socket.io": "^4.7.2",
-    "socket.io-client": "^4.7.2"
+    "socket.io": "^4.7.4",
+    "socket.io-client": "^4.7.4"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -25,8 +24,7 @@
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
-    "eslint-config-next": "14.0.3",
-    "image-webpack-loader": "^8.1.0",
+    "eslint-config-next": "14.1.0",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"

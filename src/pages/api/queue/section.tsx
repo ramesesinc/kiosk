@@ -1,6 +1,6 @@
+import type { ResponseError } from "@/libs/fetch";
 import Service from "@/libs/remote-service";
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { ResponseError } from "@/libs/fetch";
 
 type QueueSection = {
   objid: string;
@@ -12,22 +12,22 @@ type ResponseData = {
 };
 
 export default async function handler(
-  req: NextApiRequest, 
+  req: NextApiRequest,
   res: NextApiResponse<ResponseData | ResponseError>
 ) {
-  if (req.method === 'GET') {
-      return GET(req, res);
+  if (req.method === "GET") {
+    return GET(req, res);
   }
-  return res.status(500).json({code: '01', error: 'Method not available.'});
+  return res.status(500).json({ code: "01", error: "Method not available." });
 }
 
 async function GET(
-    req: NextApiRequest, 
-    res: NextApiResponse<ResponseData | ResponseError>
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseData | ResponseError>
 ) {
   const { sectionid } = req.query;
-  const svc = Service.lookup("QueueService", "etracs");
-  const ticket = await svc.invoke("fetchNextTicket", {sectionid});
+  const svc = Service.lookup("api/QueueService", "etracs");
+  const ticket = await svc.invoke("fetchNextTicket", { sectionid });
   return res.status(200).json(ticket);
 }
 

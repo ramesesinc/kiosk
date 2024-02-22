@@ -1,23 +1,31 @@
-import HomePage from "@/components/landingpage/HomePage";
+import Button from "@/components/ui/Button";
+import Subtitle from "@/components/ui/Subtitle";
+import Title from "@/components/ui/Title";
 import router from "next/router";
-import React from "react";
+import Layout from "./layout";
 
-const Home = () => {
+const index = () => {
   return (
-    <div className="flex items-center">
-      <HomePage
-        backgroundImage={"/images/image-bg.png"}
-        title={"Experience ease of doing business with the government"}
-        subtitle={
+    <Layout>
+      <Title
+        text={"Experience ease of doing business with the government"}
+        textSize="text-6xl"
+      />
+      <Subtitle
+        text={
           "Over 50 local government units participating all over the Philippines"
         }
-        buttonText={"Tap to Start"}
+        textSize="text-3xl"
+      />
+      <Button
+        buttonText="Tap to Start"
+        classname="border-none !text-[55px] mt-48 font-bold uppercase"
         onClick={() => {
           router.push("/menu");
         }}
       />
-    </div>
+    </Layout>
   );
 };
 
-export default Home;
+export default index;

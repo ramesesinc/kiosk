@@ -1,10 +1,13 @@
-import React, { useRef, ChangeEvent } from "react";
-import { useKeyboardContext } from "../keyboard/KeyboardContext";
+import { useKeyboardContext } from "@/components/keyboard/KeyboardContext";
+import React, { useRef } from "react";
 
 interface InputProps {
   label?: string;
   className?: string;
-  placeholder: string;
+  placeholder?: string;
+  labelLayout?: string;
+  translationUp?: string;
+  translationDown?: string;
   type?:
     | "text"
     | "number"
@@ -15,46 +18,56 @@ interface InputProps {
     | "time"
     | "file"
     | "checkbox"
-    | "search"; // Specify allowed types
-  onChange?: (value: string) => void; // New prop for handling input changes
+    | "search"
+    | "disabled";
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
 const Input: React.FC<InputProps> = ({
   label,
   className,
+  labelLayout,
+  translationDown,
   placeholder,
   type = "text",
+  value,
   onChange,
 }) => {
-  const context = useKeyboardContext();
   const inputRef = useRef<HTMLInputElement>(null);
+  const { setActiveInput } = useKeyboardContext();
 
-  function focusHandler() {
+  const focusHandler = () => {
     if (inputRef.current) {
-      context.setActiveInput(inputRef);
-    }
-  }
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    if (onChange) {
-      onChange(value); // Call the provided onChange prop if available
+      setActiveInput(inputRef);
     }
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    onChange && onChange(value); // Call onChange prop if provided
+  };
+
   return (
-    <div>
-      <label htmlFor={type} title={type}></label>
-      {label}
+    <div className="relative">
+      <label
+        className={`absolute left-3 -top-10 px-[5px] transition-transform ${labelLayout} ${
+          translationDown ? `translate-y-2 z-[-1] ${translationDown}` : ""
+        }`}
+      >
+        {label}
+      </label>
       <input
         type={type}
-        id={type}
         placeholder={placeholder}
-        className={`p-4 rounded-2xl flex text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${className}`}
+        className={`w-full bg-transparent px-4 py-2 focus:outline-none rounded ${
+          className ? className : ""
+        }`}
         ref={inputRef}
         onFocus={focusHandler}
-        onClick={(e) => e.stopPropagation()}
-        onChange={handleChange} // Call handleChange when input changes
+        onChange={handleChange}
+        value={value}
+        disabled={type === "disabled"}
       />
     </div>
   );

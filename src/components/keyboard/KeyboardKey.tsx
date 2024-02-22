@@ -1,4 +1,5 @@
 // KeyboardKey.tsx
+import useShrink from "@/hooks/useShrink";
 import React from "react";
 import { useKeyboardContext } from "../keyboard/KeyboardContext";
 
@@ -6,12 +7,20 @@ interface KeyboardKeyProps {
   value: string;
   onClick?: () => void;
   customStyles?: React.CSSProperties;
+  animation?: "normal" | "shrink";
 }
 
-function KeyboardKey(props: KeyboardKeyProps) {
+const KeyboardKey: React.FC<KeyboardKeyProps> = ({
+  value,
+  onClick,
+  customStyles,
+  animation,
+}) => {
   const context = useKeyboardContext();
 
-  function clickHandler(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  const { isShrunk, handleShrink } = useShrink();
+
+  const clickHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
 
     if (context.activeInput && context.activeInput.current) {
@@ -20,39 +29,55 @@ function KeyboardKey(props: KeyboardKeyProps) {
       const selectionStart = inputElement.selectionStart || 0;
       const selectionEnd = inputElement.selectionEnd || 0;
 
-      if (props.onClick) {
-        props.onClick();
+      if (onClick) {
+        onClick();
       } else {
         const newValue =
           currentValue.substring(0, selectionStart) +
-          props.value +
+          value +
           currentValue.substring(selectionEnd);
         inputElement.value = newValue;
-        const newCursorPosition = selectionStart + props.value.length;
+        const newCursorPosition = selectionStart + value.length;
         inputElement.setSelectionRange(newCursorPosition, newCursorPosition);
       }
       inputElement.focus();
     }
-  }
+  };
+
+  const renderKeyContent = () => {
+    if (value === "Bks") {
+      return (
+        <img
+          src="/icons/backspace.png"
+          alt="Backspace"
+          style={{ width: "65%", height: "45%" }}
+        />
+      );
+    } else if (value === "SpaceBar") {
+      return <div style={{ width: "600px" }} />;
+    } else {
+      return value;
+    }
+  };
 
   return (
     <div
       tabIndex={-1}
-      className="flex items-center justify-center w-full h-20 m-1 rounded-md border-gray-300 border-2 shadow-[5px_5px_10px_1px_rgba(0,0,0,0.2)]"
-      onClick={clickHandler}
-      style={props.customStyles}
+      className={`flex items-center justify-center w-full h-20 m-1 rounded-md border-gray-300 border-2 shadow-[5px_5px_10px_1px_rgba(0,0,0,0.2)] ${
+        animation === "shrink"
+          ? isShrunk
+            ? "scale-75 transition-transform duration-300 ease-out"
+            : ""
+          : ""
+      }`}
+      onClick={(e) => {
+        clickHandler(e);
+        handleShrink();
+      }}
     >
-      {props.value === "Bks" ? (
-        <img
-          src="/images/backspace.png"
-          alt="Backspace"
-          style={{ width: "65%", height: "45%" }}
-        />
-      ) : (
-        props.value
-      )}
+      {renderKeyContent()}
     </div>
   );
-}
+};
 
 export default KeyboardKey;
