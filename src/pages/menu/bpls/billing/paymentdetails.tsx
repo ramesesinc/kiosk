@@ -1,5 +1,5 @@
 import Keyboard from "@/components/keyboard/Keyboard";
-import PaymentInformation from "@/components/transactions/payment/Info";
+import PaymentInformation from "@/components/transactions/bpls/payment/Info";
 import Layout from "./layout";
 
 const PaymentPage = () => {

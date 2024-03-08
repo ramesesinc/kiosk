@@ -1,16 +1,15 @@
-import Images from "@/components/ui/Images";
 import Title from "@/components/ui/Title";
+import { ticketInfo } from "@/stores/lgu-info";
+import Image from "next/image";
 import React, { forwardRef, ForwardRefRenderFunction, Ref } from "react";
 
 interface PaymentPrintTicketProps {
-  img?: string | undefined;
   QRCode?: React.ReactNode;
-  billDate?: string | undefined;
+  appDate?: string | undefined;
   addr?: string | undefined;
-  total?: number;
+  total?: number | React.ReactNode;
   QRData?: string | undefined;
   payerName: string | undefined;
-  particular?: string | undefined;
   seriesno?: string;
 }
 const headers = [
@@ -18,90 +17,81 @@ const headers = [
   "payer",
   "address",
   "particulars",
-  "control no.",
   "total",
+  "control no",
 ];
 
 const PaymentPrintTicket: ForwardRefRenderFunction<
   HTMLDivElement,
   PaymentPrintTicketProps
 > = (
-  {
-    img,
-    QRCode,
-    billDate,
-    addr,
-    total,
-    QRData,
-    payerName,
-    particular,
-    seriesno,
-  },
+  { QRCode, appDate, addr, total, QRData, payerName, seriesno },
   ref: Ref<HTMLDivElement>
 ) => (
   <div ref={ref}>
-    <div className="w-full flex flex-col gap-y-4">
-      <div className="w-full flex justify-center items-center gap-3">
-        <div className="fixed top-0 left-2">
-          <Images img={img || ""} width={70} height={70} />
-        </div>
-        <div className="flex flex-col items-center ml-10 pt-4">
-          <Title
-            text={"republic of the philipines"}
-            classname="uppercase text-[12px] leading-3"
-          />
-          <Title
-            text={"province of bohol"}
-            classname="uppercase text-[12px] leading-3"
-          />
-          <Title
-            text={"city of tagbilaran"}
-            classname="uppercase text-[12px] leading-3"
-          />
-        </div>
+    <div className="w-full flex flex-col gap-y-3 font-['Noto Sans']">
+      <div className="w-full flex justify-center items-center gap-3 pb-8">
+        {ticketInfo.map((item, index) => (
+          <React.Fragment key={index}>
+            <div className="fixed top-2 left-2">
+              <Image
+                src={item.logo.src}
+                alt={""}
+                width={item.logo.width}
+                height={0}
+                loading="eager"
+              />
+            </div>
+            <div className="flex flex-col items-center ml-10 pt-4">
+              <Title
+                text={item.header.title}
+                classname="uppercase text-[17px]"
+              />
+              <Title
+                text={item.subheader.title}
+                classname="uppercase text-[17px] leading-4"
+              />
+            </div>
+          </React.Fragment>
+        ))}
       </div>
-      <div className="flex gap-x-10 justify-center">
-        <div className="relative">{QRCode}</div>
+      <div className="flex gap-x-12 justify-center">
+        <div className="">{QRCode}</div>
         <div className="w-[2px] bg-black"></div>
-        <div className="uppercase ">
-          <Title text={"Queue No"} textSize="text-[16px]" />
-          <Title text={seriesno} textSize="text-[30px]" />
+        <div className="flex flex-col justify-center items-center uppercase">
+          <Title text={"Queue No"} textSize="text-[30px]" />
+          <Title text={seriesno} textSize="text-[40px]" />
         </div>
       </div>
       <div className="flex justify-center items-center mb-[-10px]">
         <Title
           text="present this receipt to the collector"
           classname="uppercase"
-          textSize="text-[12px]"
+          textSize="text-[18px]"
         />
       </div>
-      <div className="flex flex-col">
-        <div className="flex justify-center">
-          <table>
-            <tbody>
-              {headers.map((label, index) => (
-                <tr key={index}>
-                  <td className="text-start text-[10px] leading-3 capitalize w-20">
-                    {label} :
-                  </td>
-                  <td className="text-start text-[10px] leading-4 font-semibold">
-                    {
-                      [
-                        billDate ? ` ${billDate}` : "",
-                        ` ${payerName}`,
-                        addr ? ` ${addr}` : "",
-                        `${particular}`,
-                        QRData ? ` ${QRData}` : "",
-                        total ? ` ${total}` : "",
-                      ][index]
-                    }
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <table>
+        <tbody>
+          {headers.map((label, index) => (
+            <tr key={index}>
+              <td
+                className="capitalize"
+                style={{ width: "150px", height: "20px", fontSize: "20px" }}
+              >
+                {label}
+              </td>
+              <td style={{ width: "", height: "20px", fontSize: "20px" }}>
+                {label === "trxn date" && appDate}
+                {label === "payer" && payerName}
+                {label === "address" && addr}
+                {label === "particulars" && "Real Tax Billing And Payment"}
+                {label === "total" && total}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="w-[400px]">{QRData}</div>
     </div>
   </div>
 );

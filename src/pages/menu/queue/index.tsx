@@ -4,18 +4,28 @@ import Button from "@/components/ui/Button";
 import Title from "@/components/ui/Title";
 import Service from "@/libs/remote-service";
 import { QueueGroup, QueueSection } from "@/services/context/queue-context";
+import { useStepper } from "@/services/context/stepper-context";
 import Layout from "./layout";
+import useTimer from "@/hooks/useTimer";
 
 function QueueGroupPage({ groups }: { groups: QueueGroup[] }) {
+  const { goToPrevStep } = useStepper();
+  // const timeLimit = 15000;
+  // useTimer(timeLimit);
   return (
     <Layout>
       <Title
         text={`Select a Category below to proceed with your choice.`}
-        textSize="text-4xl"
+        textSize="!text-4xl"
       />
       <QueueGroupList groups={groups} />
       <ActionBar>
-        <Button href="/menu" buttonText="Back" animation="shrink" />
+        <Button
+          onClick={() => goToPrevStep("/menu")}
+          buttonText="Back"
+          animation="shrink"
+          classname="bg-[#567ac8] text-white"
+        />
       </ActionBar>
     </Layout>
   );

@@ -32,6 +32,7 @@ interface ModalProps {
   seriesno?: string;
   date?: string;
   qrcontent?: string;
+  className?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -59,14 +60,17 @@ const Modal: React.FC<ModalProps> = ({
   seriesno,
   date,
   qrcontent,
+  className,
 }) => {
   if (!isOpen) return null;
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full bg-[#00000080] flex justify-center items-center z-[1]`}
+      className={`fixed top-0 left-0 w-full h-full bg-[#00000080] flex justify-center items-center z-[1] `}
     >
-      <div className="w-[60%] flex flex-col items-center gap-10 bg-white p-6 rounded-2xl z-10 relative">
+      <div
+        className={`w-[60%] flex flex-col items-center gap-10 bg-white p-6 rounded-2xl z-10 relative ${className}`}
+      >
         <div className={`flex justify-end w-full ml-36 ${showClose}`}>
           <Button onClick={onClose} classname="text-[#333] border-none">
             <MdOutlineClose size={50} />

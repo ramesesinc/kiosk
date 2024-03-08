@@ -14,11 +14,11 @@ function RptItems({ rpt, disabled }: { rpt: Rpt } & RptItemsProps) {
   return (
     <>
       {!disabled && (
-        <div className="flex justify-center items-center w-full h-[150px] border-8 border-[#335F96] rounded-xl py-3">
+        <div className="flex justify-center items-center w-full h-[150px] text-white border-2 bg-[#335f96] border-light-blue rounded-2xl py-3 shadow-[5px_5px_10px_1px_rgba(0,0,0,0.2)]">
           <Button
             buttonText={rpt.title}
             onClick={viewRptHandler}
-            classname="w-full h-full border-none font-bold"
+            classname="w-full h-full capitalize border-none font-bold"
           />
         </div>
       )}

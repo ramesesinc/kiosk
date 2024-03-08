@@ -1,5 +1,5 @@
-import path from "path";
 import fs from "fs";
+import path from "path";
 
 const connFilePath = path.join(process.cwd(), "connections.json");
 const connJson = fs.readFileSync(connFilePath, "utf-8");

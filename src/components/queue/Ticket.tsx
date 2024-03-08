@@ -2,9 +2,11 @@
 import Button from "@/components/ui/Button";
 import Subtitle from "@/components/ui/Subtitle";
 import Title from "@/components/ui/Title";
+import { createFetch } from "@/libs/fetch";
+import { queueTicket } from "@/services/api/printticket";
+import { ticketInfo } from "@/stores/lgu-info";
 import React, { useRef } from "react";
 import { MdOutlineClose } from "react-icons/md";
-import { useReactToPrint } from "react-to-print";
 import Numbers from "../ui/Number";
 import QueuePrintTicket from "./PrintTicket";
 
@@ -25,18 +27,30 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
 }) => {
   const [isPrinting, setIsPrinting] = React.useState(false);
   const componentRef = useRef<any>();
+  const { value, execute } = createFetch(queueTicket);
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    onBeforeGetContent: () => {
-      setIsPrinting(true);
-    },
-    onAfterPrint: () => {
-      setIsPrinting(false);
+  const handlePrint = () => {
+    const subheaderTitle = ticketInfo[0]?.subheader?.title || "";
+    const sendTicketInfo = {
+      subtitle: subheaderTitle,
+      ticketno: ticketno,
+      date: txndatestr,
+    };
+    execute(sendTicketInfo);
+    onClose && onClose();
+  };
 
-      onClose && onClose();
-    },
-  });
+  // const handlePrint = useReactToPrint({
+  //   content: () => componentRef.current,
+  //   onBeforeGetContent: () => {
+  //     setIsPrinting(true);
+  //   },
+  //   onAfterPrint: () => {
+  //     setIsPrinting(false);
+
+  //     onClose && onClose();
+  //   },
+  // });
 
   if (!isOpen) return null;
 
@@ -83,7 +97,6 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
               />
             </div>
           ) : (
-            // Content when not printing
             <div className="text-center flex flex-col gap-20">
               <div className="flex flex-col gap-2">
                 <Title text={"Queue Ticket Number"} />

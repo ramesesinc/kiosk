@@ -26,7 +26,6 @@ async function GET(req: NextApiRequest, res: NextApiResponse) {
       billtoyear,
       billtoqtr,
     });
-    console.log(response, refno, showdetails, billtoyear, billtoqtr);
     return res.status(200).json(response);
   } catch (error) {
     console.error("Error fetching billing data:", error);

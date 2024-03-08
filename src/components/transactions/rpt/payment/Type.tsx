@@ -1,24 +1,20 @@
 import Button from "@/components/ui/Button";
 import Images from "@/components/ui/Images";
 import Title from "@/components/ui/Title";
-import { createFetch } from "@/libs/fetch";
-import { generateCode } from "@/services/api/rptgenerate";
-import { fetchNextSeries } from "@/services/api/queue";
 import { useTaxBillingContext } from "@/services/context/rpt-context";
-import paymentTypeData from "@/stores/paymenttypeitems";
-import React, { useEffect } from "react";
+import paymentTypeData from "@/stores/paymenttype-items";
+import React, { useState } from "react";
 import PaymentTicket from "../ticket/PaymentTicket";
+import Card from "@/components/ui/Card";
+import Alert from "@/components/layout/Alert";
 
-const useModal = (exeFetchTicket: any, valGenerateCode: any) => {
+const useModal = () => {
   const [openTicket, setOpenTicket] = React.useState(false);
   const [modalContent, setModalContent] = React.useState<any>(null);
 
   const handleOpenTicket = (content: any) => {
     setModalContent(content);
     setOpenTicket(true);
-    exeFetchTicket({
-      sectionid: valGenerateCode?.queuesection || "",
-    });
   };
 
   const handleCloseTicket = () => {
@@ -30,42 +26,46 @@ const useModal = (exeFetchTicket: any, valGenerateCode: any) => {
 };
 
 const PaymentType = () => {
-  const { taxBillingInfo, selectedOption } = useTaxBillingContext();
-  const { value: valGenerateCode, execute: exeGenerateCode } =
-    createFetch(generateCode);
-  const { value: valFetchTicket, execute: exeFetchTicket } =
-    createFetch(fetchNextSeries);
+  const { code, ticketNo } = useTaxBillingContext();
+  const [openAlert, setOpenAlert] = useState(false);
   const { openTicket, handleOpenTicket, handleCloseTicket, modalContent } =
-    useModal(exeFetchTicket, valGenerateCode);
+    useModal();
 
-  useEffect(() => {
-    exeGenerateCode({
-      refno: taxBillingInfo.tdno,
-      txntype: "rpt",
-      billtoqtr: selectedOption,
-    });
-  }, []);
+  const handleOpenAlert = () => {
+    setOpenAlert(true);
+  };
 
-  console.log(selectedOption, "rpt", valGenerateCode);
+  const handleCloseAlert = () => {
+    setOpenAlert(false);
+  };
 
   return (
-    <div className="flex flex-col justify-center text-center items-center gap-y-20">
+    <div className="flex flex-col gap-y-20">
       <Title
-        text={"Choose preferred payment type"}
-        textSize="text-5xl uppercase"
+        text={"How do you like to pay?"}
+        textSize="text-5xl capitalize text-center"
       />
-      <div>
+      <div className="flex justify-center text-center items-center gap-x-20">
         {paymentTypeData.map(
           (info, index) =>
             !info.disabled && (
-              <Button
+              <Card
                 key={index}
-                onClick={() => handleOpenTicket(info.modalcontent)}
-                classname="border-none"
-              >
-                <Images img={info.image} />
-                <Title text={info.title} />
-              </Button>
+                image={{
+                  img: info.image,
+                  height: 250,
+                  width: 250,
+                }}
+                title={{
+                  label: info.title,
+                  classname: "uppercase font-bold",
+                }}
+                onClick={
+                  info.title === "GCASH"
+                    ? handleOpenAlert
+                    : () => handleOpenTicket(info.modalcontent)
+                }
+              />
             )
         )}
 
@@ -73,10 +73,16 @@ const PaymentType = () => {
           <PaymentTicket
             isOpen={openTicket}
             onClose={handleCloseTicket}
-            rpttxntype={valGenerateCode?.code}
-            seriesno={valFetchTicket?.ticketno}
+            rpttxntype={code}
+            seriesno={ticketNo}
           />
         )}
+        <Alert
+          isOpen={openAlert}
+          onClose={handleCloseAlert}
+          errorMessage="GCASH Coming Soon."
+          img={"/images/GCash-alert.png"}
+        />
       </div>
     </div>
   );

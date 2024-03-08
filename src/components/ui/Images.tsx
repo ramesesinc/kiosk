@@ -1,8 +1,9 @@
 // Image.tsx
+import Image from "next/image";
 import React, { ReactNode } from "react";
 
-interface ImageProps {
-  img: string;
+interface ImagesProps {
+  img?: string;
   size?: "small" | "medium" | "large" | "custom"; // You can customize the sizes as needed
   alt?: string;
   classname?: string;
@@ -11,7 +12,7 @@ interface ImageProps {
   children?: ReactNode;
 }
 
-const Image: React.FC<ImageProps> = ({
+const Images: React.FC<ImagesProps> = ({
   img,
   size,
   alt,
@@ -41,7 +42,11 @@ const Image: React.FC<ImageProps> = ({
     }
 
     return (
-      <img src={img} alt={alt} className={`${imageSizeClass} ${classname}`} />
+      <Image
+        src={img || ""}
+        alt={alt || ""}
+        className={`${imageSizeClass} ${classname}`}
+      />
     );
   } else {
     const containerStyle: React.CSSProperties = {
@@ -56,11 +61,16 @@ const Image: React.FC<ImageProps> = ({
 
     return (
       <div style={containerStyle} className={classname}>
-        <img src={img} alt={alt} style={imageStyle} className="w-full h-auto" />
+        <Image
+          src={img || ""}
+          alt={alt || ""}
+          style={imageStyle}
+          className="w-full h-auto"
+        />
         {children}
       </div>
     );
   }
 };
 
-export default Image;
+export default Images;

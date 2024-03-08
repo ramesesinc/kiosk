@@ -3,9 +3,11 @@ import React, { useRef } from "react";
 
 interface InputProps {
   label?: string;
+  labelLayout?: string;
   className?: string;
   placeholder?: string;
-  labelLayout?: string;
+  caption?: React.ReactNode;
+  captionLayout?: string;
   translationUp?: string;
   translationDown?: string;
   type?:
@@ -22,6 +24,7 @@ interface InputProps {
     | "disabled";
   value?: string;
   onChange?: (value: string) => void;
+  placeholderColor?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -30,9 +33,12 @@ const Input: React.FC<InputProps> = ({
   labelLayout,
   translationDown,
   placeholder,
+  caption,
+  captionLayout,
   type = "text",
   value,
   onChange,
+  placeholderColor = "text-gray-400",
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { setActiveInput } = useKeyboardContext();
@@ -62,13 +68,20 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         className={`w-full bg-transparent px-4 py-2 focus:outline-none rounded ${
           className ? className : ""
-        }`}
+        } placeholder-${placeholderColor}`}
         ref={inputRef}
         onFocus={focusHandler}
         onChange={handleChange}
         value={value}
         disabled={type === "disabled"}
       />
+      {caption && (
+        <div
+          className={`${captionLayout} absolute left-1 top-1 pointer-events-none font-bold`}
+        >
+          {caption}
+        </div>
+      )}
     </div>
   );
 };
