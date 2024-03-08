@@ -1,10 +1,18 @@
+// Title.tsx
+import React from "react";
+
 interface TitleProps {
-  text: string;
-  className?: string;
+  text: string | undefined;
+  textSize?: string; // Optional prop for custom text size
+  classname?: string;
 }
 
-const title: React.FC<TitleProps> = ({ text, className }) => {
-  return <p className={`uppercase font-bold text-[44px] ${className}`}>{text}</p>;
+const Title: React.FC<TitleProps> = ({
+  text,
+  textSize = "text-3xl",
+  classname,
+}) => {
+  return <h1 className={`font-bold ${textSize} ${classname}`}>{text}</h1>;
 };
 
-export default title;
+export default Title;

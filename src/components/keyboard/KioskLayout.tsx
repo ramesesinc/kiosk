@@ -1,5 +1,5 @@
 // KioskLayout.tsx
-import React, { useContext } from "react";
+import React from "react";
 import { useKeyboardContext } from "../keyboard/KeyboardContext";
 
 interface KioskLayoutProps {

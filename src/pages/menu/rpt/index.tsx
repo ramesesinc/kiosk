@@ -1,50 +1,45 @@
+import ActionBar from "@/components/layout/ActionBar";
+import RptItems from "@/components/transactions/rpt/details/Item";
 import Button from "@/components/ui/Button";
-import { FaArrowDown } from "react-icons/fa6";
-import React, { useState } from "react";
-import BillingNumber from "@/components/transactions/bpls/BplsInitial";
-import Modal from "@/components/ui/Modal";
-import useTimer from "@/hooks/useTimer";
-import Keyboard from "@/components/keyboard/Keyboard";
-import router from "next/router";
+import Grid from "@/components/ui/Grid";
+import Title from "@/components/ui/Title";
+import { Rpt, getRpt } from "@/stores/rpt-items";
+import Layout from "./layout";
 
-const Index = () => {
-  const timeLimit = 120000;
-  useTimer(timeLimit);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState({
-    textButton: "Confirm",
-    onClick: () => setIsModalOpen(false),
-    showClose: "invisible",
-    image: "/icons/alert.jpg",
-    imageHeight: 200,
-    imageWidth: 200,
-    paragraph1: "",
-  });
-
+function RptPage({ rpt }: { rpt: Rpt[] }) {
   return (
-    <div className="w-full text-[30px] flex flex-col justify-between items-center">
-      <BillingNumber
-        title={"Scan QR here..."}
-        image={"/images/kiosk.png"}
-        placeholder={"Enter Tax"}
-      />
-
-      <div className=" w-full flex flex-col justify-between gap-8">
-        <Keyboard />
-        <div className="gap-20 flex justify-center items-center w-full">
-          <Button text={"Back"} onClick={() => router.push("/menu")} />
-          <Button
-            text={"Next"}
-            className="bg-light-blue text-white"
-            onClick={() => router.push("/menu/property/billingInfo")}
-          />
-        </div>
-      </div>
-
-      <Modal isOpen={isModalOpen} {...modalContent} />
-    </div>
+    <Layout>
+      <Title text={"Select Transaction"} textSize="text-4xl" />
+      <Grid columns="gap-10">
+        {rpt.map((rptitem) => {
+          return (
+            <RptItems
+              key={rptitem.id}
+              rpt={rptitem}
+              disabled={rptitem.disabled}
+            />
+          );
+        })}
+      </Grid>
+      <ActionBar>
+        <Button href="/menu" buttonText="Back" animation="shrink" />
+      </ActionBar>
+    </Layout>
   );
-};
+}
 
-export default Index;
+export default RptPage;
+
+/*==========================================
+* SERVER SIDE CODE
+==========================================*/
+
+export async function getStaticProps() {
+  const rpt = getRpt();
+
+  return {
+    props: {
+      rpt,
+    },
+  };
+}

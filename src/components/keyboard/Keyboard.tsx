@@ -1,23 +1,19 @@
-import KeyboardKey from "./KeyboardKey";
 import { useKeyboardContext } from "../keyboard/KeyboardContext";
 import {
-  numSymRow1,
-  numSymRow2,
-  numSymRow3,
-  numSymRow4,
   alphaRow1,
   alphaRow2,
   alphaRow3,
+  alphaRow4,
+  numSymRow1,
 } from "./KeyboardData";
+import KeyboardKey from "./KeyboardKey";
 
 function Keyboard() {
   const context = useKeyboardContext();
-  const alphaRow4 = [{ value: "SpaceBar" }];
 
-  const alphaKeys = [alphaRow1, alphaRow2, alphaRow3, alphaRow4];
-  const numKeys = [numSymRow1, numSymRow2, numSymRow3, numSymRow4];
+  const alphaKeys = [numSymRow1, alphaRow1, alphaRow2, alphaRow3, alphaRow4];
 
-  let keys = context.keyboardType === "alpha" ? alphaKeys : numKeys;
+  let keys = context.keyboardType === "alpha" ? alphaKeys : [];
 
   const handleSpaceBar = () => {
     if (context.activeInput && context.activeInput.current) {
@@ -55,20 +51,18 @@ function Keyboard() {
     }
   };
 
-  const handleToggleKeyboardType = () => {
-    context.setKeyboardType(
-      context.keyboardType === "alpha" ? "numeric" : "alpha"
-    );
-  };
-
   return (
-    <div onClick={(e) => e.stopPropagation()} className="w-full text-[30px]">
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="w-full text-2xl fixed left-0 bottom-[250px]"
+    >
       {keys.map((row, index) => (
-        <div key={index} className="flex flex-row justify-center m-4 ">
+        <div key={index} className="flex justify-center m-4 ">
           {row.map((key) => (
             <KeyboardKey
               key={key.value}
               value={key.value}
+              animation="shrink"
               onClick={
                 key.value === "SpaceBar"
                   ? handleSpaceBar
@@ -76,16 +70,7 @@ function Keyboard() {
                   ? handleClear
                   : key.value === "Bks"
                   ? handleBackspace
-                  : key.value === "?123"
-                  ? handleToggleKeyboardType
-                  : key.value === "ABC"
-                  ? handleToggleKeyboardType
                   : undefined
-              }
-              customStyles={
-                key.value === "SpaceBar"
-                  ? { width: "600px", margin: "auto" }
-                  : {}
               }
             />
           ))}

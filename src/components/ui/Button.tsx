@@ -1,41 +1,67 @@
-import React from "react";
-import Link from "next/link";
+// Button.tsx
+import useShrink from "@/hooks/useShrink";
+import React, { ReactNode } from "react";
 
-function Button({
-  text,
-  onClick,
-  href,
-  className,
-  children,
-  display,
-  value,
-}: {
-  text?: string;
+interface ButtonProps {
   onClick?: () => void;
   href?: string;
-  className?: string;
-  children?: React.ReactNode;
-  display?: string;
-  value?: string;
-}) {
-  if (href) {
+  buttonText?: string;
+  classname?: string;
+  children?: ReactNode;
+  animation?: "normal" | "shrink";
+}
+
+const Button: React.FC<ButtonProps> = ({
+  onClick,
+  href,
+  buttonText,
+  classname,
+  children,
+  animation = "normal",
+}) => {
+  const { isShrunk, handleShrink } = useShrink();
+  const defaultClass =
+    "text-2xl px-20 py-4 rounded-xl border border-gray-400 uppercase";
+
+  const buttonProps = {
+    className: `${defaultClass} ${classname || ""} ${
+      animation === "shrink"
+        ? isShrunk
+          ? "scale-75 transition-transform duration-300 ease-out"
+          : ""
+        : ""
+    }`,
+    ...(onClick
+      ? {
+          onClick: () => {
+            handleShrink();
+            onClick();
+          },
+        }
+      : {}),
+    ...(href ? { href } : {}),
+  };
+
+  if (onClick) {
     return (
-      <Link
-        href={href}
-        className={`text-2xl px-20 py-4 rounded-xl border border-gray-400 uppercase ${display} ${className}`}
-      ></Link>
+      <button {...buttonProps}>
+        {buttonText}
+        {children}
+      </button>
+    );
+  } else {
+    return (
+      <a
+        {...buttonProps}
+        onClick={() => {
+          handleShrink();
+        }}
+      >
+        {buttonText}
+        {children}
+      </a>
     );
   }
-
-  return (
-    <button
-      className={`text-2xl px-20 py-4 rounded-xl border border-gray-400 uppercase ${className} ${display}`}
-      onClick={onClick}
-    >
-      {text}
-      {children}
-    </button>
-  );
-}
+};
 
 export default Button;

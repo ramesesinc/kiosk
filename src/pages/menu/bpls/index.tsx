@@ -1,26 +1,24 @@
-import Title from "@/components/ui/Title";
-import React from "react";
-import ActionBar from "@/components/layouts/ActionBar";
-import BplsLayout from "@/components/transactions/bpls/BplsLayout";
-import { Bpls, getBpls } from "@/stores/bplsitems";
-import BplsItems from "@/components/transactions/bpls/BplsItems";
+import ActionBar from "@/components/layout/ActionBar";
+import BplsItems from "@/components/transactions/details/Item";
+import Button from "@/components/ui/Button";
 import Grid from "@/components/ui/Grid";
-import Flex from "@/components/ui/Flex";
+import Title from "@/components/ui/Title";
+import { Bpls, getBpls } from "@/stores/bpls-items";
+import Layout from "./layout";
 
 function BplsPage({ bpls }: { bpls: Bpls[] }) {
   return (
-    <Flex>
-      <BplsLayout>
-        <Title text={"Select Transaction"} />
-        <Grid columns={"gap-10"}>
-          {bpls.map((bplsitem) => {
-            return <BplsItems key={bplsitem.id} bpls={bplsitem} />;
-          })}
-        </Grid>
-        ;
-        <ActionBar backRoute="/menu" className="invisible" />
-      </BplsLayout>
-    </Flex>
+    <Layout>
+      <Title text={"Select Transaction"} textSize="text-4xl" />
+      <Grid columns="gap-10">
+        {bpls.map((bplsitem) => {
+          return <BplsItems key={bplsitem.id} bpls={bplsitem} />;
+        })}
+      </Grid>
+      <ActionBar>
+        <Button href="/menu" buttonText="Back" animation="shrink" />
+      </ActionBar>
+    </Layout>
   );
 }
 
@@ -31,7 +29,6 @@ export default BplsPage;
 ==========================================*/
 
 export async function getStaticProps() {
-  console.log(">>>getStaticProps");
   const bpls = getBpls();
 
   return {
