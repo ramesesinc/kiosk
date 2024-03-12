@@ -1,15 +1,17 @@
-import { useEffect } from "react";
+import { useStepper } from "@/services/context/stepper-context";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const useTimer = (timeLimit: unknown) => {
   const router = useRouter();
-
+  const { resetStep } = useStepper();
   useEffect(() => {
     let timer: string | number | NodeJS.Timeout | undefined;
 
     const resetTimer = () => {
       clearTimeout(timer);
       timer = setTimeout(() => {
+        resetStep();
         router.push("/");
       }, timeLimit as number);
     };
@@ -35,7 +37,7 @@ const useTimer = (timeLimit: unknown) => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [router, timeLimit]);
+  }, [router, timeLimit, resetStep]);
 };
 
 export default useTimer;

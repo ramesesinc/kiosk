@@ -3,9 +3,12 @@ import { useStepper } from "@/services/context/stepper-context";
 import TaxBillingPage from "./details";
 import PaymentPage from "./paymentdetails";
 import PaymentTypePage from "./paymenttype";
+import useTimer from "@/hooks/useTimer";
 
 const Index = () => {
   const { currentStep } = useStepper();
+  const timeLimit = 120000;
+  useTimer(timeLimit);
 
   return (
     <>

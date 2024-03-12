@@ -1,4 +1,6 @@
 // Layout.tsx
+import { landingBgLogo } from "@/stores/lgu-info";
+import Image from "next/image";
 import React, { ReactNode } from "react";
 
 interface LayoutProps {
@@ -8,9 +10,6 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, classname }) => {
   const containerStyle: React.CSSProperties = {
-    backgroundImage: `url("/images/bg-image.png")`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
     minHeight: "100vh",
     display: "flex",
     flexDirection: "column",
@@ -20,7 +19,28 @@ const Layout: React.FC<LayoutProps> = ({ children, classname }) => {
   } as const;
 
   return (
-    <div style={containerStyle} className="touch-none">
+    <div style={containerStyle} className={`touch-none ${classname}`}>
+      {landingBgLogo.map((item, index) => (
+        <div key={index} className="bg-auto bg-no-repeat bg-center">
+          <Image
+            src={item.logo.src}
+            alt={""}
+            width={item.logo.width}
+            height={0}
+            style={{
+              content: '""',
+              position: "absolute",
+              top: 450,
+              right: 0,
+              left: 0,
+              opacity: 0.4,
+              zIndex: -1,
+            }}
+            priority
+            unoptimized
+          />
+        </div>
+      ))}
       <div className={`text-center m-8 ${classname}`}>{children}</div>
     </div>
   );

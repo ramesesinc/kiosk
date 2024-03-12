@@ -42,7 +42,6 @@ const QueueGroupList: React.FC<QueueGroupListProps> = ({ groups }) => {
               textSize="text-3xl"
               classname="text-left"
             />
-            <div className="h-[7px] w-[55%] bg-gradient-to-r from-[#335F96]"></div>
           </div>
 
           <QueueSectionList

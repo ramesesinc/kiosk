@@ -46,6 +46,7 @@ export const alphaRow2 = [
 ];
 
 export const alphaRow3 = [
+  { value: "&" },
   { value: "Z" },
   { value: "X" },
   { value: "C" },

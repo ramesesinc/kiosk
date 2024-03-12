@@ -1,5 +1,6 @@
 // KeyboardKey.tsx
 import useShrink from "@/hooks/useShrink";
+import Image from "next/image";
 import React from "react";
 import { useKeyboardContext } from "../keyboard/KeyboardContext";
 
@@ -47,9 +48,12 @@ const KeyboardKey: React.FC<KeyboardKeyProps> = ({
   const renderKeyContent = () => {
     if (value === "Bks") {
       return (
-        <img
-          src="/icons/backspace.png"
-          alt="Backspace"
+        <Image
+          src={"/icons/backspace.png"}
+          alt={"Backspace"}
+          width={0}
+          height={0}
+          loading="eager"
           style={{ width: "65%", height: "45%" }}
         />
       );
@@ -66,7 +70,7 @@ const KeyboardKey: React.FC<KeyboardKeyProps> = ({
       className={`flex items-center justify-center w-full h-20 m-1 rounded-md border-gray-300 border-2 shadow-[5px_5px_10px_1px_rgba(0,0,0,0.2)] ${
         animation === "shrink"
           ? isShrunk
-            ? "scale-75 transition-transform duration-300 ease-out"
+            ? "scale-95 transition-transform duration-150 bg-gray-200 ease-out"
             : ""
           : ""
       }`}

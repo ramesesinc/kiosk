@@ -15,6 +15,7 @@ const PaymentTypePage = () => {
           onClick={() => goToPrevStep("/menu/rpt")}
           animation="shrink"
           buttonText="Back"
+          classname="bg-[#567ac8] text-white"
         />
       </ActionBar>
     </Layout>

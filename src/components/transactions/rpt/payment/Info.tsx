@@ -5,6 +5,8 @@ import Currency from "@/components/ui/Currency";
 import Subtitle from "@/components/ui/Subtitle";
 import Textbox from "@/components/ui/Textbox";
 import Title from "@/components/ui/Title";
+import { createFetch } from "@/libs/fetch";
+import { fetchNextSeries } from "@/services/api/queue";
 import { useTaxBillingContext } from "@/services/context/rpt-context";
 import { useStepper } from "@/services/context/stepper-context";
 import { useRef, useState } from "react";
@@ -15,8 +17,14 @@ const PaymentInformation = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const payerNameInput = useRef<HTMLInputElement>(null);
   const payerAddressInput = useRef<HTMLInputElement>(null);
-  const { taxBillingInfo, setPayerName, setPayerAddress } =
-    useTaxBillingContext();
+  const {
+    taxBillingInfo,
+    setPayerName,
+    setPayerAddress,
+    section,
+    setTicketNo,
+  } = useTaxBillingContext();
+  const { execute } = createFetch(fetchNextSeries);
 
   const openAlert = (message: any) => {
     setErrorMessage(message);
@@ -27,13 +35,17 @@ const PaymentInformation = () => {
     setIsAlertOpen(false);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     const name = payerNameInput?.current?.value?.trim() || "";
     const address = payerAddressInput?.current?.value?.trim() || "";
     if (name !== "" && name !== null && name !== undefined) {
       if (address !== "" && address !== null && address !== undefined) {
         setPayerName(name);
         setPayerAddress(address);
+        const response = await execute({
+          sectionid: section,
+        });
+        setTicketNo(response?.ticketno);
         goToNextStep();
       } else {
         openAlert("Enter payer address");
@@ -69,17 +81,20 @@ const PaymentInformation = () => {
       <div className="m-2 text-center flex justify-center items-center flex-col gap-4 pt-10">
         <Subtitle text={"Payment Details"} />
         <div className="border border-black font-bold w-[70%] p-8">
-          <Currency
-            amount={taxBillingInfo.amount}
-            showCurrencySign={true}
-            classname="text-3xl"
-          />
+          {taxBillingInfo && taxBillingInfo.amount !== undefined && (
+            <Currency
+              amount={taxBillingInfo.amount}
+              currency="Php"
+              classname="text-3xl"
+            />
+          )}
         </div>
         <ActionBar>
           <Button
             onClick={() => goToPrevStep("/menu/rpt")}
             buttonText="Back"
             animation="shrink"
+            classname="bg-[#567ac8] text-white"
           />
           <Button
             onClick={() => handleNext()}
@@ -92,6 +107,11 @@ const PaymentInformation = () => {
           isOpen={isAlertOpen}
           onClose={closeAlert}
           errorMessage={errorMessage}
+          img={{
+            src: "/icons/alert.png",
+            width: 200,
+            height: 0,
+          }}
         />
       </div>
     </>

@@ -1,5 +1,5 @@
 import ActionBar from "@/components/layout/ActionBar";
-import PaymentType from "@/components/transactions/payment/Type";
+import PaymentType from "@/components/transactions/bpls/payment/Type";
 import Button from "@/components/ui/Button";
 import { useStepper } from "@/services/context/stepper-context";
 import Layout from "./layout";
@@ -15,6 +15,7 @@ const PaymentTypePage = () => {
           onClick={() => goToPrevStep("/menu/bpls")}
           animation="shrink"
           buttonText="Back"
+          classname="bg-[#567ac8] text-white"
         />
       </ActionBar>
     </Layout>

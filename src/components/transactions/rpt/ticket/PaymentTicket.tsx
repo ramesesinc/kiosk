@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Button from "@/components/ui/Button";
-import Images from "@/components/ui/Images";
+import Currency from "@/components/ui/Currency";
 import Subtitle from "@/components/ui/Subtitle";
 import Title from "@/components/ui/Title";
 import { useTaxBillingContext } from "@/services/context/rpt-context";
-import { useStepper } from "@/services/context/stepper-context";
+import { ticketInfo } from "@/stores/lgu-info";
+import Image from "next/image";
 import React, { useRef } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import QRCode from "react-qr-code";
@@ -26,7 +27,6 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
   rpttxntype,
   seriesno,
 }) => {
-  const { goToPrevStep } = useStepper();
   const [isPrinting, setIsPrinting] = React.useState(false);
   const componentRef = useRef<any>();
   const { taxBillingInfo, payerName, payerAddress } = useTaxBillingContext();
@@ -56,14 +56,12 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
       <div className="hidden">
         <PaymentTicketPrint
           ref={componentRef}
-          img={"/images/province-logo.png"}
-          QRCode={<QRCode value={combinedData} size={70} />}
+          QRCode={<QRCode value={combinedData} size={100} />}
           addr={payerAddress}
-          total={taxBillingInfo.amount}
+          appDate={taxBillingInfo.billdate}
+          total={<Currency amount={taxBillingInfo.amount} />}
           QRData={combinedData}
-          billDate={taxBillingInfo.billdate}
           payerName={payerName}
-          particular="Real Tax Billing and Payment"
           seriesno={seriesno}
         />
       </div>
@@ -100,41 +98,41 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
               />
             </div>
           ) : (
-            <>
+            <div className="m-8">
               <div className="w-full flex flex-col gap-y-10">
-                <div className="w-full flex justify-center items-center">
-                  <Images
-                    img={"/images/province-logo.png"}
-                    width={110}
-                    height={110}
-                    classname=" absolute top-24 left-10"
-                  />
-                  <div className="flex flex-col w-72 ">
-                    <Title
-                      text={"republic of the philipines"}
-                      classname="uppercase text-lg leading-5"
-                    />
-                    <Title
-                      text={"province of bohol"}
-                      classname="uppercase text-lg leading-5"
-                    />
-                    <Title
-                      text={"city of tagbilaran"}
-                      classname="uppercase text-lg leading-5"
-                    />
+                {ticketInfo.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex w-full flex-wrap items-center justify-between"
+                  >
+                    <div className="flex container mx-auto gap-x-8">
+                      <Image
+                        src={item.logo.src}
+                        alt={""}
+                        width={item.logo.width}
+                        height={0}
+                        loading="eager"
+                      />
+                      <div className="flex flex-col justify-center mx-4">
+                        <Title
+                          text={item.header.title}
+                          classname="uppercase text-[24px] leading-6"
+                        />
+                        <Title
+                          text={item.subheader.title}
+                          classname="uppercase text-[24px] leading-6"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
                 <div className="flex gap-x-10 justify-center">
                   <div className="relative">
-                    <div className="h-[20px] w-[4px] bg-black absolute top-[-12px] left-[-12px] rounded-full" />
-                    <div className="h-[4px] w-[40px] bg-black absolute top-[-12px] left-[-12px] rounded-full" />
                     <QRCode
                       className="break-words"
                       value={combinedData}
                       size={90}
                     />
-                    <div className="h-[20px] w-[4px] bg-black absolute bottom-[-12px] right-[-12px] rounded-full" />
-                    <div className="h-[4px] w-[40px] bg-black absolute bottom-[-12px] right-[-12px] rounded-full" />
                   </div>
                   <div className="w-[2px] bg-black"></div>
                   <div className="uppercase">
@@ -160,15 +158,17 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                               {
                                 [
                                   taxBillingInfo.billdate
-                                    ? `: ${taxBillingInfo.billdate}`
+                                    ? ` ${taxBillingInfo.billdate}`
                                     : "",
-                                  `: ${payerName}`,
-                                  payerAddress ? `: ${payerAddress}` : "",
-                                  ": Real Tax Billing and Payment",
-                                  combinedData ? `: ${combinedData}` : "",
-                                  taxBillingInfo.amount
-                                    ? `: ${taxBillingInfo.amount}`
-                                    : "",
+                                  ` ${payerName}`,
+                                  payerAddress ? ` ${payerAddress}` : "",
+                                  " Real Tax Billing and Payment",
+                                  combinedData ? ` ${combinedData}` : "",
+                                  <Currency
+                                    key={`currency-${index}`}
+                                    amount={taxBillingInfo.amount}
+                                    currency="Php"
+                                  />,
                                 ][index]
                               }
                             </td>
@@ -182,7 +182,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                   <Button buttonText="Print" onClick={handlePrint} />
                 </div>
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>

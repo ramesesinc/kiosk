@@ -20,14 +20,13 @@ const Button: React.FC<ButtonProps> = ({
   animation = "normal",
 }) => {
   const { isShrunk, handleShrink } = useShrink();
-  const defaultClass =
-    "text-2xl px-20 py-4 rounded-xl border border-gray-400 uppercase";
+  const defaultClass = "text-2xl px-20 py-4 rounded-lg border border-gray-400";
 
   const buttonProps = {
     className: `${defaultClass} ${classname || ""} ${
       animation === "shrink"
         ? isShrunk
-          ? "scale-75 transition-transform duration-300 ease-out"
+          ? "scale-75 transition-transform duration-300 ease-out bg-gray-300"
           : ""
         : ""
     }`,

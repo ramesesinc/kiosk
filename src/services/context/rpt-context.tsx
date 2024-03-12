@@ -13,6 +13,7 @@ interface TaxBillingContext {
   payerAddress: string;
   code: string;
   section: string;
+  ticketNo: string;
   setTaxBillingInfo: (data: any) => void;
   setSelectedOption: (option: number | string | null) => void;
   setSelectedOptionYear: (optionYear: number | string | null) => void;
@@ -20,6 +21,7 @@ interface TaxBillingContext {
   setPayerAddress: (address: string) => void;
   setCode: (code: string) => void;
   setSection: (section: string) => void;
+  setTicketNo: (ticketNo: string) => void;
 }
 
 const TaxBillingContext = createContext<TaxBillingContext | undefined>(
@@ -41,6 +43,7 @@ export const RptBillingProvider: React.FC<TaxBillingContextProps> = ({
   const [payerAddress, setPayerAddress] = useState("");
   const [code, setCode] = useState("");
   const [section, setSection] = useState("");
+  const [ticketNo, setTicketNo] = useState("");
 
   const handleSetSelectedOption = (option: number | string | null) => {
     if (option === 1 || option === 2 || option === 3) {
@@ -67,6 +70,7 @@ export const RptBillingProvider: React.FC<TaxBillingContextProps> = ({
         payerName,
         code,
         section,
+        ticketNo,
         payerAddress,
         setTaxBillingInfo,
         setSelectedOption: handleSetSelectedOption,
@@ -75,6 +79,7 @@ export const RptBillingProvider: React.FC<TaxBillingContextProps> = ({
         setPayerAddress,
         setCode,
         setSection,
+        setTicketNo,
       }}
     >
       {children}

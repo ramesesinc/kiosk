@@ -11,6 +11,10 @@ const config: Config = {
       colors: {
         "light-blue": "#53bffa",
       },
+      maxWidth: {
+        'full': '100%',
+        'screen-xl': '3000px', // Adjust to your desired maximum width
+      },
     },
   },
   plugins: [],

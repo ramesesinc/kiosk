@@ -18,7 +18,6 @@ async function GET(req: NextApiRequest, res: NextApiResponse) {
   const { billtoqtr } = req.query;
   const { billtoyear } = req.query;
   const svc = Service.lookup("CashReceiptBarcodeService", "etracs");
-  console.log(txntype);
   try {
     const response = await svc.invoke("generateCode", {
       refno,

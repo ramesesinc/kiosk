@@ -1,15 +1,39 @@
-export const lguInfo = [
+export const landingInfo = [
   {
     logo: {
-      src: "/images/lgu-logo.jpg",
-      width: 80,
-      height: 80,
+      src: "/_custom/lgu-logo.jpg",
+      width: 120,
+      height: 120,
+    },
+    header: {
+      title: "city of puerto princesa",
+    },
+    subheader: {
+      title: "self service kiosk",
+    },
+  },
+];
+
+export const ticketInfo = [
+  {
+    logo: {
+      src: "/_custom/lgu-logo.jpg",
+      width: 150,
     },
     header: {
       title: "Republic of the Philippines",
     },
-    place: {
-      title: "City of Puerto Princesa",
+    subheader: {
+      title: "city of puerto princesa",
+    },
+  },
+];
+
+export const landingBgLogo = [
+  {
+    logo: {
+      src: "/_custom/lp-bg-image.png",
+      width: 2000,
     },
   },
 ];

@@ -1,6 +1,6 @@
 // Icon.tsx
+import Image from "next/image";
 import React from "react";
-import Images from "./Images";
 
 interface IconProps {
   image: string;
@@ -26,10 +26,19 @@ const Icon: React.FC<IconProps> = ({
     <div className={`flex flex-col items-center ${active ? "" : "invisible"}`}>
       <div className="p-2 rounded-full bg-light-blue">
         <button onClick={onClick} className="p-4">
-          <Images img={image} width={width} height={height} />
+          <Image
+            src={image}
+            alt={"logo"}
+            width={width}
+            height={height}
+            loading="eager"
+            style={{ width: "auto" }}
+          />
         </button>
       </div>
-      <p className={`mt-4 ${fontSize}`}>{title}</p>
+      <div className="flex justify-center items-center w-[100px]">
+        <p className={`mt-4 ${fontSize}`}>{title}</p>
+      </div>
     </div>
   );
 };

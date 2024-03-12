@@ -39,7 +39,7 @@ const ActionBar: React.FC<ActionBarProps> = ({
   };
 
   return (
-    <div className="fixed left-0 bottom-[150px] flex justify-start gap-x-40 ml-64">
+    <div className="fixed left-[190px] bottom-[150px] flex justify-start gap-x-64">
       {children}
     </div>
   );

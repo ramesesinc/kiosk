@@ -4,15 +4,13 @@ interface CurrencyComponentProps {
   amount: number | string;
   currency?: string;
   caption?: string;
-  showCurrencySign?: boolean;
   classname?: string;
 }
 
 const Currency: React.FC<CurrencyComponentProps> = ({
   amount,
-  currency = "Php",
+  currency,
   caption,
-  showCurrencySign = false,
   classname,
 }) => {
   const formattedAmount = () => {
@@ -26,24 +24,26 @@ const Currency: React.FC<CurrencyComponentProps> = ({
     const decimalPlaces = (numericAmount.toString().split(".")[1] || []).length;
 
     const options = {
-      style: showCurrencySign ? "currency" : "decimal",
-      currency: showCurrencySign ? currency : undefined,
+      style: currency ? "currency" : "decimal",
+      currency: currency === "Php" || currency === "USD" ? currency : undefined,
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     };
 
-    return numericAmount.toLocaleString(undefined, options);
+    const formattedValue = numericAmount.toLocaleString(undefined, options);
+
+    return formattedValue;
   };
 
   return (
-    <div className="">
+    <>
       {caption && (
         <span className={`pr-5 uppercase font-bold ${classname}`}>
           {caption} :
         </span>
       )}
       <div className={`${classname}`}>{formattedAmount()}</div>
-    </div>
+    </>
   );
 };
 

@@ -12,12 +12,14 @@ interface BillingContext {
   payerAddress: string;
   code: string;
   section: string;
+  ticketNo: string;
   setBillingInfo: (data: any) => void;
   setSelectedOption: (option: number | string | null) => void;
   setPayerName: (name: string) => void;
   setPayerAddress: (address: string) => void;
   setCode: (code: string) => void;
   setSection: (section: string) => void;
+  setTicketNo: (ticketNo: string) => void;
 }
 
 const BillingContext = createContext<BillingContext | undefined>(undefined);
@@ -33,6 +35,7 @@ export const BillingProvider: React.FC<BillingContextProps> = ({
   const [payerAddress, setPayerAddress] = useState("");
   const [code, setCode] = useState("");
   const [section, setSection] = useState("");
+  const [ticketNo, setTicketNo] = useState("");
 
   const handleSetSelectedOption = (option: number | string | null) => {
     if (option === 1 || option === 2 || option === 3) {
@@ -51,12 +54,14 @@ export const BillingProvider: React.FC<BillingContextProps> = ({
         code,
         section,
         payerAddress,
+        ticketNo,
         setBillingInfo,
         setSelectedOption: handleSetSelectedOption,
         setPayerName,
         setPayerAddress,
         setCode,
         setSection,
+        setTicketNo,
       }}
     >
       {children}

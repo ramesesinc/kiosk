@@ -1,11 +1,11 @@
 import Button from "@/components/ui/Button";
 import Currency from "@/components/ui/Currency";
 import Dropdown from "@/components/ui/Dropdown";
-import Grid from "@/components/ui/Grid";
+import Input from "@/components/ui/Input";
 import Modal from "@/components/ui/Modal";
 import Title from "@/components/ui/Title";
 import { createFetch } from "@/libs/fetch";
-import { getBilling } from "@/services/api/rptbilling";
+import { getBilling } from "@/services/api/rpt";
 import { useTaxBillingContext } from "@/services/context/rpt-context";
 import { useEffect, useState } from "react";
 
@@ -24,15 +24,21 @@ const RptInfo = () => {
     setSelectedOptionYear,
     setSelectedOption,
   } = useTaxBillingContext();
+
   useEffect(() => {
     if (value && value.info) {
       setTaxBillingInfo(value.info);
     }
-  }, [selectedOption, selectedOptionYear, taxBillingInfo, value]);
+  }, [
+    selectedOption,
+    selectedOptionYear,
+    taxBillingInfo,
+    value,
+    setTaxBillingInfo,
+  ]);
 
   const handlePayOptionChange = (billtoqtr: number | string) => {
     setSelectedOption(billtoqtr);
-    setIsModalOpen(false);
     try {
       execute({
         refno: taxBillingInfo?.tdno,
@@ -58,54 +64,43 @@ const RptInfo = () => {
     }
   };
 
-  const renderTaxBillingInfo = () => (
-    <div className="flex justify-start items-start w-full">
-      <Grid columns="grid-rows-8 gap-5 font-bold indent-12 basis-[50%]">
-        {[
-          "Bill No.",
-          "Bill Date",
-          "TD No.",
-          "PIN",
-          "Property Owner",
-          "Address",
-          "Billing Period",
-          "Ammount Due",
-        ].map((label, index) => (
-          <p key={index} className="text-start !text-[22px]">
-            {label}
-          </p>
-        ))}
-      </Grid>
-      {taxBillingInfo && (
-        <Grid columns="grid-rows-8 gap-5 font-semibold w-full">
-          {[
-            taxBillingInfo.billno,
-            taxBillingInfo.billdate,
-            taxBillingInfo.tdno,
-            taxBillingInfo.fullpin,
-            taxBillingInfo.owner?.name,
-            taxBillingInfo.taxpayer?.address,
-            taxBillingInfo.billperiod,
-            taxBillingInfo.amount,
-          ].map((value, index) => (
-            <p key={index} className="text-start !text-[22px]">{`${value}`}</p>
-          ))}
-        </Grid>
-      )}
-    </div>
-  );
+  const inputConfigs = [
+    { caption: taxBillingInfo?.billno || "N/A", label: "Bill No." },
+    { caption: taxBillingInfo?.billdate || "N/A", label: "Bill Date" },
+    { caption: taxBillingInfo?.tdno || "N/A", label: "TD No." },
+    { caption: taxBillingInfo?.fullpin || "N/A", label: "PIN" },
+    { caption: taxBillingInfo?.owner?.name || "N/A", label: "Property Owner" },
+    { caption: taxBillingInfo?.taxpayer?.address || "N/A", label: "Address" },
+    { caption: taxBillingInfo?.billperiod || "N/A", label: "Billing Period" },
+    {
+      caption: <Currency amount={taxBillingInfo?.amount || 0} currency="Php" />,
+      label: "Amount Due",
+    },
+  ];
 
   return (
     <div className="text-2xl flex flex-col gap-12 w-full">
       <Title text={"Billing Information"} classname="text-green-500" />
       <div className="flex flex-col gap-10 ">
-        <div className="flex ">{renderTaxBillingInfo()}</div>
+        <div className="flex flex-col gap-14">
+          {inputConfigs.map((config, index) => (
+            <Input
+              key={index}
+              className="border-b-2 border-gray-500"
+              labelLayout="!left-0 text-3xl"
+              label={config.label}
+              caption={config.caption}
+              captionLayout="text-2xl"
+              type="disabled"
+            />
+          ))}
+        </div>
         {taxBillingInfo && (
           <>
             <div>
               <Button
                 buttonText={"Pay Option"}
-                classname="p-5"
+                classname="p-5 shadow-[5px_5px_10px_1px_rgba(0,0,0,0.2)] border border-[#335f96]"
                 onClick={openModal}
               />
             </div>
@@ -116,8 +111,8 @@ const RptInfo = () => {
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
-          textButton={"confirm"}
           buttonLayout="hidden"
+          className="relative"
         >
           <Title text={"Pay Options"} classname="text-[22px] " />
           <Dropdown
@@ -127,8 +122,13 @@ const RptInfo = () => {
           />
           <Dropdown
             options={options}
-            caption="Quater to Bill"
+            caption="Quarter to Bill"
             onChange={handlePayOptionChange}
+          />
+          <Button
+            buttonText={"OK"}
+            classname=" absolute bottom-16"
+            onClick={() => setIsModalOpen(false)}
           />
         </Modal>
       )}

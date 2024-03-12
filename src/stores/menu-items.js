@@ -24,8 +24,8 @@ export const modules = [
     title: "Building Construction Permit",
     image: "/icons/helmet.png",
     alt: "",
-    target: "",
-    active: false,
+    target: "/menu/obo",
+    active: true,
   },
   {
     title: "Vehicle Registration",

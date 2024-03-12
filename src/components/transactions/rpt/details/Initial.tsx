@@ -5,10 +5,10 @@ import Button from "@/components/ui/Button";
 import Textbox from "@/components/ui/Textbox";
 import Title from "@/components/ui/Title";
 import { createFetch } from "@/libs/fetch";
-import { getBilling } from "@/services/api/rptbilling";
+import { getBilling } from "@/services/api/rpt";
 import { useTaxBillingContext } from "@/services/context/rpt-context";
 import { useStepper } from "@/services/context/stepper-context";
-import { validateNextStep } from "@/utils/rptvalidation";
+import { validateRpt } from "@/utils/validation";
 import { useEffect, useRef, useState } from "react";
 import Layout from "./Layout";
 
@@ -17,15 +17,19 @@ const RptInitial = () => {
   const { value, execute } = createFetch(getBilling);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const { taxBillingInfo, setTaxBillingInfo, setSelectedOption } =
-    useTaxBillingContext();
+  const {
+    taxBillingInfo,
+    setTaxBillingInfo,
+    setSelectedOption,
+    setSelectedOptionYear,
+  } = useTaxBillingContext();
   const tdno = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (value) {
       setTaxBillingInfo(value.info);
     }
-  }, [value, taxBillingInfo]);
+  }, [value, taxBillingInfo, setTaxBillingInfo]);
 
   const openAlert = (message: any) => {
     setErrorMessage(message);
@@ -38,7 +42,7 @@ const RptInitial = () => {
 
   const nextPage = async () => {
     const refno = tdno?.current?.value?.trim();
-    await validateNextStep(
+    await validateRpt(
       currentStep,
       refno,
       execute,
@@ -47,16 +51,17 @@ const RptInitial = () => {
       openAlert
     );
     setSelectedOption(4);
+    setSelectedOptionYear(2024);
   };
 
   return (
     <Layout>
       <Title
-        text={"PLEASE ENTER A VALID TAX DECLARATION NO."}
-        textSize="text-4xl uppercase m-4"
+        text={"please enter a valid tax declaration no."}
+        textSize="text-4xl uppercase m-4 capitalize"
       />
       <Textbox
-        placeholder={"Enter Tax"}
+        placeholder={"Tax Declaration No.*"}
         className="border-2 border-gray-400 w-full"
         ref={tdno}
       />
@@ -66,6 +71,7 @@ const RptInitial = () => {
           onClick={() => goToPrevStep("/menu/rpt")}
           buttonText="Back"
           animation="shrink"
+          classname="bg-[#567ac8] text-white"
         />
         <Button
           onClick={() => nextPage()}
@@ -78,6 +84,11 @@ const RptInitial = () => {
         isOpen={isAlertOpen}
         onClose={closeAlert}
         errorMessage={errorMessage}
+        img={{
+          src: "/icons/alert.png",
+          width: 200,
+          height: 0,
+        }}
       />
     </Layout>
   );
