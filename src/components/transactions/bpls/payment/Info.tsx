@@ -102,7 +102,11 @@ const PaymentInformation = () => {
           isOpen={isAlertOpen}
           onClose={closeAlert}
           errorMessage={errorMessage}
-          img="/icons/alert.jpg"
+          img={{
+            src: "/icons/alert.png",
+            width: 200,
+            height: 0,
+          }}
         />
       </div>
     </>

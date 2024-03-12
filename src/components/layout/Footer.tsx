@@ -9,9 +9,9 @@ const Footer: React.FC = () => {
           src="/images/etracs-logo.png"
           alt="Logo"
           width={150}
-          height={150}
-          style={{ width: "auto" }}
+          height={0}
           loading="eager"
+          style={{ width: 150, height: 0 }}
         />
       </div>
     </footer>

@@ -1,8 +1,5 @@
 import axios from "axios";
-import dotenv from "dotenv";
 import type { NextApiRequest, NextApiResponse } from "next";
-
-dotenv.config();
 
 export default async function handler(
   req: NextApiRequest,
@@ -50,9 +47,9 @@ async function POST(req: NextApiRequest, res: NextApiResponse) {
 \x0A
 \x1D\x56\x00
   `;
-    const ipPrint = process.env.NEXT_PUBLIC_KIOSK_PRINT_SEVER_IP;
+    console.log("PRINT IP", process.env.KIOSK_PRINT_SEVER_IP);
     const printResponse = await axios.post(
-      `http://${ipPrint}:11111/api/print`,
+      `http://${process.env.KIOSK_PRINT_SEVER_IP}:11111/api/print`,
       escposText
     );
     res

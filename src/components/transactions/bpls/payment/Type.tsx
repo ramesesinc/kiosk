@@ -79,7 +79,11 @@ const PaymentType = () => {
           isOpen={openAlert}
           onClose={handleCloseAlert}
           errorMessage="GCash is Temporarily Unavailable"
-          img={"/images/gcash-alert.png"}
+          img={{
+            src: "/icons/galert.png",
+            width: 150,
+            height: 0,
+          }}
         />
       </div>
     </div>

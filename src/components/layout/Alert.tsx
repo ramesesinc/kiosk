@@ -3,7 +3,11 @@ import Image from "next/image";
 import React from "react";
 
 interface AlertProps {
-  img?: string;
+  img: {
+    src: string;
+    height?: number;
+    width?: number;
+  };
   isOpen: boolean;
   onClose?: () => void;
 }
@@ -24,12 +28,12 @@ const Alert: React.FC<AlertProps & { errorMessage: string }> = ({
           {errorMessage && <div className="text-4xl">{errorMessage}</div>}
           <div className="flex justify-center items-center">
             <Image
-              src={img || ""}
+              src={img?.src || ""}
               alt={"logo"}
-              width={350}
-              height={320}
+              width={img?.width}
+              height={img?.height}
               loading="eager"
-              style={{ width: "auto" }}
+              style={{ width: img?.width, height: "auto" }}
             />
           </div>
           <Button buttonText={"OK"} onClick={onClose} />

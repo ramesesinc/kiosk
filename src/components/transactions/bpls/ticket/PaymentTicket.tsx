@@ -2,6 +2,8 @@
 import Button from "@/components/ui/Button";
 import Subtitle from "@/components/ui/Subtitle";
 import Title from "@/components/ui/Title";
+import { createFetch } from "@/libs/fetch";
+import { billingTicket } from "@/services/api/printticket";
 import { useBillingContext } from "@/services/context/billing-context";
 import { ticketInfo } from "@/stores/lgu-info";
 import Image from "next/image";
@@ -27,6 +29,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
   seriesno,
 }) => {
   const [isPrinting, setIsPrinting] = React.useState(false);
+  const { value, execute } = createFetch(billingTicket);
   const componentRef = useRef<any>();
   const { billingInfo, payerName, payerAddress } = useBillingContext();
   const combinedData = `${txntype}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
@@ -40,10 +43,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
   ];
 
   // const handlePrint = () => {
-  //   const { value, execute } = createFetch(billingTicket);
-  //   const subheaderTitle = ticketInfo[0]?.subheader?.title || "";
   //   const sendTicketInfo = {
-  //     subHeader: subheaderTitle,
   //     appDate: billingInfo.appdate,
   //     payerName: payerName,
   //     payerAddr: payerAddress,

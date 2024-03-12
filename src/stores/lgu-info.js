@@ -1,14 +1,12 @@
-import lguLogo from "/_custom/lgu-logo.jpg";
-import lpBgImage from "/_custom/lp-bg-image.png";
-
 export const landingInfo = [
   {
     logo: {
-      src: lguLogo,
+      src: "/_custom/lgu-logo.jpg",
       width: 120,
+      height: 120,
     },
     header: {
-      title: process.env.NEXT_PUBLIC_LGU_NAME || "SET LGU NAME",
+      title: "city of puerto princesa",
     },
     subheader: {
       title: "self service kiosk",
@@ -19,14 +17,14 @@ export const landingInfo = [
 export const ticketInfo = [
   {
     logo: {
-      src: lguLogo,
-      width: 70,
+      src: "/_custom/lgu-logo.jpg",
+      width: 150,
     },
     header: {
       title: "Republic of the Philippines",
     },
     subheader: {
-      title: process.env.NEXT_PUBLIC_LGU_NAME || "SET LGU NAME",
+      title: "city of puerto princesa",
     },
   },
 ];
@@ -34,11 +32,8 @@ export const ticketInfo = [
 export const landingBgLogo = [
   {
     logo: {
-      src: lpBgImage,
+      src: "/_custom/lp-bg-image.png",
       width: 2000,
     },
   },
 ];
-
-export const bg = lpBgImage;
-export default lguLogo;

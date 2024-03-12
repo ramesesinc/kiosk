@@ -1,7 +1,7 @@
 // Layout.tsx
-import React, { ReactNode } from "react";
 import { landingBgLogo } from "@/stores/lgu-info";
 import Image from "next/image";
+import React, { ReactNode } from "react";
 
 interface LayoutProps {
   children?: ReactNode;
@@ -26,6 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children, classname }) => {
             src={item.logo.src}
             alt={""}
             width={item.logo.width}
+            height={0}
             style={{
               content: '""',
               position: "absolute",

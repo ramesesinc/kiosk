@@ -1,12 +1,10 @@
-import Button from "@/components/ui/Button";
-import Images from "@/components/ui/Images";
+import Alert from "@/components/layout/Alert";
+import Card from "@/components/ui/Card";
 import Title from "@/components/ui/Title";
 import { useTaxBillingContext } from "@/services/context/rpt-context";
 import paymentTypeData from "@/stores/paymenttype-items";
 import React, { useState } from "react";
 import PaymentTicket from "../ticket/PaymentTicket";
-import Card from "@/components/ui/Card";
-import Alert from "@/components/layout/Alert";
 
 const useModal = () => {
   const [openTicket, setOpenTicket] = React.useState(false);
@@ -81,7 +79,11 @@ const PaymentType = () => {
           isOpen={openAlert}
           onClose={handleCloseAlert}
           errorMessage="GCASH Coming Soon."
-          img={"/images/GCash-alert.png"}
+          img={{
+            src: "/icons/galert.png",
+            width: 150,
+            height: 0,
+          }}
         />
       </div>
     </div>
