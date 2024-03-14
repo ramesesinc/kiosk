@@ -53,7 +53,7 @@ const BplsInfo = () => {
           </p>
         ))}
       </Grid>
-      {bill && (
+      {bill && bill.info && (
         <Grid columns="grid-rows-7 gap-2 font-semibold w-full">
           {[
             bill.info.appno,
@@ -98,7 +98,8 @@ const BplsInfo = () => {
           </tr>
         </thead>
         <tbody className="text-2xl">
-          {bill.info &&
+          {bill &&
+            bill.info &&
             bill.info.items &&
             bill.info.items.map((item: ItemType, index: number) => {
               let particulars = `${item.lobname} - ${item.account}`;

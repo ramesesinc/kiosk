@@ -1,11 +1,8 @@
 import Currency from "@/components/ui/Currency";
 import Input from "@/components/ui/Input";
 import Title from "@/components/ui/Title";
-import { lookupService } from "@/libs/client-service";
 
 import { useOboBillingContext } from "@/services/context/obo-context";
-import { loadBill } from "@/utils/obo";
-import { useEffect } from "react";
 
 interface ItemType {
   title: string;
@@ -21,23 +18,7 @@ interface ItemType {
 }
 
 const OboInfo = () => {
-  const { oboBill, setOboBill } = useOboBillingContext();
-  const svc = lookupService("OboBillingService");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await loadBill(svc, {
-          refno: oboBill?.appno,
-        });
-        setOboBill(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { oboBill } = useOboBillingContext();
 
   const headers = ["Particulars", "Amount"];
 

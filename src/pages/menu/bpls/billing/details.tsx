@@ -16,13 +16,17 @@ const BillingPage = () => {
   useTimer(timeLimit);
 
   const nextPage = async () => {
+    if (!bill || !bill.info) {
+      console.log(bill);
+    }
+
     const data = await svc?.invoke("generateCode", {
       refno: bill.info.bin,
       txntype: bill.info.txntype,
     });
     setCode(data.code);
     setSection(data.queuesection);
-    goToNextStep();
+    // goToNextStep();
   };
 
   return (
