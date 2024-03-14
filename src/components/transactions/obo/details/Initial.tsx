@@ -11,11 +11,13 @@ import Layout from "./Layout";
 import { lookupService } from "@/libs/client-service";
 import { loadBill } from "@/utils/obo";
 import { sleep } from "@/utils/helper";
+import { Loading } from "@/components/layout/Loading";
 
 const OboInitial = () => {
   const { goToNextStep, goToPrevStep } = useStepper();
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
   const { setOboBill } = useOboBillingContext();
   const appno = useRef<HTMLInputElement>(null);
   const svc = lookupService("OboBillingService");
@@ -35,11 +37,13 @@ const OboInitial = () => {
       openAlert("Enter OSCP Number");
       return false;
     } else {
+      setIsProcessing(true);
       const data = await loadBill(svc, {
         refno,
       });
       if (!data) {
         openAlert("OSCP number does not exist");
+        setIsProcessing(true);
         return false;
       } else {
         await sleep(2);
@@ -66,6 +70,7 @@ const OboInitial = () => {
         className="border-2 !text-4xl border-gray-400 w-full"
         ref={appno}
       />
+      {isProcessing && <Loading />}
       <Keyboard />
       <ActionBar>
         <Button

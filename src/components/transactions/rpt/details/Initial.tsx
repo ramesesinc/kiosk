@@ -11,11 +11,13 @@ import { useTaxBillingContext } from "@/services/context/rpt-context";
 import { useStepper } from "@/services/context/stepper-context";
 import { useRef, useState } from "react";
 import Layout from "./Layout";
+import { Loading } from "@/components/layout/Loading";
 
 const RptInitial = () => {
   const { goToNextStep, goToPrevStep } = useStepper();
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
   const { setTaxBill, setBillToQtr, setBillToYear } = useTaxBillingContext();
   const tdno = useRef<HTMLInputElement>(null);
   const svc = lookupService("RptBillingService");
@@ -35,6 +37,7 @@ const RptInitial = () => {
       openAlert("Enter Tax Number");
       return false;
     } else {
+      setIsProcessing(true);
       const data = await loadBill(svc, {
         refno,
         billtoqtr: setBillToQtr(4),
@@ -42,6 +45,7 @@ const RptInitial = () => {
       });
       if (!data) {
         openAlert("Tax number does not exist");
+        setIsProcessing(false);
         return false;
       } else {
         await sleep(2);
@@ -67,6 +71,7 @@ const RptInitial = () => {
         className="border-2 border-gray-400 w-full"
         ref={tdno}
       />
+      {isProcessing && <Loading />}
       <Keyboard />
       <ActionBar>
         <Button

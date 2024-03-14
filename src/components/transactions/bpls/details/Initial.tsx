@@ -72,8 +72,7 @@ const BplsInitial = () => {
         className="border-2 border-gray-400 w-full"
         ref={bin}
       />
-      {isProcessing && <Loading />}{" "}
-      {/* Render Loading component if isProcessing is true */}
+      {isProcessing && <Loading />}
       <Keyboard />
       <ActionBar>
         <Button
