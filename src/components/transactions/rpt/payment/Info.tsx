@@ -5,10 +5,9 @@ import Currency from "@/components/ui/Currency";
 import Subtitle from "@/components/ui/Subtitle";
 import Textbox from "@/components/ui/Textbox";
 import Title from "@/components/ui/Title";
-import { createFetch } from "@/libs/fetch";
-import { fetchNextSeries } from "@/services/api/queue";
 import { useTaxBillingContext } from "@/services/context/rpt-context";
 import { useStepper } from "@/services/context/stepper-context";
+import { lookupService } from "@/libs/client-service";
 import { useRef, useState } from "react";
 
 const PaymentInformation = () => {
@@ -17,14 +16,9 @@ const PaymentInformation = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const payerNameInput = useRef<HTMLInputElement>(null);
   const payerAddressInput = useRef<HTMLInputElement>(null);
-  const {
-    taxBillingInfo,
-    setPayerName,
-    setPayerAddress,
-    section,
-    setTicketNo,
-  } = useTaxBillingContext();
-  const { execute } = createFetch(fetchNextSeries);
+  const { taxBill, setPayerName, setPayerAddress, section, setTicketNo } =
+    useTaxBillingContext();
+  const svc = lookupService("RptBillingService");
 
   const openAlert = (message: any) => {
     setErrorMessage(message);
@@ -42,10 +36,10 @@ const PaymentInformation = () => {
       if (address !== "" && address !== null && address !== undefined) {
         setPayerName(name);
         setPayerAddress(address);
-        const response = await execute({
+        const data = await svc?.invoke("fetchNextSeries", {
           sectionid: section,
         });
-        setTicketNo(response?.ticketno);
+        setTicketNo(data?.ticketno);
         goToNextStep();
       } else {
         openAlert("Enter payer address");
@@ -81,9 +75,9 @@ const PaymentInformation = () => {
       <div className="m-2 text-center flex justify-center items-center flex-col gap-4 pt-10">
         <Subtitle text={"Payment Details"} />
         <div className="border border-black font-bold w-[70%] p-8">
-          {taxBillingInfo && taxBillingInfo.amount !== undefined && (
+          {taxBill && taxBill?.amount !== undefined && (
             <Currency
-              amount={taxBillingInfo.amount}
+              amount={taxBill?.amount}
               currency="Php"
               classname="text-3xl"
             />

@@ -29,8 +29,9 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
 }) => {
   const [isPrinting, setIsPrinting] = React.useState(false);
   const componentRef = useRef<any>();
-  const { taxBillingInfo, payerName, payerAddress } = useTaxBillingContext();
-  const combinedData = `${rpttxntype}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
+  const { taxBill, billToQtr, billToYear, payerName, payerAddress } =
+    useTaxBillingContext();
+  const combinedData = `${rpttxntype}&billtoqtr=${billToQtr}&billtoyear=${billToYear}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
   const headers = [
     "trxn date",
     "payer",
@@ -58,8 +59,8 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
           ref={componentRef}
           QRCode={<QRCode value={combinedData} size={100} />}
           addr={payerAddress}
-          appDate={taxBillingInfo.billdate}
-          total={<Currency amount={taxBillingInfo.amount} />}
+          appDate={taxBill.info?.billdate}
+          total={<Currency amount={taxBill.amount} />}
           QRData={combinedData}
           payerName={payerName}
           seriesno={seriesno}
@@ -157,15 +158,15 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                             <td className="text-start text-[15px] leading-6 font-semibold">
                               {
                                 [
-                                  taxBillingInfo.billdate
-                                    ? ` ${taxBillingInfo.billdate}`
+                                  taxBill.info?.billdate
+                                    ? ` ${taxBill.info?.billdate}`
                                     : "",
                                   ` ${payerName}`,
                                   payerAddress ? ` ${payerAddress}` : "",
                                   " Real Tax Billing and Payment",
                                   <Currency
                                     key={`currency-${index}`}
-                                    amount={taxBillingInfo.amount}
+                                    amount={taxBill.amount}
                                     currency="Php"
                                   />,
                                   combinedData ? ` ${combinedData}` : "",
