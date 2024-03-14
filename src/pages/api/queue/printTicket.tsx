@@ -47,7 +47,7 @@ async function POST(req: NextApiRequest, res: NextApiResponse) {
 \x0A
 \x1D\x56\x00
   `;
-    console.log("PRINT IP", process.env.KIOSK_PRINT_SEVER_IP);
+
     const printResponse = await axios.post(
       `http://${process.env.KIOSK_PRINT_SEVER_IP}:11111/api/print`,
       escposText

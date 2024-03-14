@@ -33,7 +33,8 @@ export const landingBgLogo = [
   {
     logo: {
       src: "/_custom/lp-bg-image.png",
-      width: 2000,
+      width: 1000,
+      height: 1000,
     },
   },
 ];

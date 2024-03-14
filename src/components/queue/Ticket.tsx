@@ -98,10 +98,16 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
             </div>
           ) : (
             <div className="text-center flex flex-col gap-20">
-              <div className="flex flex-col gap-2">
-                <Title text={"Queue Ticket Number"} />
-                <Subtitle text={"CEBU CITY"} textSize="font-semibold" />
-              </div>
+              {ticketInfo.map((item, index) => (
+                <div key={index} className="flex flex-col gap-2">
+                  <Title text={"Queue Ticket Number"} />
+                  <Subtitle
+                    text={item.subheader.title}
+                    textSize="font-semibold uppercase"
+                  />
+                </div>
+              ))}
+
               <div>
                 <Numbers
                   text={ticketno}
