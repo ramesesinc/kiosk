@@ -28,8 +28,8 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
 }) => {
   const [isPrinting, setIsPrinting] = React.useState(false);
   const componentRef = useRef<any>();
-  const { bill, payerName, payerAddress } = useBillingContext();
-  const combinedData = `${txntype}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
+  const { bill, payerName, payerAddress, qtr } = useBillingContext();
+  const combinedData = `${txntype}&qtr=${qtr}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
   const headers = [
     "trxn date",
     "payer",
