@@ -25,9 +25,9 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
   txndatestr,
   ticketno,
 }) => {
-  const [isPrinting, setIsPrinting] = React.useState(false);
+  const [isPrinting] = React.useState(false);
   const componentRef = useRef<any>();
-  const { value, execute } = createFetch(queueTicket);
+  const { execute } = createFetch(queueTicket);
 
   const handlePrint = () => {
     const subheaderTitle = ticketInfo[0]?.subheader?.title || "";
