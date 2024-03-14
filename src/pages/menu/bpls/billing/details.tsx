@@ -26,7 +26,7 @@ const BillingPage = () => {
     });
     setCode(data.code);
     setSection(data.queuesection);
-    // goToNextStep();
+    goToNextStep();
   };
 
   return (
