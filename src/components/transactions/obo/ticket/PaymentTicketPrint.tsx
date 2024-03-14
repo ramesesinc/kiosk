@@ -30,8 +30,8 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
               <Image
                 src={item.logo.src}
                 alt={""}
-                width={item.logo.width}
-                height={0}
+                width={70}
+                height={70}
                 loading="eager"
               />
             </div>
@@ -60,7 +60,7 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
         <Title
           text="present this receipt to the collector"
           classname="uppercase"
-          textSize="text-[18px]"
+          textSize="text-[14px]"
         />
       </div>
       <table>
@@ -69,11 +69,11 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
             <tr key={index}>
               <td
                 className="capitalize"
-                style={{ width: "150px", height: "20px", fontSize: "20px" }}
+                style={{ width: "150px", height: "20px", fontSize: "14px" }}
               >
                 {label}
               </td>
-              <td style={{ width: "", height: "20px", fontSize: "20px" }}>
+              <td style={{ width: "", height: "20px", fontSize: "14px" }}>
                 {label === "payer" && payerName}
                 {label === "address" && addr}
                 {label === "particulars" && "OSCP Billing And Payment"}

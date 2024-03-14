@@ -1,26 +1,27 @@
 import ActionBar from "@/components/layout/ActionBar";
 import BplsInfo from "@/components/transactions/bpls/details/Info";
 import Button from "@/components/ui/Button";
-import { createFetch } from "@/libs/fetch";
-import { generateCode } from "@/services/api/bpls";
+import useTimer from "@/hooks/useTimer";
+import { lookupService } from "@/libs/client-service";
 import { useBillingContext } from "@/services/context/billing-context";
 import { useStepper } from "@/services/context/stepper-context";
 import Layout from "./layout";
 
 const BillingPage = () => {
   const { goToNextStep, goToPrevStep } = useStepper();
-  const { billingInfo, setCode, setSection, selectedOption } =
-    useBillingContext();
-  const { execute } = createFetch(generateCode);
+  const { bill, setCode, setSection } = useBillingContext();
+  const svc = lookupService("BplsBillingService");
+
+  const timeLimit = 120000;
+  useTimer(timeLimit);
 
   const nextPage = async () => {
-    const response = await execute({
-      refno: billingInfo.bin,
-      txntype: billingInfo.txntype,
-      qtr: selectedOption,
+    const data = await svc?.invoke("generateCode", {
+      refno: bill.info.bin,
+      txntype: bill.info.txntype,
     });
-    setCode(response?.code);
-    setSection(response?.queuesection);
+    setCode(data.code);
+    setSection(data.queuesection);
     goToNextStep();
   };
 

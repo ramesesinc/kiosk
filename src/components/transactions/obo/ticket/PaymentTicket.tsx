@@ -31,7 +31,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
   const componentRef = useRef<any>();
   const { oboBillingInfo, payerName, payerAddress } = useOboBillingContext();
   const combinedData = `${obotxntype}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
-  const headers = ["payer", "address", "particulars", "control no.", "total"];
+  const headers = ["payer", "address", "particulars", "total", "control no."];
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -97,7 +97,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                     key={index}
                     className="flex w-full flex-wrap items-center justify-between"
                   >
-                    <div className="flex container mx-auto gap-x-8">
+                    <div className="flex container mx-auto">
                       <Image
                         src={item.logo.src}
                         alt={""}
@@ -152,12 +152,12 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                                   ` ${payerName}`,
                                   payerAddress ? ` ${payerAddress}` : "",
                                   " OSCP Billing and Payment",
-                                  combinedData ? ` ${combinedData}` : "",
                                   <Currency
                                     key={`currency-${index}`}
                                     amount={oboBillingInfo.amount}
                                     currency="Php"
                                   />,
+                                  combinedData ? ` ${combinedData}` : "",
                                 ][index]
                               }
                             </td>

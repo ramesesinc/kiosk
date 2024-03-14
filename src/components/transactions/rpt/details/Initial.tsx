@@ -87,7 +87,7 @@ const RptInitial = () => {
         img={{
           src: "/icons/alert.png",
           width: 200,
-          height: 0,
+          height: 200,
         }}
       />
     </Layout>

@@ -35,6 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children, classname }) => {
               left: 0,
               opacity: 0.4,
               zIndex: -1,
+              width: item.logo.width,
             }}
             priority
             unoptimized

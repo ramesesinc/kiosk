@@ -36,8 +36,8 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
     "payer",
     "address",
     "particulars",
-    "control no.",
     "total",
+    "control no.",
   ];
 
   const handlePrint = useReactToPrint({
@@ -105,7 +105,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                     key={index}
                     className="flex w-full flex-wrap items-center justify-between"
                   >
-                    <div className="flex container mx-auto gap-x-8">
+                    <div className="flex container mx-auto">
                       <Image
                         src={item.logo.src}
                         alt={""}
@@ -163,12 +163,12 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                                   ` ${payerName}`,
                                   payerAddress ? ` ${payerAddress}` : "",
                                   " Real Tax Billing and Payment",
-                                  combinedData ? ` ${combinedData}` : "",
                                   <Currency
                                     key={`currency-${index}`}
                                     amount={taxBillingInfo.amount}
                                     currency="Php"
                                   />,
+                                  combinedData ? ` ${combinedData}` : "",
                                 ][index]
                               }
                             </td>

@@ -1,11 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import {
-  getHandler,
-  postHandler,
   ResponseData,
   ResponseError,
+  getHandler,
+  postHandler,
 } from "@/libs/services";
 import { services } from "@/services";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
