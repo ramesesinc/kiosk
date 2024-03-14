@@ -5,6 +5,7 @@ import { Loading } from "@/components/layout/Loading";
 import Button from "@/components/ui/Button";
 import Textbox from "@/components/ui/Textbox";
 import Title from "@/components/ui/Title";
+import useTimer from "@/hooks/useTimer";
 import { lookupService } from "@/libs/client-service";
 import { useBillingContext } from "@/services/context/billing-context";
 import { useStepper } from "@/services/context/stepper-context";
@@ -22,8 +23,8 @@ const BplsInitial = () => {
   const bin = useRef<HTMLInputElement>(null);
   const svc = lookupService("BplsBillingService");
 
-  // const timeLimit = 120000;
-  // useTimer(timeLimit);
+  const timeLimit = 120000;
+  useTimer(timeLimit);
 
   const openAlert = (message: any) => {
     setErrorMessage(message);
