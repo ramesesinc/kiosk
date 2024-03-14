@@ -1,8 +1,6 @@
 import ActionBar from "@/components/layout/ActionBar";
 import OboInfo from "@/components/transactions/obo/details/Info";
 import Button from "@/components/ui/Button";
-import { createFetch } from "@/libs/fetch";
-import { generateCode } from "@/services/api/obo";
 import { useOboBillingContext } from "@/services/context/obo-context";
 import { useStepper } from "@/services/context/stepper-context";
 import Layout from "./layout";
