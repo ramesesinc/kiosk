@@ -8,11 +8,8 @@ import { lookupService } from "@/libs/client-service";
 
 const TaxBillingPage = () => {
   const { goToNextStep, goToPrevStep } = useStepper();
-  const { taxBill, code, setCode, section, setSection } =
-    useTaxBillingContext();
+  const { taxBill, setCode, setSection } = useTaxBillingContext();
   const svc = lookupService("RptBillingService");
-  4;
-
   const nextPage = async () => {
     const data = await svc?.invoke("generateCode", {
       refno: taxBill.info.tdno,

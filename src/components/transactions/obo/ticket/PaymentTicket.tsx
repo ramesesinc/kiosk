@@ -29,7 +29,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
 }) => {
   const [isPrinting, setIsPrinting] = React.useState(false);
   const componentRef = useRef<any>();
-  const { oboBillingInfo, payerName, payerAddress } = useOboBillingContext();
+  const { oboBill, payerName, payerAddress } = useOboBillingContext();
   const combinedData = `${obotxntype}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
   const headers = ["payer", "address", "particulars", "total", "control no."];
 
@@ -54,7 +54,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
           QRData={combinedData}
           payerName={payerName}
           seriesno={seriesno}
-          total={<Currency amount={oboBillingInfo.amount} />}
+          total={<Currency amount={oboBill.amount} />}
         />
       </div>
       <div
@@ -154,7 +154,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                                   " OSCP Billing and Payment",
                                   <Currency
                                     key={`currency-${index}`}
-                                    amount={oboBillingInfo.amount}
+                                    amount={oboBill.amount}
                                     currency="Php"
                                   />,
                                   combinedData ? ` ${combinedData}` : "",
