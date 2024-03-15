@@ -30,32 +30,30 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
 ) => (
   <div ref={ref}>
     <div className="flex flex-col gap-y-4">
-      <div className="flex gap-x-4">
-        {ticketInfo.map((item, index) => (
-          <>
-            <Image
-              src={item.logo.src}
-              alt={""}
-              width={50}
-              height={50}
-              loading="eager"
-              style={{ width: 50, height: 50 }}
-              priority
-              unoptimized
+      {ticketInfo.map((item, index) => (
+        <div key={index} className="flex gap-x-4">
+          <Image
+            src={item.logo.src}
+            alt={""}
+            width={50}
+            height={50}
+            loading="eager"
+            style={{ width: 50, height: 50 }}
+            priority
+            unoptimized
+          />
+          <div className="flex flex-col justify-center items-center">
+            <Title
+              text={item.header.title}
+              classname="uppercase text-[12px] leading-4"
             />
-            <div className="flex flex-col justify-center items-center">
-              <Title
-                text={item.header.title}
-                classname="uppercase text-[12px] leading-4"
-              />
-              <Title
-                text={item.subheader.title}
-                classname="uppercase text-[12px] leading-4"
-              />
-            </div>
-          </>
-        ))}
-      </div>
+            <Title
+              text={item.subheader.title}
+              classname="uppercase text-[12px] leading-4"
+            />
+          </div>
+        </div>
+      ))}
       <div className="flex justify-center gap-x-4">
         <div>{QRCode}</div>
         <div className="w-[2px] bg-black"></div>
@@ -70,7 +68,7 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
       <div className="flex flex-col">
         <Title
           text="present this receipt to the collector"
-          classname="uppercase"
+          classname="uppercase text-center"
           textSize="text-[12px]"
         />
         <table>

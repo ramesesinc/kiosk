@@ -38,7 +38,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
     "total",
     "bin no",
   ];
-
+  console.log(combinedData);
   // const handlePrint = () => {
   //   const sendTicketInfo = {
   //     appDate: billingInfo.appdate,
@@ -66,7 +66,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
 
   return (
     <>
-      <div className="hidden">
+      <div className="absolute top-0 left-0 bg-green-500 hidden">
         <PaymentTicketPrint
           ref={componentRef}
           QRCode={<QRCode value={combinedData} size={80} />}
@@ -122,9 +122,15 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                       <Image
                         src={item.logo.src}
                         alt={""}
-                        width={item.logo.width}
+                        width={0}
                         height={0}
                         loading="eager"
+                        priority
+                        unoptimized
+                        style={{
+                          width: item.logo.width,
+                          height: item.logo.height,
+                        }}
                       />
                       <div className="flex flex-col justify-center mx-4">
                         <Title
