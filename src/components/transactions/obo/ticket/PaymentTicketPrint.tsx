@@ -29,9 +29,12 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
             <Image
               src={item.logo.src}
               alt={""}
-              width={70}
-              height={70}
+              width={50}
+              height={50}
               loading="eager"
+              style={{ width: 50, height: 50 }}
+              priority
+              unoptimized
             />
             <div className="flex flex-col justify-center items-center">
               <Title
