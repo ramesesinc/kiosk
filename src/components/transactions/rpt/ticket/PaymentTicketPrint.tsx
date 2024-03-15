@@ -55,7 +55,7 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
           </React.Fragment>
         ))}
       </div>
-      <div className="flex gap-x-12 justify-center">
+      <div className="flex gap-x-10 justify-center">
         <div className="">{QRCode}</div>
         <div className="w-[2px] bg-black"></div>
         <div className="flex flex-col justify-center items-center uppercase">
@@ -67,30 +67,32 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
         <Title
           text="present this receipt to the collector"
           classname="uppercase"
-          textSize="text-[14px]"
+          textSize="text-[17px]"
         />
       </div>
-      <table>
-        <tbody>
-          {headers.map((label, index) => (
-            <tr key={index}>
-              <td
-                className="capitalize"
-                style={{ width: "150px", height: "20px", fontSize: "14px" }}
-              >
-                {label}
-              </td>
-              <td style={{ width: "", height: "20px", fontSize: "14px" }}>
-                {label === "trxn date" && appDate}
-                {label === "payer" && payerName}
-                {label === "address" && addr}
-                {label === "particulars" && "Real Tax Billing And Payment"}
-                {label === "total" && total}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="pl-2">
+        <table>
+          <tbody>
+            {headers.map((label, index) => (
+              <tr key={index}>
+                <td
+                  className="capitalize"
+                  style={{ width: "150px", height: "20px", fontSize: "16px" }}
+                >
+                  {label}
+                </td>
+                <td style={{ width: "", height: "20px", fontSize: "16px" }}>
+                  {label === "trxn date" && appDate}
+                  {label === "payer" && payerName}
+                  {label === "address" && addr}
+                  {label === "particulars" && "Real Tax Billing And Payment"}
+                  {label === "total" && total}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="w-[400px]">{QRData}</div>
     </div>
   </div>

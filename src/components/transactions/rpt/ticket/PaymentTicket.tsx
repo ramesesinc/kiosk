@@ -61,7 +61,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
           addr={payerAddress}
           appDate={taxBill.info?.billdate}
           total={<Currency amount={taxBill.amount} />}
-          QRData={combinedData}
+          QRData={taxBill.info?.tdno}
           payerName={payerName}
           seriesno={seriesno}
         />
@@ -147,12 +147,12 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                     classname="uppercase"
                     textSize="text-xl"
                   />
-                  <div className="flex justify-center gap-12">
+                  <div className="pl-6">
                     <table>
                       <tbody>
                         {headers.map((label, index) => (
                           <tr key={index}>
-                            <td className="text-start text-[15px] leading-6 capitalize">
+                            <td className="text-start text-[15px] leading-6 capitalize pr-20">
                               {label}
                             </td>
                             <td className="text-start text-[15px] leading-6 font-semibold">
@@ -169,7 +169,9 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                                     amount={taxBill.amount}
                                     currency="Php"
                                   />,
-                                  combinedData ? ` ${combinedData}` : "",
+                                  taxBill.info?.tdno
+                                    ? ` ${taxBill.info?.tdno}`
+                                    : "",
                                 ][index]
                               }
                             </td>
