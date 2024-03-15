@@ -162,32 +162,36 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                     classname="uppercase"
                     textSize="text-xl"
                   />
-                  <table>
-                    <tbody>
-                      {headers.map((label, index) => (
-                        <tr key={index} className="flex gap-x-20">
-                          <td className="text-start text-[15px] leading-6 capitalize w-24">
-                            {label}
-                          </td>
-                          <td className="text-start text-[15px] leading-6 font-semibold font-mono">
-                            {
-                              [
-                                bill.info.appdate ? `${bill.info.appdate}` : "",
-                                `${payerName}`,
-                                payerAddress ? `${payerAddress}` : "",
-                                "Business Billing and Payment",
+                  <div className="pl-6">
+                    <table>
+                      <tbody>
+                        {headers.map((label, index) => (
+                          <tr key={index} className="flex gap-x-20">
+                            <td className="text-start text-[15px] leading-6 capitalize w-24">
+                              {label}
+                            </td>
+                            <td className="text-start text-[15px] leading-6 font-semibold font-mono">
+                              {
+                                [
+                                  bill.info.appdate
+                                    ? `${bill.info.appdate}`
+                                    : "",
+                                  `${payerName}`,
+                                  payerAddress ? `${payerAddress}` : "",
+                                  "Business Billing and Payment",
 
-                                bill.amount
-                                  ? `${bill.amount.toLocaleString()}`
-                                  : "",
-                                combinedData ? `${bill.info.bin}` : "",
-                              ][index]
-                            }
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                                  bill.amount
+                                    ? `${bill.amount.toLocaleString()}`
+                                    : "",
+                                  combinedData ? `${bill.info.bin}` : "",
+                                ][index]
+                              }
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div>
                   <Button buttonText="Print" onClick={handlePrint} />
