@@ -31,7 +31,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
   const componentRef = useRef<any>();
   const { oboBill, payerName, payerAddress } = useOboBillingContext();
   const combinedData = `${obotxntype}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
-  const headers = ["payer", "address", "particulars", "total", "control no."];
+  const headers = ["payer", "address", "particulars", "total", "oscp no"];
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
