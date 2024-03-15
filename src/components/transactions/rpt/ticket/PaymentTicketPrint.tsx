@@ -30,33 +30,32 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
 ) => (
   <div ref={ref}>
     <div className="flex flex-col gap-y-4">
-      <div className="flex gap-x-4">
-        {ticketInfo.map((item, index) => (
-          <div className="flex gap-x-4">
-            <Image
-              src={item.logo.src}
-              alt={""}
-              width={50}
-              height={50}
-              loading="eager"
-              style={{ width: 50, height: 50 }}
-              priority
-              unoptimized
-            />
+      {ticketInfo.map((item, index) => (
+        <div className="flex gap-x-4">
+          <Image
+            src={item.logo.src}
+            alt={""}
+            width={50}
+            height={50}
+            loading="eager"
+            style={{ width: 50, height: 50 }}
+            priority
+            unoptimized
+          />
 
-            <div className="flex flex-col justify-center items-center">
-              <Title
-                text={item.header.title}
-                classname="uppercase text-[12px] leading-4"
-              />
-              <Title
-                text={item.subheader.title}
-                classname="uppercase text-[12px] leading-4"
-              />
-            </div>
+          <div className="flex flex-col justify-center items-center">
+            <Title
+              text={item.header.title}
+              classname="uppercase text-[12px] leading-4"
+            />
+            <Title
+              text={item.subheader.title}
+              classname="uppercase text-[12px] leading-4"
+            />
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+
       <div className="flex justify-center gap-x-4">
         <div className="">{QRCode}</div>
         <div className="w-[2px] bg-black"></div>
