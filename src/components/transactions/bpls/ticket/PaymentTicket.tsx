@@ -36,7 +36,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
     "address",
     "particulars",
     "total",
-    "control no.",
+    "bin no",
   ];
 
   // const handlePrint = () => {
@@ -66,13 +66,13 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
 
   return (
     <>
-      <div className="hidden">
+      <div className="absolute top-0 left-0 bg-green-500">
         <PaymentTicketPrint
           ref={componentRef}
-          QRCode={<QRCode value={combinedData} size={100} level="Q" />}
+          QRCode={<QRCode value={combinedData} size={80} />}
           addr={payerAddress}
           total={bill.amount.toLocaleString()}
-          QRData={combinedData}
+          binNo={bill.info.bin}
           appDate={bill.info.appdate}
           payerName={payerName}
           seriesno={seriesno}
@@ -156,36 +156,32 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                     classname="uppercase"
                     textSize="text-xl"
                   />
-                  <div className="flex justify-center">
-                    <table>
-                      <tbody>
-                        {headers.map((label, index) => (
-                          <tr key={index}>
-                            <td className="text-start text-[15px] leading-6 capitalize w-24">
-                              {label}
-                            </td>
-                            <td className="text-start text-[15px] leading-6 font-semibold font-mono">
-                              {
-                                [
-                                  bill.info.appdate
-                                    ? `${bill.info.appdate}`
-                                    : "",
-                                  `${payerName}`,
-                                  payerAddress ? `${payerAddress}` : "",
-                                  "Business Billing and Payment",
+                  <table>
+                    <tbody>
+                      {headers.map((label, index) => (
+                        <tr key={index} className="flex gap-x-20">
+                          <td className="text-start text-[15px] leading-6 capitalize w-24">
+                            {label}
+                          </td>
+                          <td className="text-start text-[15px] leading-6 font-semibold font-mono">
+                            {
+                              [
+                                bill.info.appdate ? `${bill.info.appdate}` : "",
+                                `${payerName}`,
+                                payerAddress ? `${payerAddress}` : "",
+                                "Business Billing and Payment",
 
-                                  bill.amount
-                                    ? `${bill.amount.toLocaleString()}`
-                                    : "",
-                                  combinedData ? `${combinedData}` : "",
-                                ][index]
-                              }
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                                bill.amount
+                                  ? `${bill.amount.toLocaleString()}`
+                                  : "",
+                                combinedData ? `${bill.info.bin}` : "",
+                              ][index]
+                            }
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
                 <div>
                   <Button buttonText="Print" onClick={handlePrint} />

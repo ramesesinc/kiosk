@@ -8,7 +8,7 @@ interface PaymentPrintTicketProps {
   appDate?: string | undefined;
   addr?: string | undefined;
   total?: number;
-  QRData?: string | undefined;
+  binNo?: string | undefined;
   payerName: string | undefined;
   seriesno?: string;
 }
@@ -18,80 +18,79 @@ const headers = [
   "address",
   "particulars",
   "total",
-  "control no",
+  "bin no",
 ];
 
 const PaymentPrintTicket: ForwardRefRenderFunction<
   HTMLDivElement,
   PaymentPrintTicketProps
 > = (
-  { QRCode, appDate, addr, total, QRData, payerName, seriesno },
+  { QRCode, appDate, addr, total, binNo, payerName, seriesno },
   ref: Ref<HTMLDivElement>
 ) => (
   <div ref={ref}>
-    <div className="w-full flex flex-col gap-y-3 font-['Noto Sans']">
-      <div className="w-full flex justify-center items-center gap-3 pb-8">
+    <div className="flex flex-col gap-y-4">
+      <div className="flex gap-x-4">
         {ticketInfo.map((item, index) => (
-          <React.Fragment key={index}>
-            <div className="fixed top-2 left-2">
-              <Image
-                src={item.logo.src}
-                alt={""}
-                width={70}
-                height={70}
-                loading="eager"
-              />
-            </div>
-            <div className="flex flex-col items-center ml-10 pt-4">
+          <>
+            <Image
+              src={item.logo.src}
+              alt={""}
+              width={50}
+              height={50}
+              loading="eager"
+              style={{ width: 50, height: 50 }}
+              priority
+              unoptimized
+            />
+            <div className="flex flex-col justify-center items-center">
               <Title
                 text={item.header.title}
-                classname="uppercase text-[17px]"
+                classname="uppercase text-[12px] leading-4"
               />
               <Title
                 text={item.subheader.title}
-                classname="uppercase text-[17px] leading-4"
+                classname="uppercase text-[12px] leading-4"
               />
             </div>
-          </React.Fragment>
+          </>
         ))}
       </div>
-      <div className="flex gap-x-12 justify-center">
-        <div className="">{QRCode}</div>
+      <div className="flex justify-center gap-x-4">
+        <div>{QRCode}</div>
         <div className="w-[2px] bg-black"></div>
-        <div className="flex flex-col justify-center items-center uppercase">
-          <Title text={"Queue No"} textSize="text-[30px]" />
-          <Title text={seriesno} textSize="text-[40px]" />
+        <div className="flex flex-col justify-center items-center">
+          <Title
+            text={"Queue No"}
+            classname="uppercase text-[18px] leading-5"
+          />
+          <Title text={seriesno} classname="uppercase text-[18px] leading-5" />
         </div>
       </div>
-      <div className="flex justify-center items-center mb-[-10px]">
+      <div className="flex flex-col">
         <Title
           text="present this receipt to the collector"
           classname="uppercase"
-          textSize="text-[14px]"
+          textSize="text-[12px]"
         />
+        <table>
+          <tbody>
+            {headers.map((label, index) => (
+              <tr key={index} className="text-start text-[12px]">
+                <td className="capitalize w-[90px]">{label}</td>
+                <td>
+                  {label === "trxn date" && appDate}
+                  {label === "payer" && payerName}
+                  {label === "address" && addr}
+                  {label === "particulars" && "BUSINESS AND LICENSING"}
+                  {label === "total" && total}
+                  {label === "bin no" && binNo}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <table>
-        <tbody>
-          {headers.map((label, index) => (
-            <tr key={index}>
-              <td
-                className="capitalize"
-                style={{ width: "150px", height: "20px", fontSize: "14px" }}
-              >
-                {label}
-              </td>
-              <td style={{ width: "", height: "20px", fontSize: "14px" }}>
-                {label === "trxn date" && appDate}
-                {label === "payer" && payerName}
-                {label === "address" && addr}
-                {label === "particulars" && "BUSINESS AND LICENSING"}
-                {label === "total" && total}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="w-[400px]">{QRData}</div>
     </div>
   </div>
 );
