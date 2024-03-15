@@ -57,11 +57,11 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
       <div className="hidden">
         <PaymentTicketPrint
           ref={componentRef}
-          QRCode={<QRCode value={combinedData} size={100} />}
+          QRCode={<QRCode value={combinedData} size={80} />}
           addr={payerAddress}
           appDate={taxBill.info?.billdate}
           total={<Currency amount={taxBill.amount} />}
-          QRData={taxBill.info?.tdno}
+          tdNo={taxBill.info.tdno}
           payerName={payerName}
           seriesno={seriesno}
         />
@@ -151,8 +151,8 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                     <table>
                       <tbody>
                         {headers.map((label, index) => (
-                          <tr key={index}>
-                            <td className="text-start text-[15px] leading-6 capitalize pr-20">
+                          <tr key={index} className="flex gap-x-20">
+                            <td className="text-start text-[15px] leading-6 capitalize w-24">
                               {label}
                             </td>
                             <td className="text-start text-[15px] leading-6 font-semibold">
