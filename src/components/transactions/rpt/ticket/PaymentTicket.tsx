@@ -38,7 +38,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
     "address",
     "particulars",
     "total",
-    "control no.",
+    "tax no",
   ];
 
   const handlePrint = useReactToPrint({
