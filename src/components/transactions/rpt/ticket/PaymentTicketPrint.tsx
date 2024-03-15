@@ -31,7 +31,7 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
   <div ref={ref}>
     <div className="flex flex-col gap-y-4">
       {ticketInfo.map((item, index) => (
-        <div className="flex gap-x-4">
+        <div key={index} className="flex gap-x-4">
           <Image
             src={item.logo.src}
             alt={""}
@@ -42,7 +42,6 @@ const PaymentPrintTicket: ForwardRefRenderFunction<
             priority
             unoptimized
           />
-
           <div className="flex flex-col justify-center items-center">
             <Title
               text={item.header.title}
