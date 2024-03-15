@@ -31,7 +31,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
   const componentRef = useRef<any>();
   const { taxBill, billToQtr, billToYear, payerName, payerAddress } =
     useTaxBillingContext();
-  const combinedData = `${rpttxntype}&billtoqtr=${billToQtr}&billtoyear=${billToYear}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
+  const combinedData = `${rpttxntype}&billtoqtr=${billToQtr}&billtoyear=${billToYear}&paidby=${payerName}&paidbyaddress=${payerAddress}`;
   const headers = [
     "trxn date",
     "payer",
