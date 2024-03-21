@@ -14,6 +14,7 @@
     "axios": "^1.6.7",
     "copy-webpack-plugin": "^12.0.2",
     "dotenv": "^16.4.5",
+    "esc-pos-encoder": "^2.0.1",
     "escpos": "^3.0.0-alpha.6",
     "escpos-buffer": "^4.1.0",
     "escpos-usb": "^3.0.0-alpha.4",
