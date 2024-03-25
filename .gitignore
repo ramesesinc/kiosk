@@ -15,6 +15,17 @@
 
 # production
 /build
+/src
+.eslintrc
+.hintrc
+.next.config
+.next-env.d
+.package
+.package-lock
+.postcss.config
+.README
+.tailwind.config
+.tsconfig
 
 # misc
 .DS_Store
