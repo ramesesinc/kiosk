@@ -15,7 +15,7 @@
 
 # production
 /build
-/src/
+/src
 
 # misc
 .DS_Store
@@ -36,6 +36,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+tailwind.config.ts
 
 
 # Ignore JSON files
+.eslintrc.json
+package.json
+package-lock.json
+tsconfig.json
+
+# Ignore JavaScript files
+next.config.js
+post.css.config.js
