@@ -15,17 +15,7 @@
 
 # production
 /build
-/src
-.eslintrc
-.hintrc
-.next.config
-.next-env.d
-.package
-.package-lock
-.postcss.config
-.README
-.tailwind.config
-.tsconfig
+/src/
 
 # misc
 .DS_Store
@@ -46,3 +36,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# Ignore JSON files
