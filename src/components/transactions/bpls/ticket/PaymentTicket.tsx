@@ -38,7 +38,6 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
     "total",
     "bin no",
   ];
-  console.log(combinedData);
   // const handlePrint = () => {
   //   const sendTicketInfo = {
   //     appDate: billingInfo.appdate,
