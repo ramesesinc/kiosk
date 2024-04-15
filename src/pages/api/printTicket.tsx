@@ -17,7 +17,6 @@ async function POST(req: NextApiRequest, res: NextApiResponse) {
   try {
     const lguName = process.env.LGU_NAME;
     const recieveTicketInfo = req.body;
-    console.log(recieveTicketInfo.qrImage);
     const encoder = new EscPosEncoder();
     const commands = encoder
       .initialize()
@@ -68,6 +67,7 @@ async function POST(req: NextApiRequest, res: NextApiResponse) {
       `http://${process.env.KIOSK_PRINT_SEVER_IP}:11111/api/print`,
       commands
     );
+    console.log("commands", commands);
     res
       .status(200)
       .json({ message: "Ticket information received successfully." });
