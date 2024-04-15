@@ -17,6 +17,7 @@ async function POST(req: NextApiRequest, res: NextApiResponse) {
   try {
     const lguName = process.env.LGU_NAME;
     const recieveTicketInfo = req.body;
+    console.log(recieveTicketInfo.qrImage);
     const encoder = new EscPosEncoder();
     const commands = encoder
       .initialize()
