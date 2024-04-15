@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Button from "@/components/ui/Button";
 import Currency from "@/components/ui/Currency";
-import CurrentDate from "@/components/ui/Date";
 import Subtitle from "@/components/ui/Subtitle";
 import Title from "@/components/ui/Title";
 import { createFetch } from "@/libs/fetch";
@@ -12,6 +11,7 @@ import Image from "next/image";
 import React, { useRef } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import QRCode from "react-qr-code";
+import { useReactToPrint } from "react-to-print";
 import PaymentTicketPrint from "./PaymentTicketPrint";
 
 interface PaymentTicketProps {
@@ -36,30 +36,30 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
   const combinedData = `${obotxntype}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
   const headers = ["payer", "address", "particulars", "total", "oscp no"];
 
-  const handlePrint = () => {
-    const sendTicketInfo = {
-      appDate: <CurrentDate />,
-      payerName: payerName,
-      payerAddr: payerAddress,
-      particulars: "OSCP Billing And Payment",
-      controlNo: oboBill.info.bin,
-      totalAmt: oboBill.info.amount,
-      seriesNo: seriesno,
-      qrImage: combinedData,
-    };
-    execute(sendTicketInfo);
-  };
+  // const handlePrint = () => {
+  //   const sendTicketInfo = {
+  //     appDate: <CurrentDate />,
+  //     payerName: payerName,
+  //     payerAddr: payerAddress,
+  //     particulars: "OSCP Billing And Payment",
+  //     controlNo: oboBill.info.bin,
+  //     totalAmt: oboBill.info.amount,
+  //     seriesNo: seriesno,
+  //     qrImage: combinedData,
+  //   };
+  //   execute(sendTicketInfo);
+  // };
 
-  // const handlePrint = useReactToPrint({
-  //   content: () => componentRef.current,
-  //   onBeforeGetContent: () => {
-  //     setIsPrinting(true);
-  //   },
-  //   onAfterPrint: () => {
-  //     setIsPrinting(false);
-  //     onClose && onClose();
-  //   },
-  // });
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    onBeforeGetContent: () => {
+      setIsPrinting(true);
+    },
+    onAfterPrint: () => {
+      setIsPrinting(false);
+      onClose && onClose();
+    },
+  });
 
   return (
     <>
