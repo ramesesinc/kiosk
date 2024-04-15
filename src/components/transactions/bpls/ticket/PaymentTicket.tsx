@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Button from "@/components/ui/Button";
+import CurrentDate from "@/components/ui/Date";
 import Subtitle from "@/components/ui/Subtitle";
 import Title from "@/components/ui/Title";
 import { createFetch } from "@/libs/fetch";
@@ -42,7 +43,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
   ];
   const handlePrint = () => {
     const sendTicketInfo = {
-      appDate: bill.appdate,
+      appDate: <CurrentDate />,
       payerName: payerName,
       payerAddr: payerAddress,
       particulars: "Business Billing and Payment",
@@ -174,9 +175,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                             <td className="text-start text-[15px] leading-6 font-semibold font-mono">
                               {
                                 [
-                                  bill.info.appdate
-                                    ? `${bill.info.appdate}`
-                                    : "",
+                                  bill.info.appdate ? <CurrentDate /> : "",
                                   `${payerName}`,
                                   payerAddress ? `${payerAddress}` : "",
                                   "Business Billing and Payment",
