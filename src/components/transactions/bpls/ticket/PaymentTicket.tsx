@@ -44,7 +44,6 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
 
   const handlePrint = () => {
     const sendTicketInfo = {
-      appDate: <CurrentDate />,
       payerName: payerName,
       payerAddr: payerAddress,
       particulars: "Business Billing and Payment",
