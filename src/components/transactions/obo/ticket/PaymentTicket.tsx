@@ -3,13 +3,14 @@ import Button from "@/components/ui/Button";
 import Currency from "@/components/ui/Currency";
 import Subtitle from "@/components/ui/Subtitle";
 import Title from "@/components/ui/Title";
+import { createFetch } from "@/libs/fetch";
+import { printTicket } from "@/services/api/printticket";
 import { useOboBillingContext } from "@/services/context/obo-context";
 import { ticketInfo } from "@/stores/lgu-info";
 import Image from "next/image";
 import React, { useRef } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import QRCode from "react-qr-code";
-import { useReactToPrint } from "react-to-print";
 import PaymentTicketPrint from "./PaymentTicketPrint";
 
 interface PaymentTicketProps {
@@ -29,20 +30,35 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
 }) => {
   const [isPrinting, setIsPrinting] = React.useState(false);
   const componentRef = useRef<any>();
+  const { execute } = createFetch(printTicket);
   const { oboBill, payerName, payerAddress } = useOboBillingContext();
   const combinedData = `${obotxntype}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
   const headers = ["payer", "address", "particulars", "total", "oscp no"];
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    onBeforeGetContent: () => {
-      setIsPrinting(true);
-    },
-    onAfterPrint: () => {
-      setIsPrinting(false);
-      onClose && onClose();
-    },
-  });
+  const handlePrint = () => {
+    const sendTicketInfo = {
+      appDate: oboBill.appdate,
+      payerName: payerName,
+      payerAddr: payerAddress,
+      particulars: "OSCP Billing And Payment",
+      controlNo: oboBill.info.bin,
+      totalAmt: oboBill.info.amount,
+      seriesNo: seriesno,
+      qrImage: combinedData,
+    };
+    execute(sendTicketInfo);
+  };
+
+  // const handlePrint = useReactToPrint({
+  //   content: () => componentRef.current,
+  //   onBeforeGetContent: () => {
+  //     setIsPrinting(true);
+  //   },
+  //   onAfterPrint: () => {
+  //     setIsPrinting(false);
+  //     onClose && onClose();
+  //   },
+  // });
 
   return (
     <>

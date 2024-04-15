@@ -3,13 +3,14 @@ import Button from "@/components/ui/Button";
 import Currency from "@/components/ui/Currency";
 import Subtitle from "@/components/ui/Subtitle";
 import Title from "@/components/ui/Title";
+import { createFetch } from "@/libs/fetch";
+import { printTicket } from "@/services/api/printticket";
 import { useTaxBillingContext } from "@/services/context/rpt-context";
 import { ticketInfo } from "@/stores/lgu-info";
 import Image from "next/image";
 import React, { useRef } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import QRCode from "react-qr-code";
-import { useReactToPrint } from "react-to-print";
 import PaymentTicketPrint from "./PaymentTicketPrint";
 
 interface PaymentTicketProps {
@@ -29,6 +30,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
 }) => {
   const [isPrinting, setIsPrinting] = React.useState(false);
   const componentRef = useRef<any>();
+  const { execute } = createFetch(printTicket);
   const { taxBill, billToQtr, billToYear, payerName, payerAddress } =
     useTaxBillingContext();
   const combinedData = `${rpttxntype}&billtoqtr=${billToQtr}&billtoyear=${billToYear}&paidby=${payerName}&paidbyaddress=${payerAddress}`;
@@ -41,16 +43,30 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
     "tax no",
   ];
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    onBeforeGetContent: () => {
-      setIsPrinting(true);
-    },
-    onAfterPrint: () => {
-      setIsPrinting(false);
-      onClose && onClose();
-    },
-  });
+  const handlePrint = () => {
+    const sendTicketInfo = {
+      appDate: taxBill.appdate,
+      payerName: payerName,
+      payerAddr: payerAddress,
+      particulars: "Real Tax Billing And Payment",
+      controlNo: taxBill.info.bin,
+      totalAmt: taxBill.info.amount,
+      seriesNo: seriesno,
+      qrImage: combinedData,
+    };
+    execute(sendTicketInfo);
+  };
+
+  // const handlePrint = useReactToPrint({
+  //   content: () => componentRef.current,
+  //   onBeforeGetContent: () => {
+  //     setIsPrinting(true);
+  //   },
+  //   onAfterPrint: () => {
+  //     setIsPrinting(false);
+  //     onClose && onClose();
+  //   },
+  // });
 
   return (
     <>

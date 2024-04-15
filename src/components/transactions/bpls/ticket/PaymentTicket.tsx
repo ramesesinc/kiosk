@@ -2,13 +2,14 @@
 import Button from "@/components/ui/Button";
 import Subtitle from "@/components/ui/Subtitle";
 import Title from "@/components/ui/Title";
+import { createFetch } from "@/libs/fetch";
+import { printTicket } from "@/services/api/printticket";
 import { useBillingContext } from "@/services/context/billing-context";
 import { ticketInfo } from "@/stores/lgu-info";
 import Image from "next/image";
 import React, { useRef } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import QRCode from "react-qr-code";
-import { useReactToPrint } from "react-to-print";
 import PaymentTicketPrint from "./PaymentTicketPrint";
 
 interface PaymentTicketProps {
@@ -28,6 +29,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
 }) => {
   const [isPrinting, setIsPrinting] = React.useState(false);
   const componentRef = useRef<any>();
+  const { execute } = createFetch(printTicket);
   const { bill, payerName, payerAddress, qtr } = useBillingContext();
   const combinedData = `${txntype}&qtr=${qtr}&paidby=${payerName}&paidbyaddress=${payerAddress}`;
   const headers = [
@@ -38,30 +40,30 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
     "total",
     "bin no",
   ];
-  // const handlePrint = () => {
-  //   const sendTicketInfo = {
-  //     appDate: billingInfo.appdate,
-  //     payerName: payerName,
-  //     payerAddr: payerAddress,
-  //     particulars: "Business Billing and Payment",
-  //     controlNo: combinedData,
-  //     totalAmt: billingInfo.amount,
-  //     seriesNo: seriesno,
-  //     qrImage: combinedData,
-  //   };
-  //   execute(sendTicketInfo);
-  // };
+  const handlePrint = () => {
+    const sendTicketInfo = {
+      appDate: bill.appdate,
+      payerName: payerName,
+      payerAddr: payerAddress,
+      particulars: "Business Billing and Payment",
+      controlNo: bill.info.bin,
+      totalAmt: bill.info.amount,
+      seriesNo: seriesno,
+      qrImage: combinedData,
+    };
+    execute(sendTicketInfo);
+  };
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    onBeforeGetContent: () => {
-      setIsPrinting(true);
-    },
-    onAfterPrint: () => {
-      setIsPrinting(false);
-      onClose && onClose();
-    },
-  });
+  // const handlePrint = useReactToPrint({
+  //   content: () => componentRef.current,
+  //   onBeforeGetContent: () => {
+  //     setIsPrinting(true);
+  //   },
+  //   onAfterPrint: () => {
+  //     setIsPrinting(false);
+  //     onClose && onClose();
+  //   },
+  // });
 
   return (
     <>
