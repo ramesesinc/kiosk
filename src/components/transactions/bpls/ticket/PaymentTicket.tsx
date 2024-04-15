@@ -106,7 +106,7 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
               </div>
               <Title
                 text={"Printing Ticket"}
-                classname="!text-[26px] !leading-[0px]"
+                classname="!text-[25px] !leading-[0px]"
               />
               <Subtitle
                 text={" Please wait while your ticket is being printed."}
