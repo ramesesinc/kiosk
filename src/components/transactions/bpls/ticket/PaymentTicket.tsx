@@ -11,6 +11,7 @@ import Image from "next/image";
 import React, { useRef } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import QRCode from "react-qr-code";
+import { useReactToPrint } from "react-to-print";
 import PaymentTicketPrint from "./PaymentTicketPrint";
 
 interface PaymentTicketProps {
@@ -41,30 +42,30 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
     "total",
     "bin no",
   ];
-  const handlePrint = () => {
-    const sendTicketInfo = {
-      appDate: <CurrentDate />,
-      payerName: payerName,
-      payerAddr: payerAddress,
-      particulars: "Business Billing and Payment",
-      controlNo: bill.info.bin,
-      totalAmt: bill.info.amount,
-      seriesNo: seriesno,
-      qrImage: combinedData,
-    };
-    execute(sendTicketInfo);
-  };
+  // const handlePrint = () => {
+  //   const sendTicketInfo = {
+  //     appDate: <CurrentDate />,
+  //     payerName: payerName,
+  //     payerAddr: payerAddress,
+  //     particulars: "Business Billing and Payment",
+  //     controlNo: bill.info.bin,
+  //     totalAmt: bill.info.amount,
+  //     seriesNo: seriesno,
+  //     qrImage: combinedData,
+  //   };
+  //   execute(sendTicketInfo);
+  // };
 
-  // const handlePrint = useReactToPrint({
-  //   content: () => componentRef.current,
-  //   onBeforeGetContent: () => {
-  //     setIsPrinting(true);
-  //   },
-  //   onAfterPrint: () => {
-  //     setIsPrinting(false);
-  //     onClose && onClose();
-  //   },
-  // });
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    onBeforeGetContent: () => {
+      setIsPrinting(true);
+    },
+    onAfterPrint: () => {
+      setIsPrinting(false);
+      onClose && onClose();
+    },
+  });
 
   return (
     <>
