@@ -46,6 +46,7 @@ async function POST(req: NextApiRequest, res: NextApiResponse) {
           { width: 28, align: "right" },
         ],
         [
+          ["Date", recieveTicketInfo.appDate],
           ["Payer", recieveTicketInfo.payerName],
           ["Address", recieveTicketInfo.payerAddr],
           ["Particulars", recieveTicketInfo.particulars],
@@ -56,8 +57,6 @@ async function POST(req: NextApiRequest, res: NextApiResponse) {
       .align("center")
       .qrcode(recieveTicketInfo.qrImage, 1, 4, "h")
       .newline()
-      .text(recieveTicketInfo.qrImage)
-      .newline()
       .newline()
       .newline()
       .cut("full") // Cut the paper
@@ -67,7 +66,6 @@ async function POST(req: NextApiRequest, res: NextApiResponse) {
       `http://${process.env.KIOSK_PRINT_SEVER_IP}:11111/api/print`,
       commands
     );
-    console.log("commands", commands);
     res
       .status(200)
       .json({ message: "Ticket information received successfully." });
