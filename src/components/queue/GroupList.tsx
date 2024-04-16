@@ -37,7 +37,7 @@ const QueueGroupList: React.FC<QueueGroupListProps> = ({ groups }) => {
   };
 
   return (
-    <div className="flex flex-col gap-y-14">
+    <div className="flex flex-col gap-y-10">
       {groups.map((group: QueueGroup) => (
         <div key={group.objid} className="flex flex-col gap-y-10">
           <div className="flex flex-col gap-y-2">
