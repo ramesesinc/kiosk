@@ -36,7 +36,7 @@ async function POST(req: NextApiRequest, res: NextApiResponse) {
       .width(5)
       .height(5)
       .bold()
-      .text(`${recieveTicketInfo.ticketno}`)
+      .text(`${recieveTicketInfo.ticketno}` || "ticekt no")
       .newline()
       .width(1)
       .height(1)
