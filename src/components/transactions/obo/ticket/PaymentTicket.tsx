@@ -3,12 +3,13 @@ import Button from "@/components/ui/Button";
 import Currency from "@/components/ui/Currency";
 import Subtitle from "@/components/ui/Subtitle";
 import Title from "@/components/ui/Title";
+import { lookupService } from "@/libs/client-service";
 import { createFetch } from "@/libs/fetch";
 import { printTicket } from "@/services/api/printticket";
 import { useOboBillingContext } from "@/services/context/obo-context";
 import { ticketInfo } from "@/stores/lgu-info";
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import QRCode from "react-qr-code";
 import PaymentTicketPrint from "./PaymentTicketPrint";
@@ -19,21 +20,26 @@ interface PaymentTicketProps {
   showClose?: string;
   obotxntype?: string;
   seriesno?: string;
+  lguName: string;
+  logo: string;
 }
 
-const PaymentTicket: React.FC<PaymentTicketProps> = ({
-  isOpen,
-  onClose,
-  showClose,
-  obotxntype,
-  seriesno,
-}) => {
+const PaymentTicket: React.FC<PaymentTicketProps> = ({ isOpen, onClose, showClose, obotxntype, seriesno }) => {
   const [isPrinting, setIsPrinting] = React.useState(false);
+  const [lguName, setLguName] = useState("");
+  const [lguLgo, setLguLogo] = useState("");
+  const svc = lookupService("LguService");
   const componentRef = useRef<any>();
   const { execute } = createFetch(printTicket);
   const { oboBill, payerName, payerAddress } = useOboBillingContext();
   const combinedData = `${obotxntype}\n&paidby=${payerName}&paidbyaddress=${payerAddress}`;
   const headers = ["payer", "address", "particulars", "total", "oscp no"];
+
+  const fetchLguInfo = async () => {
+    const info = await svc?.invoke("getLguInfo");
+    setLguName(info.lguName);
+    setLguLogo(info.logo);
+  };
 
   const handlePrint = () => {
     const sendTicketInfo = {
@@ -58,23 +64,16 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
   //     onClose && onClose();
   //   },
   // });
+  useEffect(() => {
+    fetchLguInfo();
+  }, []);
 
   return (
     <>
       <div className="hidden">
-        <PaymentTicketPrint
-          ref={componentRef}
-          QRCode={<QRCode value={combinedData} size={80} />}
-          addr={payerAddress}
-          appNo={oboBill.appno}
-          payerName={payerName}
-          seriesno={seriesno}
-          total={<Currency amount={oboBill.amount} />}
-        />
+        <PaymentTicketPrint ref={componentRef} QRCode={<QRCode value={combinedData} size={80} />} addr={payerAddress} appNo={oboBill.appno} payerName={payerName} seriesno={seriesno} total={<Currency amount={oboBill.amount} />} lguName={lguName} logo={lguLgo} />
       </div>
-      <div
-        className={`fixed top-0 left-0 w-full h-full bg-[#00000080] flex flex-col justify-center items-center z-[1]`}
-      >
+      <div className={`fixed top-0 left-0 w-full h-full bg-[#00000080] flex flex-col justify-center items-center z-[1]`}>
         <div className="w-[60%] relative flex flex-col items-center bg-white p-4 rounded-2xl z-10">
           <div className={`flex justify-end w-full ${showClose}`}>
             <Button onClick={onClose} classname="text-[#333] border-none !px-0">
@@ -85,50 +84,22 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
             <div className="flex flex-col items-center justify-center pb-20 gap-10">
               <div className="w-12 h-12 relative animate-spin ">
                 {[0, 90, 180, 260].map((rotation) => (
-                  <div
-                    key={rotation}
-                    className={`w-4 h-4 bg-blue-500 rounded-full absolute ${
-                      rotation < 180 ? "top-0" : "bottom-0"
-                    } ${
-                      rotation % 180 === 0 ? "left-0" : "right-0"
-                    } animate-pulse`}
-                  ></div>
+                  <div key={rotation} className={`w-4 h-4 bg-blue-500 rounded-full absolute ${rotation < 180 ? "top-0" : "bottom-0"} ${rotation % 180 === 0 ? "left-0" : "right-0"} animate-pulse`}></div>
                 ))}
               </div>
-              <Title
-                text={"Printing Ticket"}
-                classname="!text-[25px] !leading-[0px]"
-              />
-              <Subtitle
-                text={" Please wait while your ticket is being printed."}
-                classname="text-[20px] !leading-[0px]"
-              />
+              <Title text={"Printing Ticket"} classname="!text-[25px] !leading-[0px]" />
+              <Subtitle text={" Please wait while your ticket is being printed."} classname="text-[20px] !leading-[0px]" />
             </div>
           ) : (
             <div className="m-8">
               <div className="w-full flex flex-col gap-y-10">
                 {ticketInfo.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex w-full flex-wrap items-center justify-between"
-                  >
+                  <div key={index} className="flex w-full flex-wrap items-center justify-between">
                     <div className="flex container mx-auto">
-                      <Image
-                        src={item.logo.src}
-                        alt={""}
-                        width={item.logo.width}
-                        height={0}
-                        loading="eager"
-                      />
+                      <Image src={lguLgo} alt={""} width={item.logo.width} height={0} loading="eager" />
                       <div className="flex flex-col justify-center mx-4">
-                        <Title
-                          text={item.header.title}
-                          classname="uppercase text-[24px] leading-6"
-                        />
-                        <Title
-                          text={item.subheader.title}
-                          classname="uppercase text-[24px] leading-6"
-                        />
+                        <Title text={item.header.title} classname="uppercase text-[24px] leading-6" />
+                        <Title text={lguName} classname="uppercase text-[24px] leading-6" />
                       </div>
                     </div>
                   </div>
@@ -144,34 +115,14 @@ const PaymentTicket: React.FC<PaymentTicketProps> = ({
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <Title
-                    text="present this receipt to the collector"
-                    classname="uppercase"
-                    textSize="text-xl"
-                  />
+                  <Title text="present this receipt to the collector" classname="uppercase" textSize="text-xl" />
                   <div className="pl-6">
                     <table>
                       <tbody>
                         {headers.map((label, index) => (
                           <tr key={index} className="flex gap-x-20">
-                            <td className="text-start text-[15px] leading-6 capitalize w-24">
-                              {label}
-                            </td>
-                            <td className="text-start text-[15px] leading-6 font-semibold  font-mono">
-                              {
-                                [
-                                  ` ${payerName}`,
-                                  payerAddress ? ` ${payerAddress}` : "",
-                                  " OSCP Billing and Payment",
-                                  <Currency
-                                    key={`currency-${index}`}
-                                    amount={oboBill.amount}
-                                    currency="Php"
-                                  />,
-                                  oboBill.appno ? ` ${oboBill.appno}` : "",
-                                ][index]
-                              }
-                            </td>
+                            <td className="text-start text-[15px] leading-6 capitalize w-24">{label}</td>
+                            <td className="text-start text-[15px] leading-6 font-semibold  font-mono">{[` ${payerName}`, payerAddress ? ` ${payerAddress}` : "", " OSCP Billing and Payment", <Currency key={`currency-${index}`} amount={oboBill.amount} currency="Php" />, oboBill.appno ? ` ${oboBill.appno}` : ""][index]}</td>
                           </tr>
                         ))}
                       </tbody>

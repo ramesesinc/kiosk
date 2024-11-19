@@ -18,13 +18,7 @@ interface QueueTicketProps {
   ticketno?: string | undefined;
 }
 
-const QueueTicket: React.FC<QueueTicketProps> = ({
-  isOpen,
-  onClose,
-  showClose,
-  txndatestr,
-  ticketno,
-}) => {
+const QueueTicket: React.FC<QueueTicketProps> = ({ isOpen, onClose, showClose, txndatestr, ticketno }) => {
   const [isPrinting] = React.useState(false);
   const componentRef = useRef<any>();
   const { execute } = createFetch(queueTicket);
@@ -57,15 +51,9 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
   return (
     <div>
       <div className="hidden">
-        <QueuePrintTicket
-          ref={componentRef}
-          ticketno={ticketno}
-          txndatestr={txndatestr}
-        />
+        <QueuePrintTicket ref={componentRef} ticketno={ticketno} txndatestr={txndatestr} />
       </div>
-      <div
-        className={`fixed top-0 left-0 w-full h-full bg-[#00000080] flex flex-col justify-center items-center z-[1]`}
-      >
+      <div className={`fixed top-0 left-0 w-full h-full bg-[#00000080] flex flex-col justify-center items-center z-[1]`}>
         <div className="w-[60%] flex flex-col items-center gap-2 bg-white p-6 rounded-2xl z-10 ">
           <div className={`flex justify-end w-full ${showClose}`}>
             <Button onClick={onClose} classname="border-none !px-0">
@@ -73,47 +61,26 @@ const QueueTicket: React.FC<QueueTicketProps> = ({
             </Button>
           </div>
           {isPrinting ? (
-            // Loading Screen
             <div className="flex flex-col items-center justify-center pb-20 gap-10">
               <div className="w-12 h-12 relative animate-spin ">
                 {[0, 90, 180, 260].map((rotation) => (
-                  <div
-                    key={rotation}
-                    className={`w-4 h-4 bg-blue-500 rounded-full absolute ${
-                      rotation < 180 ? "top-0" : "bottom-0"
-                    } ${
-                      rotation % 180 === 0 ? "left-0" : "right-0"
-                    } animate-pulse`}
-                  ></div>
+                  <div key={rotation} className={`w-4 h-4 bg-blue-500 rounded-full absolute ${rotation < 180 ? "top-0" : "bottom-0"} ${rotation % 180 === 0 ? "left-0" : "right-0"} animate-pulse`}></div>
                 ))}
               </div>
-              <Title
-                text={"Printing Queue Ticket"}
-                textSize="!text-[25px] !leading-[0px]"
-              />
-              <Subtitle
-                text={" Please wait while your ticket is being printed."}
-                textSize="text-[20px] !leading-[0px]"
-              />
+              <Title text={"Printing Queue Ticket"} textSize="!text-[25px] !leading-[0px]" />
+              <Subtitle text={" Please wait while your ticket is being printed."} textSize="text-[20px] !leading-[0px]" />
             </div>
           ) : (
             <div className="text-center flex flex-col gap-20">
               {ticketInfo.map((item, index) => (
                 <div key={index} className="flex flex-col gap-2">
                   <Title text={"Queue Ticket Number"} />
-                  <Subtitle
-                    text={item.subheader.title}
-                    textSize="font-semibold uppercase"
-                  />
+                  <Subtitle text={item.subheader.title} textSize="font-semibold uppercase" />
                 </div>
               ))}
 
               <div>
-                <Numbers
-                  text={ticketno}
-                  classname="font-bold"
-                  textSize="text-9xl"
-                />
+                <Numbers text={ticketno} classname="font-bold" textSize="text-9xl" />
               </div>
               <div className="flex flex-col gap-2">
                 <Subtitle text={"This number is Valid only on"} />
