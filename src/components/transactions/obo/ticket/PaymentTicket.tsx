@@ -20,8 +20,8 @@ interface PaymentTicketProps {
   showClose?: string;
   obotxntype?: string;
   seriesno?: string;
-  lguName: string;
-  logo: string;
+  lguName?: string;
+  logo?: string;
 }
 
 const PaymentTicket: React.FC<PaymentTicketProps> = ({ isOpen, onClose, showClose, obotxntype, seriesno }) => {

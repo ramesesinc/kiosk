@@ -26,8 +26,7 @@ const useModal = () => {
 const PaymentType = () => {
   const { code, ticketNo } = useOboBillingContext();
   const [openAlert, setOpenAlert] = useState(false);
-  const { openTicket, handleOpenTicket, handleCloseTicket, modalContent } =
-    useModal();
+  const { openTicket, handleOpenTicket, handleCloseTicket, modalContent } = useModal();
 
   const handleOpenAlert = () => {
     setOpenAlert(true);
@@ -39,10 +38,7 @@ const PaymentType = () => {
 
   return (
     <div className="flex flex-col gap-y-20">
-      <Title
-        text={"How do you like to pay?"}
-        textSize="text-5xl capitalize text-center"
-      />
+      <Title text={"How do you like to pay?"} textSize="text-5xl capitalize text-center" />
       <div className="flex justify-center text-center items-center gap-x-20">
         {paymentTypeData.map(
           (info, index) =>
@@ -58,23 +54,12 @@ const PaymentType = () => {
                   label: info.title,
                   classname: "uppercase font-bold",
                 }}
-                onClick={
-                  info.title === "GCASH"
-                    ? handleOpenAlert
-                    : () => handleOpenTicket(info.modalcontent)
-                }
+                onClick={info.title === "GCASH" ? handleOpenAlert : () => handleOpenTicket(info.modalcontent)}
               />
             )
         )}
 
-        {modalContent && (
-          <PaymentTicket
-            isOpen={openTicket}
-            onClose={handleCloseTicket}
-            obotxntype={code}
-            seriesno={ticketNo}
-          />
-        )}
+        {modalContent && <PaymentTicket isOpen={openTicket} onClose={handleCloseTicket} obotxntype={code} seriesno={ticketNo} lguName={""} logo={""} />}
         <Alert
           isOpen={openAlert}
           onClose={handleCloseAlert}
