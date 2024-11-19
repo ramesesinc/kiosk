@@ -16,6 +16,7 @@ echo.
 echo.========================================================================
 echo.
 
+RD /S /Q "install.bat"
 start /min cmd /c "%JAVA%" %JAVA_OPTS% -jar api-print-service.jar
 start /min npm run start
 endlocal
