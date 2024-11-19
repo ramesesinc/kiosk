@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Fmenu\u002Fbpls","\u002Fmenu\u002Fobo","\u002Fmenu\u002Frpt"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
