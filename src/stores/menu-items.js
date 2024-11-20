@@ -25,7 +25,7 @@ export const modules = [
     image: "/icons/helmet.png",
     alt: "",
     target: "/menu/obo",
-    active: true,
+    active: false,
   },
   {
     title: "Vehicle Registration",

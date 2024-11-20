@@ -12,3 +12,71 @@ body {
 .disable-selection {
   user-select: none;
 }
+
+.bubble1 {
+  animation: bubble1 6s ease-in-out infinite forwards;
+  animation-delay: 16.5s;
+}
+
+.bubble2 {
+  animation: bubble2 6s ease-in-out infinite forwards;
+  animation-delay: 16s;
+}
+
+.bubble3 {
+  animation: bubble3 6s ease-in-out infinite forwards;
+  animation-delay: 15.5s;
+}
+
+.bubble4 {
+  animation: bubble4 6s ease-in-out infinite forwards;
+  animation-delay: 15s;
+}
+
+@keyframes bubble1 {
+  0% {
+    transform: translate(150%, 80%) scale(0);
+  }
+  50% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes bubble2 {
+  0% {
+    transform: translate(400%, 20%) scale(0);
+  }
+  50% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes bubble3 {
+  0% {
+    transform: translate(300%, -100%) scale(0);
+  }
+  50% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes bubble4 {
+  0% {
+    transform: translate(200%, -200%) scale(0);
+  }
+  50% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}

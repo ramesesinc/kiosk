@@ -10,11 +10,8 @@
 /coverage
 
 # next.js
-/.next/
-/out/
 
 # production
-/build
 
 # misc
 .DS_Store
@@ -38,6 +35,7 @@ next-env.d.ts
 
 # json
 .eslintrc.json
+package.json
 package-lock.json
 tsconfig.json
 
