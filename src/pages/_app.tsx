@@ -1,7 +1,5 @@
 import LibreFranklin from "@/components/fonts/LibreFranklin";
 import { KeyboardContextProvider } from "@/components/keyboard/KeyboardContext";
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import { BillingProvider } from "@/services/context/billing-context";
 import { OboBillingProvider } from "@/services/context/obo-context";
 import { QueueContextProvider } from "@/services/context/queue-context";
@@ -21,9 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <BillingProvider>
               <RptBillingProvider>
                 <OboBillingProvider>
-                  <Header />
                   <Component {...pageProps} />
-                  <Footer />
                 </OboBillingProvider>
               </RptBillingProvider>
             </BillingProvider>

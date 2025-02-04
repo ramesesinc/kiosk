@@ -7,16 +7,8 @@ interface SubtitleProps {
   classname?: string;
 }
 
-const Subtitle: React.FC<SubtitleProps> = ({
-  text,
-  textSize = "text-xl",
-  classname,
-}) => {
-  return (
-    <h2 className={`font-semibold text-gray-600 mb-4 ${textSize} ${classname}`}>
-      {text}
-    </h2>
-  );
+const Subtitle: React.FC<SubtitleProps> = ({ text, textSize = "text-xl", classname }) => {
+  return <p className={`font-semibold text-gray-600 mb-4 ${textSize} ${classname}`}>{text}</p>;
 };
 
 export default Subtitle;

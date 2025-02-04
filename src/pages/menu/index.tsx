@@ -15,15 +15,7 @@ const MenuPage = () => {
         <Grid columns="grid-cols-3 gap-y-20 gap-x-40">
           {modules.map((item, index) => (
             <div key={index}>
-              <Icon
-                title={item.title}
-                onClick={() => router.push(item.target)}
-                image={item.image}
-                fontSize="text-[22px]"
-                width={60}
-                height={0}
-                active={item.active}
-              />
+              <Icon title={item.title} onClick={() => router.push(item.target)} image={item.image} fontSize="text-[22px]" width={60} height={0} active={item.active} />
             </div>
           ))}
         </Grid>
