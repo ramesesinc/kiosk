@@ -12,9 +12,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 async function POST(req: NextApiRequest, res: NextApiResponse) {
   const EscPosEncoder = require("esc-pos-encoder");
   try {
+<<<<<<< HEAD
     const lguName = process.env.LGU_NAME;
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1; // Adding 1 because getMonth() returns zero-based index
+=======
+    const lguName = process.env.LGU_NAME || "";
+    const currentDate = new Date();
+    const month = currentDate.getMonth() + 1;
+>>>>>>> origin/kiosk-dev
     const day = currentDate.getDate();
     const year = currentDate.getFullYear();
     const recieveTicketInfo = req.body;

@@ -13,6 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children, classname }) => {
   const [lguLgo, setLguLogo] = useState("");
   const svc = lookupService("LguService");
 
+<<<<<<< HEAD
   const containerStyle: React.CSSProperties = {
     minHeight: "100vh",
     display: "flex",
@@ -21,6 +22,17 @@ const Layout: React.FC<LayoutProps> = ({ children, classname }) => {
     justifyContent: "center",
     position: "relative",
   } as const;
+=======
+  useEffect(() => {
+    fetchLguInfo();
+  }, []);
+
+  const fetchLguInfo = async () => {
+    const info = await svc?.invoke("getLguInfo");
+    setLguName(info.lguName);
+    setLguLogo(info.logo);
+  };
+>>>>>>> origin/kiosk-dev
 
   useEffect(() => {
     fetchLguInfo();
@@ -50,7 +62,11 @@ const Layout: React.FC<LayoutProps> = ({ children, classname }) => {
           <Image src={"/icons/illustration.png"} alt={""} width={700} height={700} style={{ width: 700, height: 700 }} />
         </div>
         <div className="fixed bottom-[10px] left-[10px]">
+<<<<<<< HEAD
           <Image src={"/icons/etracslogo.png"} alt={""} width={180} height={50} style={{ width: 180, height: 50 }} />
+=======
+          <Image src={"/icons/etracslogo.png"} alt={""} width={180} height={50} style={{ width: 180, height: 50 }} unoptimized />
+>>>>>>> origin/kiosk-dev
         </div>
       </div>
     </div>

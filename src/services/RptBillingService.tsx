@@ -1,16 +1,6 @@
 import Service from "@/libs/remote-service";
 
-export const getBilling = async ({
-  refno,
-  billtoqtr = 4,
-  billtoyear = 2024,
-  showdetails = true,
-}: {
-  refno: string;
-  billtoqtr?: number;
-  billtoyear?: number;
-  showdetails?: boolean;
-}) => {
+export const getBilling = async ({ refno, billtoqtr = 4, billtoyear = 2024, showdetails = true }: { refno: string; billtoqtr?: number; billtoyear?: number; showdetails?: boolean }) => {
   const svc = Service.lookup("gdx/OnlineLandTaxBillingService", "etracs");
   const taxBill = await svc.invoke("getBilling", {
     refno,
@@ -18,23 +8,11 @@ export const getBilling = async ({
     billtoyear,
     showdetails,
   });
-  if (taxBill.status === "ERROR") {
-    return { code: "01", error: taxBill.msg };
-  }
+
   return taxBill;
 };
 
-export const generateCode = async ({
-  refno,
-  txntype,
-  billtoqtr,
-  billtoyear,
-}: {
-  refno: string;
-  txntype: string;
-  billtoqtr: number;
-  billtoyear: number;
-}) => {
+export const generateCode = async ({ refno, txntype, billtoqtr, billtoyear }: { refno: string; txntype: string; billtoqtr: number; billtoyear: number }) => {
   const svc = Service.lookup("CashReceiptBarcodeService", "etracs");
   const code = await svc.invoke("generateCode", {
     refno,
@@ -42,7 +20,6 @@ export const generateCode = async ({
     billtoqtr,
     billtoyear,
   });
-  console.log(code);
   return code;
 };
 

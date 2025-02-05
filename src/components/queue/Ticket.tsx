@@ -2,10 +2,11 @@
 import Button from "@/components/ui/Button";
 import Subtitle from "@/components/ui/Subtitle";
 import Title from "@/components/ui/Title";
+import { lookupService } from "@/libs/client-service";
 import { createFetch } from "@/libs/fetch";
 import { queueTicket } from "@/services/api/printticket";
 import { ticketInfo } from "@/stores/lgu-info";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import Numbers from "../ui/Number";
 import QueuePrintTicket from "./PrintTicket";
@@ -22,6 +23,17 @@ const QueueTicket: React.FC<QueueTicketProps> = ({ isOpen, onClose, showClose, t
   const [isPrinting] = React.useState(false);
   const componentRef = useRef<any>();
   const { execute } = createFetch(queueTicket);
+  const [lguName, setLguName] = useState("");
+  const svc = lookupService("LguService");
+
+  useEffect(() => {
+    fetchLguInfo();
+  }, []);
+
+  const fetchLguInfo = async () => {
+    const info = await svc?.invoke("getLguInfo");
+    setLguName(info.lguName);
+  };
 
   const handlePrint = () => {
     const subheaderTitle = ticketInfo[0]?.subheader?.title || "";
@@ -72,12 +84,19 @@ const QueueTicket: React.FC<QueueTicketProps> = ({ isOpen, onClose, showClose, t
             </div>
           ) : (
             <div className="text-center flex flex-col gap-20">
+<<<<<<< HEAD
               {ticketInfo.map((item, index) => (
                 <div key={index} className="flex flex-col gap-2">
                   <Title text={"Queue Ticket Number"} />
                   <Subtitle text={item.subheader.title} textSize="font-semibold uppercase" />
                 </div>
               ))}
+=======
+              <div className="flex flex-col gap-2">
+                <Title text={"Queue Ticket Number"} />
+                <Subtitle text={lguName} textSize="font-semibold uppercase" />
+              </div>
+>>>>>>> origin/kiosk-dev
 
               <div>
                 <Numbers text={ticketno} classname="font-bold" textSize="text-9xl" />

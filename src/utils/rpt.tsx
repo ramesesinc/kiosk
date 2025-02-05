@@ -6,5 +6,13 @@ export const loadBill = async (
     billtoyear: number | string | void;
   }
 ) => {
-  return await svc.invoke("getBilling", params);
+  const response = await svc.invoke("getBilling", params);
+
+  // Ensure error handling
+  if (response.status === "ERROR") {
+    console.error("Error fetching tax bill:", response.msg);
+    return { code: "01", error: response.msg };
+  }
+
+  return response;
 };
