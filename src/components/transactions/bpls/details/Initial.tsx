@@ -43,16 +43,17 @@ const BplsInitial = () => {
     } else {
       setIsProcessing(true);
       const data = await loadBill(svc, { refno, qtr: setQtr(4) });
-      if (!data) {
-        openAlert("BIN number does not exist");
+
+      if (data.error) {
+        openAlert(data.error);
         setIsProcessing(false);
         return false;
-      } else {
-        await sleep(2);
-        setBill(data);
-        goToNextStep();
-        return true;
       }
+
+      await sleep(2);
+      setBill(data);
+      goToNextStep();
+      return true;
     }
   };
 
@@ -62,34 +63,13 @@ const BplsInitial = () => {
 
   return (
     <Layout>
-      <Title
-        text={
-          "Enter a Valid Business Identification Number (BIN) or Application No."
-        }
-        textSize="text-4xl m-4"
-      />
-      <Textbox
-        placeholder={"Enter BIN"}
-        className="border-2 border-gray-400 w-full"
-        ref={bin}
-      />
+      <Title text={"Enter a Valid Business Identification Number (BIN) or Application No."} textSize="text-4xl m-4" />
+      <Textbox placeholder={"Enter BIN"} className="border-2 border-gray-400 w-full" ref={bin} />
       {isProcessing && <Loading />}
       <Keyboard />
       <ActionBar>
-        <Button
-          onClick={() => goToPrevStep("/menu/bpls")}
-          buttonText="Back"
-          animation="shrink"
-          classname="bg-[#567ac8] text-white"
-          disabled={isProcessing}
-        />
-        <Button
-          onClick={() => nextPage()}
-          buttonText="Next"
-          animation="shrink"
-          classname="bg-light-blue text-white"
-          disabled={isProcessing}
-        />
+        <Button onClick={() => goToPrevStep("/menu/bpls")} buttonText="Back" animation="shrink" classname="bg-[#567ac8] text-white" disabled={isProcessing} />
+        <Button onClick={() => nextPage()} buttonText="Next" animation="shrink" classname="bg-light-blue text-white" disabled={isProcessing} />
       </ActionBar>
       <Alert
         isOpen={isAlertOpen}

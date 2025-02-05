@@ -1,6 +1,7 @@
 import Keyboard from "@/components/keyboard/Keyboard";
 import ActionBar from "@/components/layout/ActionBar";
 import Alert from "@/components/layout/Alert";
+import { Loading } from "@/components/layout/Loading";
 import Button from "@/components/ui/Button";
 import Textbox from "@/components/ui/Textbox";
 import Title from "@/components/ui/Title";
@@ -11,7 +12,6 @@ import { sleep } from "@/utils/helper";
 import { loadBill } from "@/utils/rpt";
 import { useRef, useState } from "react";
 import Layout from "./Layout";
-import { Loading } from "@/components/layout/Loading";
 
 const RptInitial = () => {
   const { goToNextStep, goToPrevStep } = useStepper();
@@ -43,16 +43,17 @@ const RptInitial = () => {
         billtoqtr: setBillToQtr(4),
         billtoyear: setBillToYear(2024),
       });
-      if (!data) {
-        openAlert("Tax number does not exist");
+
+      if (data.error) {
+        openAlert(data.error);
         setIsProcessing(false);
         return false;
-      } else {
-        await sleep(2);
-        setTaxBill(data);
-        goToNextStep();
-        return true;
       }
+
+      await sleep(2);
+      setTaxBill(data);
+      goToNextStep();
+      return true;
     }
   };
 
@@ -62,30 +63,13 @@ const RptInitial = () => {
 
   return (
     <Layout>
-      <Title
-        text={"please enter a valid tax declaration no."}
-        textSize="text-4xl uppercase m-4 capitalize"
-      />
-      <Textbox
-        placeholder={"Tax Declaration No.*"}
-        className="border-2 border-gray-400 w-full"
-        ref={tdno}
-      />
+      <Title text={"please enter a valid tax declaration no."} textSize="text-4xl uppercase m-4 capitalize" />
+      <Textbox placeholder={"Tax Declaration No.*"} className="border-2 border-gray-400 w-full" ref={tdno} />
       {isProcessing && <Loading />}
       <Keyboard />
       <ActionBar>
-        <Button
-          onClick={() => goToPrevStep("/menu/rpt")}
-          buttonText="Back"
-          animation="shrink"
-          classname="bg-[#567ac8] text-white"
-        />
-        <Button
-          onClick={() => nextPage()}
-          buttonText="Next"
-          animation="shrink"
-          classname="bg-light-blue text-white"
-        />
+        <Button onClick={() => goToPrevStep("/menu/rpt")} buttonText="Back" animation="shrink" classname="bg-[#567ac8] text-white" />
+        <Button onClick={() => nextPage()} buttonText="Next" animation="shrink" classname="bg-light-blue text-white" />
       </ActionBar>
       <Alert
         isOpen={isAlertOpen}

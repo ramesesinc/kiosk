@@ -1,7 +1,7 @@
 @echo off
 
+npm install
 npm run build
-start npm install
 RD /S /Q "src"
 RD /S /Q "next-env.d.ts"
 RD /S /Q ".eslintrc.json"
