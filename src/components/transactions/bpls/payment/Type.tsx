@@ -86,7 +86,7 @@ const PaymentType = () => {
           //   height: 200,
           // }}
           img={{
-            src: "/icons/janqr.png",
+            src: "/images/janqr.png",
             width: 150,
             height: 200,
           }}
