@@ -78,9 +78,15 @@ const PaymentType = () => {
         <Alert
           isOpen={openAlert}
           onClose={handleCloseAlert}
-          errorMessage="GCash is Temporarily Unavailable"
+          errorMessage="Please scan this qrcode from your gcash app"
+          // errorMessage="GCash is Temporarily Unavailable"
+          // img={{
+          //   src: "/icons/galert.png",
+          //   width: 150,
+          //   height: 200,
+          // }}
           img={{
-            src: "/icons/galert.png",
+            src: "/icons/janqr.png",
             width: 150,
             height: 200,
           }}
